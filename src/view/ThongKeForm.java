@@ -7,7 +7,7 @@ package view;
 import controller.ConvertDate;
 import controller.SearchAccount;
 import dao.AccountDAO;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.NhaCungCapDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
@@ -59,7 +59,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jDateChooserTo.setDateFormatString("dd/MM/yyyy");
         jDateChooserFromPr.setDateFormatString("dd/MM/yyyy");
         jDateChooserToPr.setDateFormatString("dd/MM/yyyy");
-        txtQuantityProduct.setText(Integer.toString(MayTinhDAO.getInstance().getSl()));
+        txtQuantityProduct.setText(Integer.toString(SanphamDAO.getInstance().getSl()));
         txtQuantityNcc.setText(Integer.toString(NhaCungCapDAO.getInstance().selectAll().size()));
         txtQuantityUser.setText(Integer.toString(AccountDAO.getInstance().selectAll().size()));
         //

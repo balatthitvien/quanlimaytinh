@@ -7,7 +7,7 @@ package view;
 import dao.AccountDAO;
 import dao.ChiTietPhieuNhapDAO;
 import dao.ChiTietPhieuXuatDAO;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
 import java.sql.Timestamp;

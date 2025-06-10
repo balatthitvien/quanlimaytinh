@@ -8,7 +8,7 @@ import controller.WritePDF;
 import dao.AccountDAO;
 import dao.ChiTietPhieuNhapDAO;
 import dao.ChiTietPhieuXuatDAO;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.NhaCungCapDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
@@ -65,7 +65,7 @@ public class CTThongKe extends javax.swing.JDialog {
                     tblCTPhieumd.addRow(new Object[]{
                         i + 1,
                         CTPhieu.get(i).getMaMay(),
-                        MayTinhDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
+                        SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
                         CTPhieu.get(i).getSoLuong(),
                         parent.getFormatter().format(CTPhieu.get(i).getDonGia()) + "đ",
                         parent.getFormatter().format(CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong()) + "đ"
@@ -77,7 +77,7 @@ public class CTThongKe extends javax.swing.JDialog {
                     tblCTPhieumd.addRow(new Object[]{
                         i + 1,
                         CTPhieu.get(i).getMaMay(),
-                        MayTinhDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
+                        SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
                         CTPhieu.get(i).getSoLuong(),
                         parent.getFormatter().format(CTPhieu.get(i).getDonGia()) + "đ",
                         parent.getFormatter().format(CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong()) + "đ"

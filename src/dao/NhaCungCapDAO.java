@@ -72,7 +72,7 @@ public class NhaCungCapDAO implements DAOInterface<NhaCungCap> {
         int ketQua = 0;
         try {
             java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "DELETE FROM NhaCungCap WHERE maNhaCungCap=?";
+            String sql = "DELETE FROM nhacungcap WHERE maNhaCungCap=?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, t.getMaNhaCungCap());
             ketQua = pst.executeUpdate();

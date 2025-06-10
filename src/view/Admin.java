@@ -97,6 +97,8 @@ public class Admin extends javax.swing.JFrame {
         Account = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         MainContent = new javax.swing.JPanel();
+        PhieuNhap1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Phẩn mềm quản lý kho hàng máy tính");
@@ -524,6 +526,41 @@ public class Admin extends javax.swing.JFrame {
 
         getContentPane().add(MainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 1180, 750));
 
+        PhieuNhap1.setBackground(new java.awt.Color(254, 211, 243));
+        PhieuNhap1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PhieuNhap1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PhieuNhap1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                PhieuNhap1MousePressed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 96, 255));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_file_25px_2.png"))); // NOI18N
+        jLabel7.setText("PHIẾU NHẬP");
+
+        javax.swing.GroupLayout PhieuNhap1Layout = new javax.swing.GroupLayout(PhieuNhap1);
+        PhieuNhap1.setLayout(PhieuNhap1Layout);
+        PhieuNhap1Layout.setHorizontalGroup(
+            PhieuNhap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PhieuNhap1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel7)
+                .addContainerGap(82, Short.MAX_VALUE))
+        );
+        PhieuNhap1Layout.setVerticalGroup(
+            PhieuNhap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PhieuNhap1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
+        );
+
+        getContentPane().add(PhieuNhap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 240, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -568,19 +605,6 @@ public class Admin extends javax.swing.JFrame {
         TaiKhoan1.setBackground(DefaultColor);
         ThongKe.setBackground(DefaultColor);
     }//GEN-LAST:event_NhapHangMousePressed
-
-    private void PhieuNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuNhapMousePressed
-        // TODO add your handling code here:
-        SanPham.setBackground(DefaultColor);
-        PhieuNhap.setBackground(ClickedColor);
-        NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
-        NhaCungCap.setBackground(DefaultColor);
-        TonKho.setBackground(DefaultColor);
-        TaiKhoan1.setBackground(DefaultColor);
-        ThongKe.setBackground(DefaultColor);
-    }//GEN-LAST:event_PhieuNhapMousePressed
 
     private void XuatHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatHangMousePressed
         // TODO add your handling code here:
@@ -654,13 +678,6 @@ public class Admin extends javax.swing.JFrame {
         MainContent.removeAll();
         MainContent.add(nhaphang).setVisible(true);
     }//GEN-LAST:event_NhapHangMouseClicked
-
-    private void PhieuNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuNhapMouseClicked
-        // TODO add your handling code here:
-        PhieuNhapForm pn = new PhieuNhapForm(this.getCurrentAcc());
-        MainContent.removeAll();
-        MainContent.add(pn).setVisible(true);
-    }//GEN-LAST:event_PhieuNhapMouseClicked
 
     private void XuatHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatHangMouseClicked
         // TODO add your handling code here:
@@ -753,6 +770,45 @@ public class Admin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    private void PhieuNhap1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuNhap1MouseClicked
+        // TODO add your handling code here:
+        PhieuNhapForm pn = new PhieuNhapForm(this.getCurrentAcc());
+        MainContent.removeAll();
+        MainContent.add(pn).setVisible(true);
+    }//GEN-LAST:event_PhieuNhap1MouseClicked
+
+    private void PhieuNhap1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuNhap1MousePressed
+        // TODO add your handling code here:
+        SanPham.setBackground(DefaultColor);
+        PhieuNhap.setBackground(ClickedColor);
+        NhapHang.setBackground(DefaultColor);
+        XuatHang.setBackground(DefaultColor);
+        PhieuXuat.setBackground(DefaultColor);
+        NhaCungCap.setBackground(DefaultColor);
+        TonKho.setBackground(DefaultColor);
+        ThongKe.setBackground(DefaultColor);
+    }//GEN-LAST:event_PhieuNhap1MousePressed
+
+    private void PhieuNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuNhapMousePressed
+        // TODO add your handling code here:
+        SanPham.setBackground(DefaultColor);
+        PhieuNhap.setBackground(ClickedColor);
+        NhapHang.setBackground(DefaultColor);
+        XuatHang.setBackground(DefaultColor);
+        PhieuXuat.setBackground(DefaultColor);
+        NhaCungCap.setBackground(DefaultColor);
+        TonKho.setBackground(DefaultColor);
+        TaiKhoan1.setBackground(DefaultColor);
+        ThongKe.setBackground(DefaultColor);
+    }//GEN-LAST:event_PhieuNhapMousePressed
+
+    private void PhieuNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuNhapMouseClicked
+        // TODO add your handling code here:
+        PhieuNhapForm pn = new PhieuNhapForm(this.getCurrentAcc());
+        MainContent.removeAll();
+        MainContent.add(pn).setVisible(true);
+    }//GEN-LAST:event_PhieuNhapMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -779,6 +835,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel NhaCungCap;
     private javax.swing.JPanel NhapHang;
     private javax.swing.JPanel PhieuNhap;
+    private javax.swing.JPanel PhieuNhap1;
     private javax.swing.JPanel PhieuXuat;
     private javax.swing.JPanel SanPham;
     private javax.swing.JPanel TaiKhoan1;
@@ -795,6 +852,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables

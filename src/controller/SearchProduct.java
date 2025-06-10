@@ -1,9 +1,9 @@
 package controller;
 
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import model.MayTinh;
-
+import model.Sanpham;
 /**
  *
  * @author sinh
@@ -14,15 +14,37 @@ public class SearchProduct {
         return new SearchProduct();
     }
 
-    public ArrayList<MayTinh> searchTatCa(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+    public ArrayList<Sanpham> searchTatCa(String text) {
+    ArrayList<Sanpham> result = new ArrayList<>();
+    ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+    String keyword = text.toLowerCase().trim();
+
+    for (Sanpham sp : armt) {
+        if (sp.getTrangthai() == 1) {
+            if ((sp.getMasp() != null && sp.getMasp().toLowerCase().contains(keyword)) ||
+                (sp.getTensp() != null && sp.getTensp().toLowerCase().contains(keyword)) ||
+                (String.valueOf(sp.getSoluong()).contains(keyword)) ||
+                (String.valueOf(sp.getGianhap()).contains(keyword)) ||
+                (String.valueOf(sp.getGiaban()).contains(keyword)) ||
+                (sp.getLoaisp() != null && sp.getLoaisp().toLowerCase().contains(keyword)) ||
+                (sp.getMancc() != null && sp.getMancc().toLowerCase().contains(keyword)) ||
+                (sp.getNgaysanxuat() != null && sp.getNgaysanxuat().toString().toLowerCase().contains(keyword)) ||
+                (sp.getHansudung() != null && sp.getHansudung().toString().toLowerCase().contains(keyword))) {
+                result.add(sp);
+            }
+        }
+    }
+    return result;
+}
+
+
+
+    public ArrayList<Sanpham> searchMasp(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getTrangThai() == 1) {
-                if (mt.getMaMay().toLowerCase().contains(text.toLowerCase()) || mt.getTenMay().toLowerCase().contains(text.toLowerCase())
-                        || mt.getTenCpu().toLowerCase().contains(text.toLowerCase())
-                        || mt.getCardManHinh().toLowerCase().contains(text.toLowerCase())
-                        || mt.getXuatXu().toLowerCase().contains(text.toLowerCase())) {
+            if (mt.getTrangthai() == 1) {
+                if (mt.getMasp().toLowerCase().contains(text.toLowerCase())) {
                     result.add(mt);
                 }
             }
@@ -30,12 +52,12 @@ public class SearchProduct {
         return result;
     }
 
-    public ArrayList<MayTinh> searchMaMay(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+    public ArrayList<Sanpham> searchTensp(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
             if (mt.getTrangThai() == 1) {
-                if (mt.getMaMay().toLowerCase().contains(text.toLowerCase())) {
+                if (mt.getTensp().toLowerCase().contains(text.toLowerCase())) {
                     result.add(mt);
                 }
             }
@@ -43,26 +65,13 @@ public class SearchProduct {
         return result;
     }
 
-    public ArrayList<MayTinh> searchTenMay(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+    public ArrayList<Sanpham> searchSoluong(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getTrangThai() == 1) {
-                if (mt.getTenMay().toLowerCase().contains(text.toLowerCase())) {
-                    result.add(mt);
-                }
-            }
-        }
-        return result;
-    }
-
-    public ArrayList<MayTinh> searchSoLuong(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
-        for (var mt : armt) {
-            if (mt.getTrangThai() == 1) {
+            if (mt.getTrangthai() == 1) {
                 if (text.length() != 0) {
-                    if (mt.getSoLuong() > Integer.parseInt(text)) {
+                    if (mt.getSoluong() > Integer.parseInt(text)) {
                         result.add(mt);
                     }
                 } else {
@@ -73,14 +82,14 @@ public class SearchProduct {
         return result;
     }
 
-    public ArrayList<MayTinh> searchDonGia(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+    public ArrayList<Sanpham> searchGianhap(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
             if (mt.getTrangThai() == 1) {
 
                 if (text.length() != 0) {
-                    if (mt.getGia() > Integer.parseInt(text)) {
+                    if (mt.getGianhap() > Integer.parseInt(text)) {
                         result.add(mt);
                     }
                 }
@@ -91,69 +100,85 @@ public class SearchProduct {
         }
         return result;
     }
-
-    public ArrayList<MayTinh> searchRam(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+ public ArrayList<Sanpham> searchGiaban(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getRam().toLowerCase().contains(text.toLowerCase())) {
+            if (mt.getTrangThai() == 1) {
+
+                if (text.length() != 0) {
+                    if (mt.getGiaban() > Integer.parseInt(text)) {
+                        result.add(mt);
+                    }
+                }
+                else {
+                    result.add(mt);
+                }
+            } 
+        }
+        return result;
+    }
+    public ArrayList<Sanpham> searchLoaisp(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+        for (var mt : armt) {
+            if (mt.getLoaisp().toLowerCase().contains(text.toLowerCase())) {
                 result.add(mt);
             }
         }
         return result;
     }
 
-    public ArrayList<MayTinh> searchCpu(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+    public ArrayList<Sanpham> searchMancc(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getTenCpu().toLowerCase().contains(text.toLowerCase())) {
+            if (mt.getMancc().toLowerCase().contains(text.toLowerCase())) {
                 result.add(mt);
             }
         }
         return result;
     }
 
-    public ArrayList<MayTinh> searchDungLuong(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
-        for (var mt : armt) {
-            if (mt.getRom().toLowerCase().contains(text.toLowerCase())) {
-                result.add(mt);
-            }
+    public ArrayList<Sanpham> searchNgaysanxuat(String text) {
+    ArrayList<Sanpham> result = new ArrayList<>();
+    ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // hoặc yyyy-MM-dd tùy định dạng bạn muốn
+
+    for (Sanpham sp : armt) {
+        String ngaysanxuatStr = sdf.format(sp.getNgaysanxuat());
+        if (ngaysanxuatStr.toLowerCase().contains(text.toLowerCase())) {
+            result.add(sp);
         }
-        return result;
     }
 
-    public ArrayList<MayTinh> searchCard(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
-        for (var mt : armt) {
-            if (mt.getCardManHinh().toLowerCase().contains(text.toLowerCase())) {
-                result.add(mt);
-            }
+    return result;
+}
+
+
+    public ArrayList<Sanpham> searchHansudung(String text) {
+    ArrayList<Sanpham> result = new ArrayList<>();
+    ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // hoặc yyyy-MM-dd tùy định dạng bạn muốn
+
+    for (Sanpham sp : armt) {
+        String hansudungStr = sdf.format(sp.getHansudung());
+        if (hansudungStr.toLowerCase().contains(text.toLowerCase())) {
+            result.add(sp);
         }
-        return result;
     }
 
+    return result;
+}
 
-    public ArrayList<MayTinh> searchXuatXu(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
-        for (var mt : armt) {
-            if (mt.getXuatXu().toLowerCase().contains(text.toLowerCase())) {
-                result.add(mt);
-            }
-        }
-        return result;
-    }
-
-    public ArrayList<MayTinh> searchDaXoa(String text) {
-        ArrayList<MayTinh> result = new ArrayList<>();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAll();
+    public ArrayList<Sanpham> searchDaXoa(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAll();
         for (var mt : armt) {
             if (mt.getTrangThai() == 0) {
-                if (mt.getMaMay().toLowerCase().contains(text.toLowerCase())) {
+                if (mt.getMasp().toLowerCase().contains(text.toLowerCase())) {
                     result.add(mt);
                 }
             }
@@ -161,11 +186,11 @@ public class SearchProduct {
         return result;
     }
 
-    public MayTinh searchId(String text) {
-        MayTinh result = new MayTinh();
-        ArrayList<MayTinh> armt = MayTinhDAO.getInstance().selectAllExist();
+    public Sanpham searchId(String text) {
+        Sanpham result = new Sanpham();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getMaMay().toLowerCase().contains(text.toLowerCase())) {
+            if (mt.getMasp().toLowerCase().contains(text.toLowerCase())) {
                 return mt;
             }
         }

@@ -8,7 +8,7 @@ import controller.SearchProduct;
 import controller.WritePDF;
 import dao.AccountDAO;
 import dao.ChiTietPhieuNhapDAO;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.NhaCungCapDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
@@ -59,7 +59,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         initComponents();
-        allProduct = MayTinhDAO.getInstance().selectAllExist();
+        allProduct = SanphamDAO.getInstance().selectAllExist();
         initTable();
         loadDataToTableProduct(allProduct);
         loadNccToComboBox();
@@ -408,7 +408,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
                 PhieuNhap pn = new PhieuNhap(arrNcc.get(cboNhaCungCap.getSelectedIndex()).getMaNhaCungCap(), MaPhieu, sqlTimestamp, txtNguoiTao.getText(), CTPhieu, tinhTongTien());
                 try {
                     PhieuNhapDAO.getInstance().insert(pn);
-                    MayTinhDAO mtdao = MayTinhDAO.getInstance();
+                    SanphamDAO mtdao = SanphamDAO.getInstance();
                     for (var i : CTPhieu) {
                         ChiTietPhieuNhapDAO.getInstance().insert(i);
                         mtdao.updateSoLuong(i.getMaMay(), mtdao.selectById(i.getMaMay()).getSoLuong() + i.getSoLuong());
@@ -419,7 +419,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
                         WritePDF writepdf = new WritePDF();
                         writepdf.writePhieuNhap(MaPhieu);
                     }
-                    ArrayList<MayTinh> productUp = MayTinhDAO.getInstance().selectAllExist();
+                    ArrayList<MayTinh> productUp = SanphamDAO.getInstance().selectAllExist();
                     txtSoLuong.setText("1");
                     loadDataToTableProduct(productUp);
                     DefaultTableModel r = (DefaultTableModel) tblNhapHang.getModel();
@@ -546,7 +546,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
                     String tenSanPham = excelRow.getCell(2).getStringCellValue();
                     int soLuong = (int) (excelRow.getCell(3).getNumericCellValue());
                 
-                    double donGia = MayTinhDAO.getInstance().selectById(maSanPham).getGia();
+                    double donGia = SanphamDAO.getInstance().selectById(maSanPham).getGia();
                     ChiTietPhieu ctpnew = new ChiTietPhieu(maPhieu, maSanPham, soLuong, donGia);
                     CTPhieu.add(ctpnew);
                 }

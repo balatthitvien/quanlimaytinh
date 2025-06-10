@@ -9,7 +9,7 @@ import controller.SearchProduct;
 import dao.AccountDAO;
 import dao.ChiTietPhieuXuatDAO;
 import java.sql.Timestamp;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.NhaCungCapDAO;
 import dao.PhieuXuatDAO;
 import java.text.DecimalFormat;
@@ -49,7 +49,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         // Lay thong tin 
-        allProduct = MayTinhDAO.getInstance().selectAllExist();
+        allProduct = SanphamDAO.getInstance().selectAllExist();
         this.parent = (PhieuXuatForm) parent;
         this.phieuxuat = this.parent.getPhieuXuatSelect();
         CTPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(phieuxuat.getMaPhieu());
@@ -391,11 +391,11 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         } else {
             // Set so luong san pham cua tung loai ve ban dau        
             for (var ct : CTPhieuOld) {
-                MayTinhDAO.getInstance().updateSoLuong(ct.getMaMay(), MayTinhDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             for (var ct : CTPhieu) {
-                MayTinhDAO.getInstance().updateSoLuong(ct.getMaMay(), MayTinhDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             // Lay thoi gian hien tai

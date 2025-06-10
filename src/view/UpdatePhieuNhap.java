@@ -9,7 +9,7 @@ import controller.SearchProduct;
 import dao.AccountDAO;
 import java.sql.Timestamp;
 import dao.ChiTietPhieuNhapDAO;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.NhaCungCapDAO;
 import dao.PhieuNhapDAO;
 import java.text.DecimalFormat;
@@ -49,7 +49,7 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         // Lay thong tin 
-        allProduct = MayTinhDAO.getInstance().selectAllExist();
+        allProduct = SanphamDAO.getInstance().selectAllExist();
         this.parent = (PhieuNhapForm) parent;
         this.phieunhap = this.parent.getPhieuNhapSelect();
         CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(phieunhap.getMaPhieu());
@@ -398,11 +398,11 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm để nhập hàng !","Cảnh báo", JOptionPane.WARNING_MESSAGE);
         } else {
             for (var ct : CTPhieuOld) {
-                MayTinhDAO.getInstance().updateSoLuong(ct.getMaMay(), MayTinhDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             for (var ct : CTPhieu) {
-                MayTinhDAO.getInstance().updateSoLuong(ct.getMaMay(), MayTinhDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
                 System.out.println(ct.getSoLuong());
             }
             // Lay thoi gian hien tai

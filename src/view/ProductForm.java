@@ -5,9 +5,7 @@
 package view;
 
 import controller.SearchProduct;
-import dao.LaptopDAO;
-import dao.MayTinhDAO;
-import dao.PCDAO;
+import dao.SanphamDAO;
 import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -17,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -27,9 +26,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import model.Account;
-import model.Laptop;
-import model.MayTinh;
-import model.PC;
+import model.Sanpham;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -48,14 +45,17 @@ public class ProductForm extends javax.swing.JInternalFrame {
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     
     public ProductForm() {
-        initComponents();
-        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
-        ui.setNorthPane(null);
-        tblSanPham.setDefaultEditor(Object.class, null);
-        initTable();
-        loadDataToTable();
-        changeTextFind();
-    }
+    initComponents();
+    BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
+    ui.setNorthPane(null);
+    tblSanPham.setDefaultEditor(Object.class, null);
+
+    initTable();
+    loadDataToTable();
+
+    changeTextFind();
+}
+
     
     public void checkRole(Account t) {
         if(t.getRole().equals("Nhân viên nhập") || t.getRole().equals("Nhân viên xuất")) {
@@ -70,38 +70,56 @@ public class ProductForm extends javax.swing.JInternalFrame {
     }
 
     public final void initTable() {
-        tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá", "Bộ xử lí", "RAM", "Bộ nhớ", "Loại máy"};
-        tblModel.setColumnIdentifiers(headerTbl);
-        tblSanPham.setModel(tblModel);
-        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(5);
-    }
+    // Lấy sẵn model đã gán từ thiết kế GUI
+    tblModel = (DefaultTableModel) tblSanPham.getModel();
+
+    // Xóa hết dòng cũ nếu có
+    tblModel.setRowCount(0);
+
+    // Debug (tuỳ chọn)
+    System.out.println("Model row count: " + tblModel.getRowCount());
+    System.out.println("Table row count: " + tblSanPham.getRowCount());
+}
+
+
+
 
     public void loadDataToTable() {
-        try {
-            MayTinhDAO mtdao = new MayTinhDAO();
-            ArrayList<MayTinh> armt = mtdao.selectAll();
-            tblModel.setRowCount(0);
-            for (MayTinh i : armt) {
-                if (i.getTrangThai() == 1) {
-                    String loaimay;
-                    if (LaptopDAO.getInstance().isLaptop(i.getMaMay()) == true) {
-                        loaimay = "Laptop";
-                    } else {
-                        loaimay = "PC/Case";
-                    }
-                    tblModel.addRow(new Object[]{
-                        i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ", i.getTenCpu(), i.getRam(), i.getRom(), loaimay
-                    });
-                }
+    try {
+        SanphamDAO mtdao = new SanphamDAO();
+        ArrayList<Sanpham> armt = mtdao.selectAll();
+
+        System.out.println("Bắt đầu load dữ liệu...");
+        System.out.println("Số sản phẩm lấy về: " + armt.size());
+
+        tblModel.setRowCount(0); // Xoá dữ liệu cũ trong bảng
+
+        for (Sanpham sp : armt) {
+            if (sp.getTrangthai() == 1) {
+                tblModel.addRow(new Object[]{
+                    sp.getMasp(),
+                    sp.getTensp(),
+                    sp.getSoluong(),
+                    formatter.format(sp.getGianhap()) + "đ",
+                    formatter.format(sp.getGiaban()) + "đ",
+                    sp.getLoaisp(),
+                    sp.getMancc(),
+                    sp.getNgaysanxuat(),
+                    sp.getHansudung(),
+                    sp.getTrangthai() == 1 ? "Đang bán" : "Ngưng bán"
+                });
             }
-        } catch (Exception e) {
         }
+
+        System.out.println("Tổng dòng thêm vào bảng: " + tblModel.getRowCount());
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -218,7 +236,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã máy", "Tên máy", "Số lượng", "Đơn giá", "RAM", "CPU", "Dung lượng", "Card màn hình", "Xuất xứ", "Đã xóa" }));
+        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Đã xóa" }));
         jComboBoxLuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLuaChonActionPerformed(evt);
@@ -256,7 +274,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái"
             }
         ));
         jScrollPane1.setViewportView(tblSanPham);
@@ -304,7 +322,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         if (tblSanPham.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xoá");
         } else {
-            xoaMayTinhSelect();
+            xoaSanphamSelect();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -358,62 +376,59 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        File excelFile;
-        FileInputStream excelFIS = null;
-        BufferedInputStream excelBIS = null;
-        XSSFWorkbook excelJTableImport = null;
-        ArrayList<MayTinh> listAccExcel = new ArrayList<MayTinh>();
-        JFileChooser jf = new JFileChooser();
-        int result = jf.showOpenDialog(null);
-        jf.setDialogTitle("Open file");
-        Workbook workbook = null;
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                excelFile = jf.getSelectedFile();
-                excelFIS = new FileInputStream(excelFile);
-                excelBIS = new BufferedInputStream(excelFIS);
-                excelJTableImport = new XSSFWorkbook(excelBIS);
-                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
-                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-                    XSSFRow excelRow = excelSheet.getRow(row);
-                    String maMay = excelRow.getCell(0).getStringCellValue();
-                    String tenMay = excelRow.getCell(1).getStringCellValue();
-                    int soLuong = (int) excelRow.getCell(2).getNumericCellValue();
-                    String giaFomat = excelRow.getCell(3).getStringCellValue().replaceAll(",", "");
-                    int viTri = giaFomat.length() - 1;
-                    String giaoke = giaFomat.substring(0, viTri) + giaFomat.substring(viTri + 1);
-                    double donGia = Double.parseDouble(giaoke);
-                    String boXuLi = excelRow.getCell(4).getStringCellValue();
-                    String ram = excelRow.getCell(5).getStringCellValue();
-                    String boNho = excelRow.getCell(6).getStringCellValue();
-                    MayTinh mt = new MayTinh(maMay, tenMay, soLuong, donGia, boXuLi, ram, "", "", boNho, 1);
-                    listAccExcel.add(mt);
-                    DefaultTableModel table_acc = (DefaultTableModel) tblSanPham.getModel();
-                    table_acc.setRowCount(0);
-                    loadDataToTableSearch(listAccExcel);
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
+         File excelFile;
+    FileInputStream excelFIS = null;
+    BufferedInputStream excelBIS = null;
+    XSSFWorkbook excelWorkbook = null;
+    ArrayList<Sanpham> listAccExcel = new ArrayList<>();
+
+    JFileChooser jf = new JFileChooser();
+    jf.setDialogTitle("Open Excel File");
+    int result = jf.showOpenDialog(null);
+    
+    if (result == JFileChooser.APPROVE_OPTION) {
+        try {
+            excelFile = jf.getSelectedFile();
+            excelFIS = new FileInputStream(excelFile);
+            excelBIS = new BufferedInputStream(excelFIS);
+            excelWorkbook = new XSSFWorkbook(excelBIS);
+            XSSFSheet excelSheet = excelWorkbook.getSheetAt(0);
+
+            for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
+                XSSFRow excelRow = excelSheet.getRow(row);
+
+                String masp = excelRow.getCell(0).getStringCellValue();
+                String tensp = excelRow.getCell(1).getStringCellValue();
+                String donvitinh = excelRow.getCell(2).getStringCellValue();
+                int soluong = (int) excelRow.getCell(3).getNumericCellValue();
+                double gianhap = excelRow.getCell(4).getNumericCellValue();
+                double giaban = excelRow.getCell(5).getNumericCellValue();
+                String loaisp = excelRow.getCell(6).getStringCellValue();
+                String mancc = excelRow.getCell(7).getStringCellValue();
+                String ghichu = excelRow.getCell(8).getStringCellValue();
+                int trangthai = (int) excelRow.getCell(9).getNumericCellValue();
+
+                Date ngaysanxuat = excelRow.getCell(10).getDateCellValue();
+                Date hansudung = excelRow.getCell(11).getDateCellValue();
+
+                Sanpham sp = new Sanpham(masp, tensp, donvitinh, soluong, gianhap, giaban,
+                                         loaisp, mancc, ghichu, trangthai, ngaysanxuat, hansudung);
+                listAccExcel.add(sp);
             }
+
+            // Cập nhật bảng
+            DefaultTableModel tableModel = (DefaultTableModel) tblSanPham.getModel();
+            tableModel.setRowCount(0);
+            loadDataToTableSearch(listAccExcel);
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            ex.printStackTrace(); // In lỗi ra để dễ debug
         }
-        for (int i = 0; i < listAccExcel.size(); i++) {
-            MayTinh mayTinh = listAccExcel.get(i);
-            if (mayTinh.getMaMay().contains("LP")) {
-                Laptop lapNew = new Laptop(0, "", mayTinh.getMaMay(),
-                        mayTinh.getTenMay(), mayTinh.getSoLuong(), mayTinh.getGia(), mayTinh.getTenCpu(),
-                        mayTinh.getRam(), mayTinh.getXuatXu(), mayTinh.getCardManHinh(), mayTinh.getRom(), 1);
-                LaptopDAO.getInstance().insert(lapNew);
-            } else if (mayTinh.getMaMay().contains("PC")) {
-                PC pcNew = new PC("", 0, mayTinh.getMaMay(), mayTinh.getTenMay(), mayTinh.getSoLuong(),
-                        mayTinh.getGia(), mayTinh.getTenCpu(), mayTinh.getRam(), mayTinh.getXuatXu(), mayTinh.getCardManHinh(),
-                        mayTinh.getRom(), mayTinh.getTrangThai());
-                PCDAO.getInstance().insert(pcNew);
-            } else {
-                JOptionPane.showMessageDialog(this, "Mã máy " + mayTinh.getMaMay() + " không phù hợp !", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-            }
-        }
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -436,7 +451,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<MayTinh> result = searchFn(luaChon, content);
+        ArrayList<Sanpham> result = searchFn(luaChon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
@@ -444,7 +459,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<MayTinh> result = searchFn(luaChon, content);
+        ArrayList<Sanpham> result = searchFn(luaChon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jComboBoxLuaChonActionPerformed
 
@@ -457,98 +472,73 @@ public class ProductForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<MayTinh> result = searchFn(luaChon, content);
+        ArrayList<Sanpham> result = searchFn(luaChon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jComboBoxLuaChonPropertyChange
 
-    public ArrayList<MayTinh> searchFn(String luaChon, String content) {
-        ArrayList<MayTinh> result = new ArrayList<>();
+    public ArrayList<Sanpham> searchFn(String luaChon, String content) {
+        ArrayList<Sanpham> result = new ArrayList<>();
         SearchProduct searchPr = new SearchProduct();
         switch (luaChon) {
             case "Tất cả":
                 result = searchPr.searchTatCa(content);
                 break;
-            case "Mã máy":
-                result = searchPr.searchMaMay(content);
+            case "Mã sản phẩm":
+                result = searchPr.searchMasp(content);
                 break;
-            case "Tên máy":
-                result = searchPr.searchTenMay(content);
+            case "Tên sản phẩm":
+                result = searchPr.searchTensp(content);
                 break;
             case "Số lượng":
-                result = searchPr.searchSoLuong(content);
+                result = searchPr.searchSoluong(content);
                 break;
-            case "Đơn giá":
-                result = searchPr.searchDonGia(content);
+            case "Giá nhập":
+                result = searchPr.searchGianhap(content);
                 break;
-            case "RAM":
-                result = searchPr.searchRam(content);
+            case "Giá bán":
+                result = searchPr.searchGiaban(content);
                 break;
-            case "CPU":
-                result = searchPr.searchCpu(content);
+            case "Loại sản phẩm":
+                result = searchPr.searchLoaisp(content);
                 break;
-            case "Dung lượng":
-                result = searchPr.searchDungLuong(content);
+            case "Mã nhà cung cấp":
+                result = searchPr.searchMancc(content);
                 break;
-            case "Card màn hình":
-                result = searchPr.searchCard(content);
+            case "Ngày sản xuất":
+                result = searchPr.searchNgaysanxuat(content);
                 break;
-            case "Xuất xứ":
-                result = searchPr.searchXuatXu(content);
+            case "Hạn sử dụng":
+                result = searchPr.searchHansudung(content);
                 break;
             case "Đã xóa":
                 result = searchPr.searchDaXoa(content);
         }
         return result;
     }
-
-    public boolean checklap() {
-        if (LaptopDAO.getInstance().isLaptop(getMayTinhSelect().getMaMay()) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public Laptop getDetailLapTop() {
-        Laptop a = LaptopDAO.getInstance().selectById(getMayTinhSelect().getMaMay());
-        return a;
-    }
-
-    public PC getDetailPC() {
-        PC a = PCDAO.getInstance().selectById(getMayTinhSelect().getMaMay());
-        return a;
-    }
-
-    public void xoaMayTinhSelect() {
+    public void xoaSanphamSelect() {
         DefaultTableModel table_acc = (DefaultTableModel) tblSanPham.getModel();
         int i_row = tblSanPham.getSelectedRow();
         int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá sản phẩm này?", "Xoá sản phẩm",
                 JOptionPane.YES_NO_OPTION);
         if (luaChon == JOptionPane.YES_OPTION) {
-            MayTinh remove = getMayTinhSelect();
-            MayTinhDAO.getInstance().deleteTrangThai(remove.getMaMay());
+            Sanpham remove = getSanphamSelect();
+            SanphamDAO.getInstance().deleteTrangthai(remove.getMasp());
         }
         loadDataToTable();
     }
 
-    public MayTinh getMayTinhSelect() {
+    public Sanpham getSanphamSelect() {
         int i_row = tblSanPham.getSelectedRow();
-        MayTinh acc = MayTinhDAO.getInstance().selectById(tblModel.getValueAt(i_row, 0).toString());
+        Sanpham acc = SanphamDAO.getInstance().selectById(tblModel.getValueAt(i_row, 0).toString());
         return acc;
     }
 
-    public void loadDataToTableSearch(ArrayList<MayTinh> result) {
+    public void loadDataToTableSearch(ArrayList<Sanpham> result) {
         try {
             tblModel.setRowCount(0);
-            for (MayTinh i : result) {
-                String loaimay;
-                if (LaptopDAO.getInstance().isLaptop(i.getMaMay()) == true) {
-                    loaimay = "Laptop";
-                } else {
-                    loaimay = "PC/Case";
-                }
+            for (Sanpham i : result) {         
                 tblModel.addRow(new Object[]{
-                    i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ", i.getTenCpu(), i.getRam(), i.getRom(), loaimay
+                     i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGianhap()) + "đ", formatter.format(i.getGiaban()) + "đ",i.getLoaisp(),i.getMancc(), i.getNgaysanxuat(),i.getHansudung()
                 });
             }
         } catch (Exception e) {

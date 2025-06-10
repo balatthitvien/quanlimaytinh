@@ -20,7 +20,7 @@ import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 import dao.AccountDAO;
 import dao.ChiTietPhieuNhapDAO;
 import dao.ChiTietPhieuXuatDAO;
-import dao.MayTinhDAO;
+import dao.SanphamDAO;
 import dao.NhaCungCapDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
@@ -170,7 +170,7 @@ public class WritePDF {
 
             //Truyen thong tin tung chi tiet vao table
             for (ChiTietPhieu ctpn : ChiTietPhieuNhapDAO.getInstance().selectAll(mapn)) {
-                MayTinh mt = MayTinhDAO.getInstance().selectById(ctpn.getMaMay());
+                MayTinh mt = SanphamDAO.getInstance().selectById(ctpn.getMaMay());
                 pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMaMay(), fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(mt.getTenMay(), fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(mt.getGia()) + "đ", fontData)));
@@ -250,7 +250,7 @@ public class WritePDF {
 
             //Truyen thong tin tung chi tiet vao table
             for (ChiTietPhieu ctpn : ChiTietPhieuXuatDAO.getInstance().selectAll(mapn)) {
-                MayTinh mt = MayTinhDAO.getInstance().selectById(ctpn.getMaMay());
+                MayTinh mt = SanphamDAO.getInstance().selectById(ctpn.getMaMay());
                 pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMaMay(), fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(mt.getTenMay(), fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(mt.getGia()) + "đ", fontData)));
