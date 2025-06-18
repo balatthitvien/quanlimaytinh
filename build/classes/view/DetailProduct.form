@@ -402,7 +402,7 @@
               <Color blue="0" green="0" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\anh java\open-sky-trees-shooting-stars-4k-5f-1280x800.jpg"/>
+              <Image iconType="3" name="/picture/open-sky-trees-shooting-stars-4k-5f-1280x800.jpg"/>
             </Property>
           </Properties>
           <Constraints>

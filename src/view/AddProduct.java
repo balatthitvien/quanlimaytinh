@@ -212,7 +212,7 @@ public class AddProduct extends javax.swing.JDialog {
         jLabel16.setText("THÊM SẢN PHẨM MỚI");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIn\\Downloads\\sRKbEzd.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/sRKbEzd.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-150, -230, 1150, 770));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 460));

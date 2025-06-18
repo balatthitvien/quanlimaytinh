@@ -130,7 +130,7 @@ public class AddNhaCungCap extends javax.swing.JDialog {
         jLabel1.setText("THÊM NHÀ CUNG CẤP");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\sRKbEzd.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/sRKbEzd.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-620, -120, 1080, 640));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

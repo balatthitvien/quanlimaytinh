@@ -461,7 +461,7 @@
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ADMIn\Downloads\wallpapersden.com_town-8-bit_3840x2160 (1).jpg"/>
+              <Image iconType="3" name="/picture/wallpapersden.com_town-8-bit_3840x2160 (1).jpg"/>
             </Property>
           </Properties>
           <Constraints>

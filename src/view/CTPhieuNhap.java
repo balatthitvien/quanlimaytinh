@@ -180,7 +180,7 @@ public class CTPhieuNhap extends javax.swing.JDialog {
         jLabel7.setText("TỔNG TIỀN:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
 
-        exportPDF.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        exportPDF.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         exportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_pdf_25px.png"))); // NOI18N
         exportPDF.setText("Xuất PDF");
         exportPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,7 @@ public class CTPhieuNhap extends javax.swing.JDialog {
         });
         jPanel1.add(exportPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 135, 44));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\open-sky-trees-shooting-stars-4k-5f-1280x800.jpg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/open-sky-trees-shooting-stars-4k-5f-1280x800.jpg"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, -20, 1000, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

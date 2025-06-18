@@ -61,7 +61,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="140" width="240" height="40"/>
+              <AbsoluteConstraints x="0" y="170" width="240" height="40"/>
             </Constraint>
           </Constraints>
 
@@ -95,7 +95,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\export.png"/>
+                  <Image iconType="3" name="/picture/export.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="XU&#x1ea4;T H&#xc0;NG"/>
               </Properties>
@@ -148,7 +148,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\logout.png"/>
+                  <Image iconType="3" name="/picture/logout.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG XU&#x1ea4;T"/>
               </Properties>
@@ -158,7 +158,7 @@
         <Component class="javax.swing.JLabel" name="NameUser">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="18" style="1"/>
+              <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
@@ -176,16 +176,16 @@
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="18" style="1"/>
+              <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="HI !"/>
+            <Property name="text" type="java.lang.String" value="Xin Ch&#xe0;o"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="90" y="70" width="40" height="-1"/>
+              <AbsoluteConstraints x="70" y="60" width="100" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -204,7 +204,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="180" width="240" height="40"/>
+              <AbsoluteConstraints x="0" y="230" width="240" height="40"/>
             </Constraint>
           </Constraints>
 
@@ -238,7 +238,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\documents.png"/>
+                  <Image iconType="3" name="/picture/documents.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="PHI&#x1ebe;U XU&#x1ea4;T"/>
               </Properties>
@@ -294,7 +294,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8-information-25.png"/>
+                  <Image iconType="3" name="/picture/information (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN"/>
               </Properties>

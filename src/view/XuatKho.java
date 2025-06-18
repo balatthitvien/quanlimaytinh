@@ -100,7 +100,7 @@ public class XuatKho extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\anh java\\export.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export.png"))); // NOI18N
         jLabel4.setText("XUẤT HÀNG");
 
         javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);
@@ -120,7 +120,7 @@ public class XuatKho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        NavbarMenu.add(XuatHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 240, 40));
+        NavbarMenu.add(XuatHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 240, 40));
 
         DangXuat.setBackground(new java.awt.Color(255, 211, 243));
         DangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,7 +134,7 @@ public class XuatKho extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel5.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logout.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logout.png"))); // NOI18N
         jLabel5.setText("ĐĂNG XUẤT");
 
         javax.swing.GroupLayout DangXuatLayout = new javax.swing.GroupLayout(DangXuat);
@@ -156,17 +156,17 @@ public class XuatKho extends javax.swing.JFrame {
 
         NavbarMenu.add(DangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 690, 240, -1));
 
-        NameUser.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
+        NameUser.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 24)); // NOI18N
         NameUser.setForeground(new java.awt.Color(153, 0, 153));
         NameUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         NameUser.setText("ADMIN");
         NameUser.setToolTipText("");
         NavbarMenu.add(NameUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 160, -1));
 
-        jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel8.setText("HI !");
-        NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 40, -1));
+        jLabel8.setText("Xin Chào");
+        NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 100, -1));
 
         PhieuXuat.setBackground(new java.awt.Color(255, 211, 243));
         PhieuXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -181,7 +181,7 @@ public class XuatKho extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel9.setIcon(new javax.swing.ImageIcon("E:\\anh java\\documents.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/documents.png"))); // NOI18N
         jLabel9.setText("PHIẾU XUẤT");
 
         javax.swing.GroupLayout PhieuXuatLayout = new javax.swing.GroupLayout(PhieuXuat);
@@ -201,7 +201,7 @@ public class XuatKho extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        NavbarMenu.add(PhieuXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 240, 40));
+        NavbarMenu.add(PhieuXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 240, 40));
 
         Account.setBackground(new java.awt.Color(255, 211, 243));
         Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -216,7 +216,7 @@ public class XuatKho extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-information-25.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/information (1).png"))); // NOI18N
         jLabel14.setText("THÔNG TIN");
 
         javax.swing.GroupLayout AccountLayout = new javax.swing.GroupLayout(Account);

@@ -132,7 +132,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtsanpham.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtsanpham.setForeground(new java.awt.Color(153, 0, 153));
-        txtsanpham.setIcon(new javax.swing.ImageIcon("E:\\anh java\\shoppaymentorderbuy-10_icon-icons.com_73874 (1).png")); // NOI18N
+        txtsanpham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/shoppaymentorderbuy-10_icon-icons.com_73874 (1).png"))); // NOI18N
         txtsanpham.setText("SẢN PHẨM");
 
         javax.swing.GroupLayout SanPhamLayout = new javax.swing.GroupLayout(SanPham);
@@ -168,7 +168,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtnhaphang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtnhaphang.setForeground(new java.awt.Color(153, 0, 153));
-        txtnhaphang.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIn\\Downloads\\import.png")); // NOI18N
+        txtnhaphang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/import.png"))); // NOI18N
         txtnhaphang.setText("NHẬP HÀNG");
 
         javax.swing.GroupLayout NhapHangLayout = new javax.swing.GroupLayout(NhapHang);
@@ -204,7 +204,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtphieunhap.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtphieunhap.setForeground(new java.awt.Color(153, 0, 153));
-        txtphieunhap.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIn\\Downloads\\contract.png")); // NOI18N
+        txtphieunhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/contract.png"))); // NOI18N
         txtphieunhap.setText("PHIẾU NHẬP");
 
         javax.swing.GroupLayout PhieuNhapLayout = new javax.swing.GroupLayout(PhieuNhap);
@@ -240,7 +240,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtxuathang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtxuathang.setForeground(new java.awt.Color(153, 0, 153));
-        txtxuathang.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIn\\Downloads\\export.png")); // NOI18N
+        txtxuathang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export.png"))); // NOI18N
         txtxuathang.setText("XUẤT HÀNG");
 
         javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);
@@ -274,7 +274,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtdangxuat.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtdangxuat.setForeground(new java.awt.Color(153, 0, 153));
-        txtdangxuat.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logout.png")); // NOI18N
+        txtdangxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logout.png"))); // NOI18N
         txtdangxuat.setText("ĐĂNG XUẤT");
 
         javax.swing.GroupLayout DangXuatLayout = new javax.swing.GroupLayout(DangXuat);
@@ -310,7 +310,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtnhacungcap.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtnhacungcap.setForeground(new java.awt.Color(153, 0, 153));
-        txtnhacungcap.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIn\\Downloads\\supplier (1).png")); // NOI18N
+        txtnhacungcap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/supplier (1).png"))); // NOI18N
         txtnhacungcap.setText("NHÀ CUNG CẤP");
 
         javax.swing.GroupLayout NhaCungCapLayout = new javax.swing.GroupLayout(NhaCungCap);
@@ -358,7 +358,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtphieuxuat.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtphieuxuat.setForeground(new java.awt.Color(153, 0, 153));
-        txtphieuxuat.setIcon(new javax.swing.ImageIcon("E:\\anh java\\documents.png")); // NOI18N
+        txtphieuxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/documents.png"))); // NOI18N
         txtphieuxuat.setText("PHIẾU XUẤT");
 
         javax.swing.GroupLayout PhieuXuatLayout = new javax.swing.GroupLayout(PhieuXuat);
@@ -394,7 +394,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txttonkho.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txttonkho.setForeground(new java.awt.Color(153, 0, 153));
-        txttonkho.setIcon(new javax.swing.ImageIcon("E:\\anh java\\warehouse.png")); // NOI18N
+        txttonkho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/warehouse.png"))); // NOI18N
         txttonkho.setText("TỒN KHO");
 
         javax.swing.GroupLayout TonKhoLayout = new javax.swing.GroupLayout(TonKho);
@@ -430,7 +430,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtthongke.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtthongke.setForeground(new java.awt.Color(153, 0, 153));
-        txtthongke.setIcon(new javax.swing.ImageIcon("E:\\anh java\\analysis.png")); // NOI18N
+        txtthongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/analysis.png"))); // NOI18N
         txtthongke.setText("THỐNG KÊ");
 
         javax.swing.GroupLayout ThongKeLayout = new javax.swing.GroupLayout(ThongKe);
@@ -465,7 +465,7 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtthongtin.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtthongtin.setForeground(new java.awt.Color(153, 0, 153));
-        txtthongtin.setIcon(new javax.swing.ImageIcon("E:\\anh java\\information (1).png")); // NOI18N
+        txtthongtin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/information (1).png"))); // NOI18N
         txtthongtin.setText("THÔNG TIN");
 
         javax.swing.GroupLayout AccountLayout = new javax.swing.GroupLayout(Account);

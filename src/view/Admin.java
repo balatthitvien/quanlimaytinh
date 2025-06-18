@@ -120,7 +120,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\anh java\\shoppaymentorderbuy-10_icon-icons.com_73874 (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/shoppaymentorderbuy-10_icon-icons.com_73874 (1).png"))); // NOI18N
         jLabel1.setText("SẢN PHẨM");
 
         javax.swing.GroupLayout SanPhamLayout = new javax.swing.GroupLayout(SanPham);
@@ -154,7 +154,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\anh java\\import.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/import.png"))); // NOI18N
         jLabel2.setText("NHẬP HÀNG");
 
         javax.swing.GroupLayout NhapHangLayout = new javax.swing.GroupLayout(NhapHang);
@@ -189,7 +189,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\anh java\\contract.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/contract.png"))); // NOI18N
         jLabel3.setText("PHIẾU NHẬP");
 
         javax.swing.GroupLayout PhieuNhapLayout = new javax.swing.GroupLayout(PhieuNhap);
@@ -224,7 +224,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\anh java\\export.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export.png"))); // NOI18N
         jLabel4.setText("XUẤT HÀNG");
 
         javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);
@@ -258,7 +258,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shutdown_25px.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logout.png"))); // NOI18N
         jLabel5.setText("ĐĂNG XUẤT");
 
         javax.swing.GroupLayout DangXuatLayout = new javax.swing.GroupLayout(DangXuat);
@@ -268,7 +268,7 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(DangXuatLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel5)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         DangXuatLayout.setVerticalGroup(
             DangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +293,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\supplier (1).png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/supplier (1).png"))); // NOI18N
         jLabel6.setText("NHÀ CUNG CẤP");
 
         javax.swing.GroupLayout NhaCungCapLayout = new javax.swing.GroupLayout(NhaCungCap);
@@ -328,7 +328,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel9.setIcon(new javax.swing.ImageIcon("E:\\anh java\\documents.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/documents.png"))); // NOI18N
         jLabel9.setText("PHIẾU XUẤT");
 
         javax.swing.GroupLayout PhieuXuatLayout = new javax.swing.GroupLayout(PhieuXuat);
@@ -363,7 +363,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel10.setIcon(new javax.swing.ImageIcon("E:\\anh java\\warehouse.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/warehouse.png"))); // NOI18N
         jLabel10.setText("TỒN KHO");
 
         javax.swing.GroupLayout TonKhoLayout = new javax.swing.GroupLayout(TonKho);
@@ -398,7 +398,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel12.setIcon(new javax.swing.ImageIcon("E:\\anh java\\user.png")); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/user.png"))); // NOI18N
         jLabel12.setText("TÀI KHOẢN");
 
         javax.swing.GroupLayout TaiKhoan1Layout = new javax.swing.GroupLayout(TaiKhoan1);
@@ -433,7 +433,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel13.setIcon(new javax.swing.ImageIcon("E:\\anh java\\analysis.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/analysis.png"))); // NOI18N
         jLabel13.setText("THỐNG KÊ");
 
         javax.swing.GroupLayout ThongKeLayout = new javax.swing.GroupLayout(ThongKe);

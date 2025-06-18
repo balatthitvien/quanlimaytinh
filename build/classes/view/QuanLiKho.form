@@ -126,7 +126,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\shoppaymentorderbuy-10_icon-icons.com_73874 (1).png"/>
+                  <Image iconType="3" name="/picture/shoppaymentorderbuy-10_icon-icons.com_73874 (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1ea2;N PH&#x1ea8;M"/>
               </Properties>
@@ -187,7 +187,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ADMIn\Downloads\import.png"/>
+                  <Image iconType="3" name="/picture/import.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="NH&#x1eac;P H&#xc0;NG"/>
               </Properties>
@@ -248,7 +248,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ADMIn\Downloads\contract.png"/>
+                  <Image iconType="3" name="/picture/contract.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="PHI&#x1ebe;U NH&#x1eac;P"/>
               </Properties>
@@ -309,7 +309,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ADMIn\Downloads\export.png"/>
+                  <Image iconType="3" name="/picture/export.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="XU&#x1ea4;T H&#xc0;NG"/>
               </Properties>
@@ -362,7 +362,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\logout.png"/>
+                  <Image iconType="3" name="/picture/logout.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG XU&#x1ea4;T"/>
               </Properties>
@@ -423,7 +423,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ADMIn\Downloads\supplier (1).png"/>
+                  <Image iconType="3" name="/picture/supplier (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="NH&#xc0; CUNG C&#x1ea4;P"/>
               </Properties>
@@ -518,7 +518,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\documents.png"/>
+                  <Image iconType="3" name="/picture/documents.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="PHI&#x1ebe;U XU&#x1ea4;T"/>
               </Properties>
@@ -579,7 +579,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\warehouse.png"/>
+                  <Image iconType="3" name="/picture/warehouse.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#x1ed2;N KHO"/>
               </Properties>
@@ -640,7 +640,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\analysis.png"/>
+                  <Image iconType="3" name="/picture/analysis.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca;"/>
               </Properties>
@@ -696,7 +696,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\anh java\information (1).png"/>
+                  <Image iconType="3" name="/picture/information (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="TH&#xd4;NG TIN"/>
               </Properties>

@@ -209,7 +209,7 @@ Sanpham sp = this.owner.getSanphamSelect();
         jPanel1.add(txtGhichu, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 340, 200, 30));
 
         jLabel16.setForeground(new java.awt.Color(51, 0, 0));
-        jLabel16.setIcon(new javax.swing.ImageIcon("E:\\anh java\\open-sky-trees-shooting-stars-4k-5f-1280x800.jpg")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/open-sky-trees-shooting-stars-4k-5f-1280x800.jpg"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -270, 1090, 900));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 470));

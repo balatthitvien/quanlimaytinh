@@ -207,7 +207,7 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.setRollover(true);
 
         btnAdd.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon("E:\\anh java\\add-to-cart.png")); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-to-cart.png"))); // NOI18N
         btnAdd.setText("Thêm");
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -220,7 +220,7 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnAdd);
 
         jButton4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete.png"))); // NOI18N
         jButton4.setText("Xoá");
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -232,7 +232,7 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(jButton4);
 
         jButton5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit (1).png"))); // NOI18N
         jButton5.setText("Sửa");
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -245,7 +245,7 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(jSeparator1);
 
         importExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        importExcel.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logo.png")); // NOI18N
+        importExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo.png"))); // NOI18N
         importExcel.setText("Nhập Excel");
         importExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         importExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -257,7 +257,7 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(importExcel);
 
         exportExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        exportExcel.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
+        exportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/spreadsheet.png"))); // NOI18N
         exportExcel.setText("Xuất Excel");
         exportExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         exportExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -295,7 +295,7 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jPanel3.add(txtSearchForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 400, 40));
 
         btnReset.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnReset.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/reload (1).png"))); // NOI18N
         btnReset.setText("Làm mới");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

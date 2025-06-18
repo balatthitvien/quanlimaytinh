@@ -11,15 +11,10 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Sanpham;
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class UpdateProduct extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ThemSP
-     */
+
     private ProductForm owner;
     DecimalFormat formatterE = new DecimalFormat("0");
     
@@ -243,7 +238,7 @@ public class UpdateProduct extends javax.swing.JDialog {
         jLabel16.setText("Đơn vị tính");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 90, -1));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIn\\Downloads\\wallpapersden.com_town-8-bit_3840x2160 (1).jpg")); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpapersden.com_town-8-bit_3840x2160 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -180, 1370, 790));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 460));

@@ -60,12 +60,12 @@ public class UpdateAccount extends javax.swing.JDialog {
         vaitro = new javax.swing.JComboBox<>();
         btnupdate = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         trangthai = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sửa tài khoản");
@@ -73,27 +73,30 @@ public class UpdateAccount extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(194, 248, 248));
         jLabel2.setText("Tên tài khoản");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 110, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 110, -1));
 
         txtfullname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtfullnameActionPerformed(evt);
             }
         });
-        jPanel1.add(txtfullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 298, 38));
+        jPanel1.add(txtfullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 298, 38));
 
-        jLabel3.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(194, 248, 248));
         jLabel3.setText("Tên đăng nhập");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 24));
-        jPanel1.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 298, 38));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, 24));
+        jPanel1.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 298, 38));
 
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(194, 248, 248));
         jLabel5.setText("Vai trò");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 50, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 50, -1));
 
-        vaitro.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        vaitro.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         vaitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lý kho", "Nhân viên nhập", "Nhân viên xuất" }));
         vaitro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         vaitro.addActionListener(new java.awt.event.ActionListener() {
@@ -101,11 +104,11 @@ public class UpdateAccount extends javax.swing.JDialog {
                 vaitroActionPerformed(evt);
             }
         });
-        jPanel1.add(vaitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 298, 38));
+        jPanel1.add(vaitro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 298, 38));
 
-        btnupdate.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        btnupdate.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        btnupdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnupdate.setBackground(new java.awt.Color(194, 248, 248));
+        btnupdate.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        btnupdate.setForeground(new java.awt.Color(0, 0, 153));
         btnupdate.setText("Cập nhật");
         btnupdate.setBorder(null);
         btnupdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -119,9 +122,9 @@ public class UpdateAccount extends javax.swing.JDialog {
                 btnupdateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 140, 38));
+        jPanel1.add(btnupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 140, 38));
 
-        btnClose.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        btnClose.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         btnClose.setText("Huỷ");
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -129,38 +132,14 @@ public class UpdateAccount extends javax.swing.JDialog {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, 140, 38));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, 140, 38));
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-
-        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CẬP NHẬT THÔNG TIN");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLabel1)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 70));
-
-        jLabel6.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(194, 248, 248));
         jLabel6.setText("Trạng thái");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 90, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 90, -1));
 
-        trangthai.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        trangthai.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bị Khóa", "Hoạt động" }));
         trangthai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         trangthai.addActionListener(new java.awt.event.ActionListener() {
@@ -168,22 +147,33 @@ public class UpdateAccount extends javax.swing.JDialog {
                 trangthaiActionPerformed(evt);
             }
         });
-        jPanel1.add(trangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 298, 38));
+        jPanel1.add(trangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 298, 38));
 
-        jLabel4.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(194, 248, 248));
         jLabel4.setText("Email");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 300, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 300, 40));
+
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel1.setText("Cập nhật thông tin");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpapersden.com_town-8-bit_3840x2160 (1).jpg"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-240, 0, 810, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -235,8 +225,8 @@ public class UpdateAccount extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> trangthai;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtfullname;

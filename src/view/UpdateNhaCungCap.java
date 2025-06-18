@@ -133,7 +133,7 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
         jLabel1.setText("CẬP NHẬT THÔNG TIN");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\wallpapersden.com_town-8-bit_3840x2160 (1).jpg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpapersden.com_town-8-bit_3840x2160 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

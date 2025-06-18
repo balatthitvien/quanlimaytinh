@@ -216,7 +216,7 @@ public class CTThongKe extends javax.swing.JDialog {
         });
         jPanel1.add(btnExportPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 138, 44));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\anh java\\sRKbEzd.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/sRKbEzd.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -150, 1020, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

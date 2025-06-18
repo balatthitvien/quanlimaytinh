@@ -117,7 +117,7 @@ public class CTThongKeAcc extends javax.swing.JDialog {
         jLabel1.setText("PHIẾU");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\anh java\\wallpapersden.com_town-8-bit_3840x2160 (1).jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpapersden.com_town-8-bit_3840x2160 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 910, 540));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -247,7 +247,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         jPanel2.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 150, 40));
 
         jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/edit (1).png"))); // NOI18N
         jButton1.setText("Sửa số lượng");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +257,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 610, -1, 40));
 
         deleteProduct1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        deleteProduct1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-microsoft-excel-2019-25.png"))); // NOI18N
+        deleteProduct1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo.png"))); // NOI18N
         deleteProduct1.setText("Nhập excel");
         deleteProduct1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteProduct1.addActionListener(new java.awt.event.ActionListener() {
@@ -300,7 +300,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         addProduct.setBackground(new java.awt.Color(153, 0, 153));
         addProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         addProduct.setForeground(new java.awt.Color(255, 255, 255));
-        addProduct.setIcon(new javax.swing.ImageIcon("E:\\anh java\\businesspackage_additionalpackage_box_add_insert_negoci_2335.png")); // NOI18N
+        addProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/businesspackage_additionalpackage_box_add_insert_negoci_2335.png"))); // NOI18N
         addProduct.setText("Thêm");
         addProduct.setBorder(null);
         addProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -320,7 +320,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         });
 
         btnReset.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnReset.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/reload (1).png"))); // NOI18N
         btnReset.setText("Làm mới");
         btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -464,7 +464,7 @@ if (result <= 0) {
                             ChiTietPhieuXuat mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
                             if (mtl != null) {
                                 if (findSanpham((String) tblSanPham.getValueAt(i_row, 0)).getSoluong() < mtl.getSoluong() + Soluong) {
-                                    JOptionPane.showMessageDialog(this, "Số lượng máy không đủ !");
+                                    JOptionPane.showMessageDialog(this, "Số lượng sản phẩm không đủ !");
                                 } else {
                                     mtl.setSoluong(mtl.getSoluong() + Soluong);
                                 }

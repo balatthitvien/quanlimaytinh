@@ -213,8 +213,11 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnAdd">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8_add_40px.png"/>
+                  <Image iconType="3" name="/picture/business_application_addmale_useradd_insert_add_user_client_2312.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -230,8 +233,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnDeleteAccount">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8_delete_40px.png"/>
+                  <Image iconType="3" name="/picture/delete.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -247,8 +253,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnEditAccount">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8_edit_40px.png"/>
+                  <Image iconType="3" name="/picture/edit (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -264,8 +273,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnEditAccount1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8-update-left-rotation-40.png"/>
+                  <Image iconType="3" name="/picture/reload.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t l&#x1ea1;i"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -283,8 +295,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="exportExcel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8_spreadsheet_file_40px.png"/>
+                  <Image iconType="3" name="/picture/logo.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t Excel"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -299,8 +314,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="importExcel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8_xls_40px.png"/>
+                  <Image iconType="2" name="C:\Users\ADMIn\QuanLyKhoHangMayTinh1\src\picture\spreadsheet.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p Excel"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -339,6 +357,9 @@
           <SubComponents>
             <Component class="javax.swing.JComboBox" name="cbxLuachon">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
                     <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
@@ -373,8 +394,11 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnreset">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/icons8_reset_25px_1.png"/>
+                  <Image iconType="3" name="/picture/reload (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

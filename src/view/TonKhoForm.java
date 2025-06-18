@@ -114,7 +114,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.setRollover(true);
 
         btnAdd.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon("E:\\anh java\\add-to-cart.png")); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-to-cart.png"))); // NOI18N
         btnAdd.setText("Thêm");
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdd.setEnabled(false);
@@ -129,7 +129,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnAdd);
 
         btnDelete.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete.png"))); // NOI18N
         btnDelete.setText("Xoá");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.setEnabled(false);
@@ -143,7 +143,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnDelete);
 
         btnEdit.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnEdit.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete.png"))); // NOI18N
         btnEdit.setText("Sửa");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.setEnabled(false);
@@ -158,7 +158,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnEdit);
 
         btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\list (2).png")); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/list (2).png"))); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setEnabled(false);
@@ -174,7 +174,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.add(jSeparator1);
 
         jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/spreadsheet.png"))); // NOI18N
         jButton6.setText("Xuất Excel");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -210,7 +210,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 360, 40));
 
         jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/reload (1).png"))); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
