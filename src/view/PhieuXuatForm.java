@@ -29,7 +29,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import model.Account;
-import model.ChiTietPhieu;
+import model.ChiTietPhieuXuat;
+import model.ChiTietPhieuNhap;
 import model.PhieuXuat;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -76,7 +77,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"STT", "Mã phiếu nhập", "Người tạo", "Thời gian tạo", "Tổng tiền"};
+        String[] headerTbl = new String[]{"STT", "Mã phiếu xuất", "Người tạo", "Thời gian tạo", "Tổng tiền"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblPhieuXuat.setModel(tblModel);
         tblPhieuXuat.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -88,7 +89,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (int i = 0; i < allPhieu.size(); i++) {
                 tblModel.addRow(new Object[]{
-                    i + 1, allPhieu.get(i).getMaPhieu(), AccountDAO.getInstance().selectById(allPhieu.get(i).getNguoiTao()).getFullName(), formatDate.format(allPhieu.get(i).getThoiGianTao()), formatter.format(allPhieu.get(i).getTongTien()) + "đ"
+                    i + 1, allPhieu.get(i).getMaphieu(), AccountDAO.getInstance().selectById(allPhieu.get(i).getNguoitao()).getFullName(), formatDate.format(allPhieu.get(i).getThoigiantao()), formatter.format(allPhieu.get(i).getTongtien()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -110,8 +111,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton6 = new javax.swing.JButton();
         btnImportExcel = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxS = new javax.swing.JComboBox<>();
         jTextFieldSearch = new javax.swing.JTextField();
@@ -139,8 +140,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jToolBar1.setRollover(true);
 
-        btnDelete.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_40px.png"))); // NOI18N
+        btnDelete.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
         btnDelete.setText("Xoá");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -152,8 +153,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnDelete);
 
-        btnEdit.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_40px.png"))); // NOI18N
+        btnEdit.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         btnEdit.setText("Sửa");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.setFocusable(false);
@@ -166,8 +167,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnEdit);
 
-        btnDetail.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_eye_40px.png"))); // NOI18N
+        btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\documents.png")); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setFocusable(false);
@@ -181,21 +182,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnDetail);
         jToolBar1.add(jSeparator1);
 
-        jButton6.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_spreadsheet_file_40px.png"))); // NOI18N
-        jButton6.setText("Xuất Excel");
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton6);
-
-        btnImportExcel.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnImportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_xls_40px.png"))); // NOI18N
+        btnImportExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnImportExcel.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logo.png")); // NOI18N
         btnImportExcel.setText("Nhập Excel");
         btnImportExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImportExcel.setFocusable(false);
@@ -207,6 +195,19 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
             }
         });
         jToolBar1.add(btnImportExcel);
+
+        jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
+        jButton6.setText("Xuất Excel");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
@@ -223,8 +224,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         });
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, 40));
 
-        jButton7.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -260,8 +261,10 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel1.setText("Từ ngày");
 
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel2.setText("Đến ngày");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -294,6 +297,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm theo giá"));
 
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Từ");
 
         giaTu.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -307,6 +311,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel4.setText("Đến");
 
         giaDen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,9 +330,9 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(giaTu, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(jLabel4)
@@ -399,14 +404,14 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     public void deletePhieu(PhieuXuat pn) {
-        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xoá " + pn.getMaPhieu(), "Xác nhận xoá phiếu", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xoá " + pn.getMaphieu(), "Xác nhận xoá phiếu", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
-            ArrayList<ChiTietPhieu> ctPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(pn.getMaPhieu());
-            for (ChiTietPhieu i : ctPhieu) {
+            ArrayList<ChiTietPhieuXuat> ctPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(pn.getMaphieu());
+            for (ChiTietPhieuXuat i : ctPhieu) {
                 ChiTietPhieuXuatDAO.getInstance().delete(i);
             }
             PhieuXuatDAO.getInstance().delete(pn);
-            JOptionPane.showMessageDialog(this, "Đã xoá thành công phiếu " + pn.getMaPhieu());
+            JOptionPane.showMessageDialog(this, "Đã xoá thành công phiếu " + pn.getMaphieu());
             loadDataToTable();
         }
     }
@@ -485,18 +490,18 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
                 XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    String maPhieu = excelRow.getCell(1).getStringCellValue();
-                    String nhaCungCap = excelRow.getCell(2).getStringCellValue();
-                    String nguoiTao = excelRow.getCell(3).getStringCellValue();
+                    String Maphieu = excelRow.getCell(1).getStringCellValue();
+                    String Nhacc = excelRow.getCell(2).getStringCellValue();
+                    String Nguoitao = excelRow.getCell(3).getStringCellValue();
                     String dateText = excelRow.getCell(4).getStringCellValue();
                     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                     Date dateCheck = format.parse(dateText);
                     String giaFomat = excelRow.getCell(5).getStringCellValue().replaceAll(",", "");
                     int viTri = giaFomat.length() - 1;
                     String giaoke = giaFomat.substring(0, viTri) + giaFomat.substring(viTri + 1);
-                    double donGia = Double.parseDouble(giaoke);
+                    double Giaban = Double.parseDouble(giaoke);
                     table_acc.addRow(new Object[]{
-                        row, maPhieu, nhaCungCap, nguoiTao, formatDate.format(dateCheck), formatter.format(donGia) + "đ"
+                        row, Maphieu, Nhacc,Nguoitao, formatDate.format(dateCheck), formatter.format(Giaban) + "đ"
                     });
                 }
             } catch (FileNotFoundException ex) {
@@ -611,7 +616,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (int i = 0; i < allPhieu.size(); i++) {
                 tblModel.addRow(new Object[]{
-                    i + 1, allPhieu.get(i).getMaPhieu(), AccountDAO.getInstance().selectById(allPhieu.get(i).getNguoiTao()).getFullName(), formatDate.format(allPhieu.get(i).getThoiGianTao()), formatter.format(allPhieu.get(i).getTongTien()) + "đ"
+                    i + 1, allPhieu.get(i).getMaphieu(), AccountDAO.getInstance().selectById(allPhieu.get(i).getNguoitao()).getFullName(), formatDate.format(allPhieu.get(i).getThoigiantao()), formatter.format(allPhieu.get(i).getTongtien()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -648,7 +653,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
                     to = ChangeTo(new Date());
                     while (itr.hasNext()) {
                         PhieuXuat phieu = itr.next();
-                        if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                        if (!checkDate(phieu.getThoigiantao(), from, to)) {
                             itr.remove();
                         }
                     }
@@ -662,7 +667,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
                     to = ChangeTo(jDateChooserTo.getDate());
                     while (itr.hasNext()) {
                         PhieuXuat phieu = itr.next();
-                        if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                        if (!checkDate(phieu.getThoigiantao(), from, to)) {
                             itr.remove();
                         }
                     }
@@ -680,7 +685,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
                     } else {
                         while (itr.hasNext()) {
                             PhieuXuat phieu = itr.next();
-                            if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                            if (!checkDate(phieu.getThoigiantao(), from, to)) {
                                 itr.remove();
                             }
                         }
@@ -699,14 +704,14 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
             if (giaTu.getText().length() > 0 && giaDen.getText().length() == 0) {
                 a = Double.parseDouble(giaTu.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() >= a) {
+                    if (result.get(i).getTongtien() >= a) {
                         result1.add(result.get(i));
                     }
                 }
             } else if (giaTu.getText().length() == 0 && giaDen.getText().length() > 0) {;
                 b = Double.parseDouble(giaDen.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() <= b) {
+                    if (result.get(i).getTongtien() <= b) {
                         result1.add(result.get(i));
                     }
                 }
@@ -714,7 +719,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
                 a = Double.parseDouble(giaTu.getText());
                 b = Double.parseDouble(giaDen.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() >= a && result.get(i).getTongTien() <= b) {
+                    if (result.get(i).getTongtien() >= a && result.get(i).getTongtien() <= b) {
                         result1.add(result.get(i));
                     }
                 }
@@ -735,8 +740,8 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuXuat> result = new ArrayList<>();
         ArrayList<PhieuXuat> armt = PhieuXuatDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())
-                    || phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())
+                    || phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
 
@@ -764,7 +769,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuXuat> result = new ArrayList<>();
         ArrayList<PhieuXuat> armt = PhieuXuatDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
         }
@@ -775,7 +780,7 @@ public class PhieuXuatForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuXuat> result = new ArrayList<>();
         ArrayList<PhieuXuat> armt = PhieuXuatDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
 

@@ -5,9 +5,7 @@
 package view;
 
 import controller.SearchProduct;
-import dao.LaptopDAO;
 import dao.SanphamDAO;
-import dao.PCDAO;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,9 +19,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import model.Laptop;
-import model.MayTinh;
-import model.PC;
+import model.Sanpham;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -33,12 +29,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-/**
- *
- * @author Tran Nhat Sinh
- */
-
 
 public class TonKhoForm extends javax.swing.JInternalFrame {
 
@@ -57,32 +47,33 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá", "Bộ xử lí", "RAM", "Bộ nhớ", "Loại máy"};
+        String[] headerTbl = new String[]{"Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
-        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(5).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(5);
+
     }
 
     public void loadDataToTable() {
         try {
-            SanphamDAO mtdao = new SanphamDAO();
-            ArrayList<MayTinh> armt = mtdao.selectAllE();
+            SanphamDAO spdao = new SanphamDAO();
+            ArrayList<Sanpham> armt = spdao.selectAllE();
             tblModel.setRowCount(0);
-            for (MayTinh i : armt) {
-                if (i.getTrangThai() == 1) {
-                    String loaimay;
-                    if (LaptopDAO.getInstance().isLaptop(i.getMaMay()) == true) {
-                        loaimay = "Laptop";
-                    } else {
-                        loaimay = "PC/Case";
-                    }
+            for (Sanpham i : armt) {
+                if (i.getTrangthai() == 1) {
+                    
                     tblModel.addRow(new Object[]{
-                        i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ", i.getTenCpu(), i.getRam(), i.getRom(), loaimay
-                    });
+                i.getMasp(),
+                i.getTensp(),
+                i.getSoluong(),
+                formatter.format(i.getGianhap()) + "đ",
+                formatter.format(i.getGiaban()) + "đ",
+                i.getLoaisp(),
+                i.getMancc(),
+                i.getNgaysanxuat(),
+                i.getHansudung(),
+                i.getTrangthai() == 1 ? "Đang bán" : "Ngừng bán"
+});
+
                 }
             }
         } catch (Exception e) {
@@ -122,7 +113,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jToolBar1.setRollover(true);
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_40px.png"))); // NOI18N
+        btnAdd.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon("E:\\anh java\\add-to-cart.png")); // NOI18N
         btnAdd.setText("Thêm");
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdd.setEnabled(false);
@@ -136,7 +128,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnAdd);
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_40px.png"))); // NOI18N
+        btnDelete.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
         btnDelete.setText("Xoá");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.setEnabled(false);
@@ -149,7 +142,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnDelete);
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_40px.png"))); // NOI18N
+        btnEdit.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         btnEdit.setText("Sửa");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.setEnabled(false);
@@ -163,7 +157,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnEdit);
 
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_eye_40px.png"))); // NOI18N
+        btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\list (2).png")); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setEnabled(false);
@@ -178,7 +173,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnDetail);
         jToolBar1.add(jSeparator1);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_spreadsheet_file_40px.png"))); // NOI18N
+        jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
         jButton6.setText("Xuất Excel");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -194,7 +190,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã máy", "Tên máy", "Số lượng", "Đơn giá", "RAM", "CPU", "Dung lượng", "Card màn hình", "Xuất xứ" }));
+        jComboBoxLuaChon.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Ngày sản xuất", "Hạn sử dụng", " " }));
         jComboBoxLuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLuaChonActionPerformed(evt);
@@ -212,7 +209,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         });
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 360, 40));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +273,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         if (tblSanPham.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xoá");
         } else {
-            xoaMayTinhSelect();
+            xoaSanphamSelect();
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -343,17 +341,17 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
         // TODO add your handling code here:
-        String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
+        String luachon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<MayTinh> result = searchFn(luaChon, content);
+        ArrayList<Sanpham> result = searchFn(luachon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     private void jComboBoxLuaChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLuaChonActionPerformed
         // TODO add your handling code here:
-        String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
+        String luachon = jComboBoxLuaChon.getSelectedItem().toString();
         String content = jTextFieldSearch.getText();
-        ArrayList<MayTinh> result = searchFn(luaChon, content);
+        ArrayList<Sanpham> result = searchFn(luachon, content);
         loadDataToTableSearch(result);
     }//GEN-LAST:event_jComboBoxLuaChonActionPerformed
 
@@ -362,54 +360,35 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jTextFieldSearchKeyPressed
 
-    public boolean checklap() {
-        if (LaptopDAO.getInstance().isLaptop(getMayTinhSelect().getMaMay()) == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    public Laptop getDetailLapTop() {
-        Laptop a = LaptopDAO.getInstance().selectById(getMayTinhSelect().getMaMay());
+    public Sanpham getDetailSanpham() {
+       Sanpham a = SanphamDAO.getInstance().selectById(getSanphamSelect().getMasp());
         return a;
     }
-
-    public PC getDetailPC() {
-        PC a = PCDAO.getInstance().selectById(getMayTinhSelect().getMaMay());
-        return a;
-    }
-
-    public void xoaMayTinhSelect() {
+    public void xoaSanphamSelect() {
         DefaultTableModel table_acc = (DefaultTableModel) tblSanPham.getModel();
         int i_row = tblSanPham.getSelectedRow();
         int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá sản phẩm này?", "Xoá sản phẩm",
                 JOptionPane.YES_NO_OPTION);
         if (luaChon == JOptionPane.YES_OPTION) {
-            SanphamDAO.getInstance().delete(getMayTinhSelect());
+            SanphamDAO.getInstance().delete(getSanphamSelect());
             table_acc.removeRow(i_row);
         }
     }
 
-    public MayTinh getMayTinhSelect() {
+    public Sanpham getSanphamSelect() {
         int i_row = tblSanPham.getSelectedRow();
-        MayTinh acc = SanphamDAO.getInstance().selectAll().get(i_row);
+        Sanpham acc = SanphamDAO.getInstance().selectAll().get(i_row);
         return acc;
     }
 
-    public void loadDataToTableSearch(ArrayList<MayTinh> result) {
+    public void loadDataToTableSearch(ArrayList<Sanpham> result) {
         try {
             tblModel.setRowCount(0);
-            for (MayTinh i : result) {
-                if (i.getTrangThai() == 1) {
-                    String loaimay;
-                    if (LaptopDAO.getInstance().isLaptop(i.getMaMay()) == true) {
-                        loaimay = "Laptop";
-                    } else {
-                        loaimay = "PC/Case";
-                    }
+            for (Sanpham i : result) {
+                if (i.getTrangthai() == 1) {   
                     tblModel.addRow(new Object[]{
-                        i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ", i.getTenCpu(), i.getRam(), i.getRom(), loaimay
+                         i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGianhap()) + "đ",  formatter.format(i.getGiaban()) + "đ", i.getSoluong(), i.getNgaysanxuat(),i.getHansudung(),i.getTrangthai()
                     });
                 }
             }
@@ -417,42 +396,40 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
         }
     }
 
-    public ArrayList<MayTinh> searchFn(String luaChon, String content) {
-        ArrayList<MayTinh> result = new ArrayList<>();
+    public ArrayList<Sanpham> searchFn(String luaChon, String content) {
+        ArrayList<Sanpham> result = new ArrayList<>();
         SearchProduct searchPr = new SearchProduct();
         switch (luaChon) {
             case "Tất cả":
                 result = searchPr.searchTatCa(content);
                 break;
-            case "Mã máy":
-                result = searchPr.searchMaMay(content);
+            case "Mã sản phẩm":
+                result = searchPr.searchMasp(content);
                 break;
-            case "Tên máy":
-                result = searchPr.searchTenMay(content);
+            case "Tên sản phẩm":
+                result = searchPr.searchTensp(content);
                 break;
             case "Số lượng":
-                result = searchPr.searchSoLuong(content);
+                result = searchPr.searchSoluong(content);
                 break;
-            case "Đơn giá":
-                result = searchPr.searchDonGia(content);
+            case "Giá nhập":
+                result = searchPr.searchGianhap(content);
                 break;
-            case "RAM":
-                result = searchPr.searchRam(content);
+            case "Giá bán":
+                result = searchPr.searchGiaban(content);
                 break;
-            case "CPU":
-                result = searchPr.searchCpu(content);
+            case "Loại sản phẩm":
+                result = searchPr.searchLoaisp(content);
                 break;
-            case "Dung lượng":
-                result = searchPr.searchDungLuong(content);
+            case "Mã nhà cung cấp":
+                result = searchPr.searchMancc(content);
                 break;
-            case "Card màn hình":
-                result = searchPr.searchCard(content);
+            case "Ngày sản xuất":
+                result = searchPr.searchNgaysanxuat(content);
                 break;
-            case "Xuất xứ":
-                result = searchPr.searchXuatXu(content);
+            case "Hạn sử dụng":
+                result = searchPr.searchHansudung(content);
                 break;
-            case "Đã xóa":
-                result = searchPr.searchDaXoa(content);
         }
         return result;
     }

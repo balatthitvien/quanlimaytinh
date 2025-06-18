@@ -20,8 +20,8 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
-import model.ChiTietPhieu;
-import model.MayTinh;
+import model.ChiTietPhieuXuat;
+import model.Sanpham;
 import model.NhaCungCap;
 import model.PhieuXuat;
 
@@ -36,10 +36,10 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
      */
     private DefaultTableModel tblModel;
     DecimalFormat formatter = new DecimalFormat("###,###,###");
-    private ArrayList<MayTinh> allProduct;
+    private ArrayList<Sanpham> allProduct;
     private PhieuXuat phieuxuat;
-    private ArrayList<ChiTietPhieu> CTPhieu;
-    private ArrayList<ChiTietPhieu> CTPhieuOld;
+    private ArrayList<ChiTietPhieuXuat> CTPhieu;
+    private ArrayList<ChiTietPhieuXuat> CTPhieuOld;
     private PhieuXuatForm parent;
     private static final ArrayList<NhaCungCap> arrNcc = NhaCungCapDAO.getInstance().selectAll();
 
@@ -52,8 +52,8 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         allProduct = SanphamDAO.getInstance().selectAllExist();
         this.parent = (PhieuXuatForm) parent;
         this.phieuxuat = this.parent.getPhieuXuatSelect();
-        CTPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(phieuxuat.getMaPhieu());
-        CTPhieuOld = ChiTietPhieuXuatDAO.getInstance().selectAll(phieuxuat.getMaPhieu());
+        CTPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(phieuxuat.getMaphieu());
+        CTPhieuOld = ChiTietPhieuXuatDAO.getInstance().selectAll(phieuxuat.getMaphieu());
         // Hien thi thong tin
         initTable();
         loadDataToTableProduct(allProduct);
@@ -68,14 +68,14 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
     }
 
     private void displayInfo() {
-        txtMaPhieu.setText(phieuxuat.getMaPhieu());
-        textTongTien.setText(formatter.format(phieuxuat.getTongTien()) + "đ");
-        txtNguoiTao.setText(AccountDAO.getInstance().selectById(phieuxuat.getNguoiTao()).getUser());
+        txtMaPhieu.setText(phieuxuat.getMaphieu());
+        textTongTien.setText(formatter.format(phieuxuat.getTongtien()) + "đ");
+        txtNguoiTao.setText(AccountDAO.getInstance().selectById(phieuxuat.getNguoitao()).getUser());
     }
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá"};
+        String[] headerTbl = new String[]{"Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -87,12 +87,12 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         tblSanPham.setDefaultEditor(Object.class, null);
     }
 
-    private void loadDataToTableProduct(ArrayList<MayTinh> arrProd) {
+    private void loadDataToTableProduct(ArrayList<Sanpham> arrProd) {
         try {
             tblModel.setRowCount(0);
             for (var i : arrProd) {
                 tblModel.addRow(new Object[]{
-                    i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ"
+                    i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGiaban()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -102,23 +102,23 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
     public double tinhTongTien() {
         double tt = 0;
         for (var i : CTPhieu) {
-            tt += i.getDonGia() * i.getSoLuong();
+            tt += i.getGiaban() * i.getSoluong();
         }
         return tt;
     }
 
-    public MayTinh findMayTinh(String maMay) {
+    public Sanpham findSanpham(String Masp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getMaMay())) {
+            if (Masp.equals(i.getMasp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieuXuat findCTPhieu(String Masp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (Masp.equals(i.getMasp())) {
                 return i;
             }
         }
@@ -132,7 +132,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getTenMay(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getMasp(), findSanpham(CTPhieu.get(i).getMasp()).getTensp(), CTPhieu.get(i).getSoluong(), formatter.format(CTPhieu.get(i).getGiaban()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -181,7 +181,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel1.setText("Mã phiếu nhập");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -191,7 +191,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         txtMaPhieu.setFocusable(false);
         jPanel2.add(txtMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 390, 36));
 
-        jLabel3.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Người tạo phiếu");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
@@ -212,8 +212,8 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 580, 350));
 
-        btnNhapHang.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        btnNhapHang.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        btnNhapHang.setBackground(new java.awt.Color(153, 0, 153));
+        btnNhapHang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         btnNhapHang.setForeground(new java.awt.Color(255, 255, 255));
         btnNhapHang.setText("Lưu thay đổi");
         btnNhapHang.setBorder(null);
@@ -225,16 +225,16 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         });
         jPanel2.add(btnNhapHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 590, 123, 37));
 
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 1, 19)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel5.setText("Tổng tiền:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 120, 30));
 
-        textTongTien.setFont(new java.awt.Font("SF Pro Display", 1, 19)); // NOI18N
+        textTongTien.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         textTongTien.setForeground(new java.awt.Color(255, 0, 0));
         textTongTien.setText("0đ");
         jPanel2.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, -1, 30));
 
-        deleteProduct.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        deleteProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         deleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_25px_1.png"))); // NOI18N
         deleteProduct.setText("Xoá sản phẩm");
         deleteProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -245,7 +245,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         });
         jPanel2.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 160, 40));
 
-        jButton1.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_25px.png"))); // NOI18N
         jButton1.setText("Sửa số lượng");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -269,22 +269,22 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã máy", "Tên máy", "Số lượng", "Đơn giá"
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán"
             }
         ));
         jScrollPane2.setViewportView(tblSanPham);
 
-        jLabel4.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel4.setText("Số lượng");
 
-        txtSoLuong.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        txtSoLuong.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         txtSoLuong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSoLuong.setText("1");
 
-        addProduct.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        addProduct.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
+        addProduct.setBackground(new java.awt.Color(153, 0, 153));
+        addProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         addProduct.setForeground(new java.awt.Color(255, 255, 255));
-        addProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_25px_5.png"))); // NOI18N
+        addProduct.setIcon(new javax.swing.ImageIcon("E:\\anh java\\businesspackage_additionalpackage_box_add_insert_negoci_2335.png")); // NOI18N
         addProduct.setText("Thêm");
         addProduct.setBorder(null);
         addProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -304,8 +304,8 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
             }
         });
 
-        btnReset.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        btnReset.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         btnReset.setText("Làm mới");
         btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -391,18 +391,18 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         } else {
             // Set so luong san pham cua tung loai ve ban dau        
             for (var ct : CTPhieuOld) {
-                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
-                System.out.println(ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMasp(), SanphamDAO.getInstance().selectById(ct.getMasp()).getSoluong() + ct.getSoluong());
+                System.out.println(ct.getSoluong());
             }
             for (var ct : CTPhieu) {
-                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
-                System.out.println(ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMasp(), SanphamDAO.getInstance().selectById(ct.getMasp()).getSoluong() - ct.getSoluong());
+                System.out.println(ct.getSoluong());
             }
             // Lay thoi gian hien tai
             long now = System.currentTimeMillis();
             Timestamp sqlTimestamp = new Timestamp(now);
             // Tao doi tuong phieu nhap
-            PhieuXuat pn = new PhieuXuat(phieuxuat.getMaPhieu(), sqlTimestamp, txtNguoiTao.getText(), CTPhieu, tinhTongTien());
+            PhieuXuat pn = new PhieuXuat(phieuxuat.getMaphieu(), sqlTimestamp, txtNguoiTao.getText(), CTPhieu, tinhTongTien());
             try {
                 PhieuXuatDAO.getInstance().update(pn);
                 ChiTietPhieuXuatDAO.getInstance().delete(CTPhieuOld.get(CTPhieuOld.size() - 1));
@@ -441,10 +441,10 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
                 int soLuong;
                 try {
                     soLuong = Integer.parseInt(newSL);
-                    if (soLuong > findMayTinh(CTPhieu.get(i_row).getMaMay()).getSoLuong()) {
+                    if (soLuong > findSanpham(CTPhieu.get(i_row).getMasp()).getSoluong()) {
                         JOptionPane.showMessageDialog(this, "Số lượng không đủ !");
                     } else {
-                        CTPhieu.get(i_row).setSoLuong(soLuong);
+                        CTPhieu.get(i_row).setSoluong(soLuong);
                         loadDataToTableNhapHang();
                         textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
                     }
@@ -461,24 +461,24 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         if (i_row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để nhập hàng !");
         } else {
-            int soluongselect = allProduct.get(i_row).getSoLuong();
+            int soluongselect = allProduct.get(i_row).getSoluong();
             if (soluongselect == 0) {
                 JOptionPane.showMessageDialog(this, "Sản phẩm đã hết hàng !");
             } else {
-                int soluong = Integer.parseInt(txtSoLuong.getText().trim());
-                if (soluongselect < soluong) {
+                int Soluong = Integer.parseInt(txtSoLuong.getText().trim());
+                if (soluongselect < Soluong) {
                     JOptionPane.showMessageDialog(this, "Số lượng không đủ !");
                 } else {
-                    ChiTietPhieu mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
+                    ChiTietPhieuXuat mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
                     if (mtl != null) {
-                        if (findMayTinh((String) tblSanPham.getValueAt(i_row, 0)).getSoLuong() < mtl.getSoLuong() + soluong) {
+                        if (findSanpham((String) tblSanPham.getValueAt(i_row, 0)).getSoluong() < mtl.getSoluong() + Soluong) {
                             JOptionPane.showMessageDialog(this, "Số lượng máy không đủ !");
                         } else {
-                            mtl.setSoLuong(mtl.getSoLuong() + soluong);
+                            mtl.setSoluong(mtl.getSoluong() + Soluong);
                         }
                     } else {
-                        MayTinh mt = SearchProduct.getInstance().searchId((String) tblSanPham.getValueAt(i_row, 0));
-                        ChiTietPhieu ctp = new ChiTietPhieu(phieuxuat.getMaPhieu(), mt.getMaMay(), soluong, mt.getGia());
+                        Sanpham sp = SearchProduct.getInstance().searchId((String) tblSanPham.getValueAt(i_row, 0));
+                        ChiTietPhieuXuat ctp = new ChiTietPhieuXuat(phieuxuat.getMaphieu(), sp.getMasp(), Soluong, sp.getGiaban());
                         CTPhieu.add(ctp);
                     }
                     loadDataToTableNhapHang();
@@ -492,9 +492,9 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         // TODO add your handling code here:
         DefaultTableModel tblsp = (DefaultTableModel) tblSanPham.getModel();
         String textSearch = txtSearch.getText().toLowerCase();
-        ArrayList<MayTinh> Mtkq = new ArrayList<>();
-        for (MayTinh i : allProduct) {
-            if (i.getMaMay().concat(i.getTenMay()).toLowerCase().contains(textSearch)) {
+        ArrayList<Sanpham> Mtkq = new ArrayList<>();
+        for (Sanpham i : allProduct) {
+            if (i.getMasp().concat(i.getTensp()).toLowerCase().contains(textSearch)) {
                 Mtkq.add(i);
             }
         }
@@ -527,7 +527,7 @@ public class UpdatePhieuXuat extends javax.swing.JDialog {
         });
     }
 
-    public void setNguoiTao(String name) {
+    public void setNguoitao(String name) {
         txtNguoiTao.setText(name);
     }
 

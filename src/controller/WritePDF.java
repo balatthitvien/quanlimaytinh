@@ -38,8 +38,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.ChiTietPhieu;
-import model.MayTinh;
+import model.ChiTietPhieuNhap;
+import model.ChiTietPhieuXuat;
+import model.Sanpham;
 import model.PhieuNhap;
 import model.PhieuXuat;
 
@@ -138,14 +139,14 @@ public class WritePDF {
             Chunk glue = new Chunk(new VerticalPositionMark());// Khoang trong giua hang
             Paragraph para1 = new Paragraph();
             para1.setFont(fontData);
-            para1.add("Mã phiếu: " + pn.getMaPhieu());
-            para1.add("\nThời gian tạo: " + formatDate.format(pn.getThoiGianTao()));
+            para1.add("Mã phiếu: " + pn.getMaphieu());
+            para1.add("\nThời gian tạo: " + formatDate.format(pn.getThoigiantao()));
             para1.setIndentationLeft(40);
             Paragraph para2 = new Paragraph();
             para2.setPaddingTop(30);
             para2.setFont(fontData);
-            para2.add(String.valueOf("Người tạo: " + AccountDAO.getInstance().selectById(pn.getNguoiTao()).getFullName()));
-            para2.add(String.valueOf("\nNhà cung cấp: " + NhaCungCapDAO.getInstance().selectById(pn.getNhaCungCap()).getTenNhaCungCap() + "  -  " + pn.getNhaCungCap()));
+            para2.add(String.valueOf("Người tạo: " + AccountDAO.getInstance().selectById(pn.getNguoitao()).getFullName()));
+            para2.add(String.valueOf("\nNhà cung cấp: " + NhaCungCapDAO.getInstance().selectById(pn.getNhacc()).getTenncc() + "  -  " + pn.getNhacc()));
             para2.setIndentationLeft(40);
             document.add(para1);
             document.add(para2);
@@ -157,9 +158,9 @@ public class WritePDF {
             PdfPCell cell;
 
             //Set headers cho table chi tiet
-            pdfTable.addCell(new PdfPCell(new Phrase("Mã máy", fontHeader)));
-            pdfTable.addCell(new PdfPCell(new Phrase("Tên máy", fontHeader)));
-            pdfTable.addCell(new PdfPCell(new Phrase("Đơn giá", fontHeader)));
+            pdfTable.addCell(new PdfPCell(new Phrase("Mã sản phẩm", fontHeader)));
+            pdfTable.addCell(new PdfPCell(new Phrase("Tên sản phẩm", fontHeader)));
+            pdfTable.addCell(new PdfPCell(new Phrase("Giá nhập", fontHeader)));
             pdfTable.addCell(new PdfPCell(new Phrase("SL", fontHeader)));
             pdfTable.addCell(new PdfPCell(new Phrase("Tổng tiền", fontHeader)));
 
@@ -169,19 +170,19 @@ public class WritePDF {
             }
 
             //Truyen thong tin tung chi tiet vao table
-            for (ChiTietPhieu ctpn : ChiTietPhieuNhapDAO.getInstance().selectAll(mapn)) {
-                MayTinh mt = SanphamDAO.getInstance().selectById(ctpn.getMaMay());
-                pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMaMay(), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(mt.getTenMay(), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(mt.getGia()) + "đ", fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(String.valueOf(ctpn.getSoLuong()), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(ctpn.getSoLuong() * mt.getGia()) + "đ", fontData)));
+            for (ChiTietPhieuNhap ctpn : ChiTietPhieuNhapDAO.getInstance().selectAll(mapn)) {
+                Sanpham sp = SanphamDAO.getInstance().selectById(ctpn.getMasp());
+                pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMasp(), fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(sp.getTensp(), fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(sp.getGianhap()) + "đ", fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(String.valueOf(ctpn.getSoluong()), fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(ctpn.getSoluong() * sp.getGianhap()) + "đ", fontData)));
             }
 
             document.add(pdfTable);
             document.add(Chunk.NEWLINE);
 
-            Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thanh toán: " + formatter.format(pn.getTongTien()) + "đ", fontData));
+            Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thanh toán: " + formatter.format(pn.getTongtien()) + "đ", fontData));
             paraTongThanhToan.setIndentationLeft(300);
             document.add(paraTongThanhToan);
             document.close();
@@ -221,8 +222,8 @@ public class WritePDF {
             PhieuXuat pn = PhieuXuatDAO.getInstance().selectById(mapn);
 
             Paragraph para1 = new Paragraph(new Phrase("Mã phiếu: " + mapn, fontData));
-            Paragraph para2 = new Paragraph(new Phrase("Thời gian tạo: " + formatDate.format(pn.getThoiGianTao()), fontData));
-            Paragraph para3 = new Paragraph(new Phrase("Người tạo: " + AccountDAO.getInstance().selectById(pn.getNguoiTao()).getFullName(), fontData));
+            Paragraph para2 = new Paragraph(new Phrase("Thời gian tạo: " + formatDate.format(pn.getThoigiantao()), fontData));
+            Paragraph para3 = new Paragraph(new Phrase("Người tạo: " + AccountDAO.getInstance().selectById(pn.getNguoitao()).getFullName(), fontData));
             para1.setIndentationLeft(40);
             para2.setIndentationLeft(40);
             para3.setIndentationLeft(40);
@@ -237,9 +238,9 @@ public class WritePDF {
             PdfPCell cell;
 
             //Set headers cho table chi tiet
-            pdfTable.addCell(new PdfPCell(new Phrase("Mã máy", fontHeader)));
-            pdfTable.addCell(new PdfPCell(new Phrase("Tên máy", fontHeader)));
-            pdfTable.addCell(new PdfPCell(new Phrase("Đơn giá", fontHeader)));
+            pdfTable.addCell(new PdfPCell(new Phrase("Mã sản phẩm", fontHeader)));
+            pdfTable.addCell(new PdfPCell(new Phrase("Tên sản phẩm", fontHeader)));
+            pdfTable.addCell(new PdfPCell(new Phrase("Giá bán", fontHeader)));
             pdfTable.addCell(new PdfPCell(new Phrase("SL", fontHeader)));
             pdfTable.addCell(new PdfPCell(new Phrase("Tổng tiền", fontHeader)));
 
@@ -249,17 +250,17 @@ public class WritePDF {
             }
 
             //Truyen thong tin tung chi tiet vao table
-            for (ChiTietPhieu ctpn : ChiTietPhieuXuatDAO.getInstance().selectAll(mapn)) {
-                MayTinh mt = SanphamDAO.getInstance().selectById(ctpn.getMaMay());
-                pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMaMay(), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(mt.getTenMay(), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(mt.getGia()) + "đ", fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(String.valueOf(ctpn.getSoLuong()), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(ctpn.getSoLuong() * mt.getGia()) + "đ", fontData)));
+            for (ChiTietPhieuXuat ctpn : ChiTietPhieuXuatDAO.getInstance().selectAll(mapn)) {
+                Sanpham sp = SanphamDAO.getInstance().selectById(ctpn.getMasp());
+                pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMasp(), fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(sp.getTensp(), fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(sp.getGiaban()) + "đ", fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(String.valueOf(ctpn.getSoluong()), fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(ctpn.getSoluong() * sp.getGiaban()) + "đ", fontData)));
             }
             document.add(pdfTable);
             document.add(Chunk.NEWLINE);
-            Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thanh toán: " + formatter.format(pn.getTongTien()) + "đ", fontData));
+            Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thanh toán: " + formatter.format(pn.getTongtien()) + "đ", fontData));
             paraTongThanhToan.setIndentationLeft(300);
             document.add(paraTongThanhToan);
             document.close();

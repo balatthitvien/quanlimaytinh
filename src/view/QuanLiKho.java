@@ -16,15 +16,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.Account;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class QuanLiKho extends javax.swing.JFrame {
 
-    /**
-     *
-     */
     Color DefaultColor, ClickedColor;
     private Account currentAcc;
 
@@ -92,7 +86,6 @@ public class QuanLiKho extends javax.swing.JFrame {
         txtthongke = new javax.swing.JLabel();
         Account = new javax.swing.JPanel();
         txtthongtin = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý kho hàng máy tính");
@@ -493,7 +486,6 @@ public class QuanLiKho extends javax.swing.JFrame {
         );
 
         NavbarMenu.add(Account, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 640, 240, -1));
-        NavbarMenu.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -4, 240, 750));
 
         getContentPane().add(NavbarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 750));
 
@@ -635,7 +627,7 @@ public class QuanLiKho extends javax.swing.JFrame {
     private void XuatHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatHangMouseClicked
         // TODO add your handling code here:
         XuatHangForm xh = new XuatHangForm();
-        xh.setNguoiTao(this.currentAcc.getFullName());
+       xh.setNguoiTao(this.currentAcc.getUser(), this.currentAcc.getFullName());
         MainContent.removeAll();
         MainContent.add(xh).setVisible(true);
     }//GEN-LAST:event_XuatHangMouseClicked
@@ -738,7 +730,6 @@ public class QuanLiKho extends javax.swing.JFrame {
     private javax.swing.JPanel ThongKe;
     private javax.swing.JPanel TonKho;
     private javax.swing.JPanel XuatHang;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel txtdangxuat;
     private javax.swing.JLabel txtnhacungcap;

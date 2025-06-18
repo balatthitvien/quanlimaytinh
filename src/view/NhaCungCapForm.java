@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import model.NhaCungCap;
+import model.Sanpham;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -68,14 +69,14 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (NhaCungCap i : ncc) {
                 tblModel.addRow(new Object[]{
-                    i.getMaNhaCungCap(), i.getTenNhaCungCap(), i.getSdt(), i.getDiaChi()
+                    i.getMancc(), i.getTenncc(), i.getSdt(), i.getDiachi()
                 });
             }
         } catch (Exception e) {
         }
     }
 
-    public NhaCungCap getNhaCungCapSelect() {
+    public NhaCungCap getNhaccSelect() {
         int i_row = tblNCC.getSelectedRow();
         NhaCungCap ncc = NhaCungCapDAO.getInstance().selectAll().get(i_row);
         return ncc;
@@ -108,8 +109,8 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        exportExcel = new javax.swing.JButton();
         importExcel = new javax.swing.JButton();
+        exportExcel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         cbxlLuaChon = new javax.swing.JComboBox<>();
         txtSearchForm = new javax.swing.JTextField();
@@ -205,11 +206,10 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jToolBar1.setRollover(true);
 
-        btnAdd.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_40px.png"))); // NOI18N
+        btnAdd.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon("E:\\anh java\\add-to-cart.png")); // NOI18N
         btnAdd.setText("Thêm");
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAdd.setFocusable(false);
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -219,10 +219,9 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnAdd);
 
-        jButton4.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_40px.png"))); // NOI18N
+        jButton4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
         jButton4.setText("Xoá");
-        jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -232,10 +231,9 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(jButton4);
 
-        jButton5.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_40px.png"))); // NOI18N
+        jButton5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         jButton5.setText("Sửa");
-        jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -246,8 +244,20 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(jButton5);
         jToolBar1.add(jSeparator1);
 
-        exportExcel.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        exportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_spreadsheet_file_40px.png"))); // NOI18N
+        importExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        importExcel.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logo.png")); // NOI18N
+        importExcel.setText("Nhập Excel");
+        importExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        importExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        importExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importExcelActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(importExcel);
+
+        exportExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        exportExcel.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
         exportExcel.setText("Xuất Excel");
         exportExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         exportExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -257,19 +267,6 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
             }
         });
         jToolBar1.add(exportExcel);
-
-        importExcel.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        importExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_xls_40px.png"))); // NOI18N
-        importExcel.setText("Nhập Excel");
-        importExcel.setFocusable(false);
-        importExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        importExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        importExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                importExcelActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(importExcel);
 
         jPanel2.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 390, 90));
 
@@ -297,8 +294,8 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         });
         jPanel3.add(txtSearchForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 400, 40));
 
-        btnReset.setFont(new java.awt.Font("SF Pro Display", 0, 15)); // NOI18N
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        btnReset.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         btnReset.setText("Làm mới");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,72 +333,45 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void txtSearchFormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyPressed
         // TODO add your handling code here:
-        AddNhaCungCap a = new AddNhaCungCap(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
-        a.setVisible(true);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_txtSearchFormKeyPressed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (tblNCC.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà cung cấp muốn sửa");
-        } else {
-            UpdateNhaCungCap up = new UpdateNhaCungCap(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
-            up.setVisible(true);
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void txtSearchFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchFormActionPerformed
         // TODO add your handling code here:
-        if (tblNCC.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm muốn xoá");
-        } else {
-            int output = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xoá nhà cung cấp", "Xác nhận xoá nhà cung cấp", JOptionPane.YES_NO_OPTION);
-            if (output == JOptionPane.YES_OPTION) {
-                NhaCungCapDAO.getInstance().delete(getNhaCungCapSelect());
-                JOptionPane.showMessageDialog(this, "Xóa thành công !");
-                loadDataToTable(NhaCungCapDAO.getInstance().selectAll());
-            }
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_txtSearchFormActionPerformed
 
-    private void exportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportExcelActionPerformed
+    private void txtSearchFormKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyReleased
         // TODO add your handling code here:
-        try {
-            JFileChooser jFileChooser = new JFileChooser();
-            jFileChooser.showSaveDialog(this);
-            File saveFile = jFileChooser.getSelectedFile();
-            if (saveFile != null) {
-                saveFile = new File(saveFile.toString() + ".xlsx");
-                Workbook wb = new XSSFWorkbook();
-                Sheet sheet = wb.createSheet("NhaCungCap");
-
-                Row rowCol = sheet.createRow(0);
-                for (int i = 0; i < tblNCC.getColumnCount(); i++) {
-                    Cell cell = rowCol.createCell(i);
-                    cell.setCellValue(tblNCC.getColumnName(i));
-                }
-
-                for (int j = 0; j < tblNCC.getRowCount(); j++) {
-                    Row row = sheet.createRow(j + 1);
-                    for (int k = 0; k < tblNCC.getColumnCount(); k++) {
-                        Cell cell = row.createCell(k);
-                        if (tblNCC.getValueAt(j, k) != null) {
-                            cell.setCellValue(tblNCC.getValueAt(j, k).toString());
-                        }
-
-                    }
-                }
-                FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
-                wb.write(out);
-                wb.close();
-                out.close();
-                openFile(saveFile.toString());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        String luachon = (String) cbxlLuaChon.getSelectedItem();
+        String searchContent = txtSearchForm.getText();
+        ArrayList<NhaCungCap> result = new ArrayList<>();
+        switch (luachon) {
+            case "Tất cả":
+                result = SearchNhaCungCap.getInstance().searchTatCa(searchContent);
+                break;
+            case "Mã nhà cung cấp":
+                result = SearchNhaCungCap.getInstance().searchMaNCC(searchContent);
+                break;
+            case "Tên nhà cung cấp":
+                result = SearchNhaCungCap.getInstance().searchTenNCC(searchContent);
+                break;
+            case "Địa chỉ":
+                result = SearchNhaCungCap.getInstance().searchDiaChi(searchContent);
+                break;
+            case "Số điện thoại":
+                result = SearchNhaCungCap.getInstance().searchSdt(searchContent);
+                break;
         }
-    }//GEN-LAST:event_exportExcelActionPerformed
+        loadDataToTable(result);
+    }//GEN-LAST:event_txtSearchFormKeyReleased
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtSearchForm.setText("");
+        cbxlLuaChon.setSelectedIndex(0);
+        loadDataToTable(NhaCungCapDAO.getInstance().selectAll());
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void importExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importExcelActionPerformed
         // TODO add your handling code here:
@@ -452,45 +422,72 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_importExcelActionPerformed
 
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    private void exportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportExcelActionPerformed
         // TODO add your handling code here:
-        txtSearchForm.setText("");
-        cbxlLuaChon.setSelectedIndex(0);
-        loadDataToTable(NhaCungCapDAO.getInstance().selectAll());
-    }//GEN-LAST:event_btnResetActionPerformed
+        try {
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.showSaveDialog(this);
+            File saveFile = jFileChooser.getSelectedFile();
+            if (saveFile != null) {
+                saveFile = new File(saveFile.toString() + ".xlsx");
+                Workbook wb = new XSSFWorkbook();
+                Sheet sheet = wb.createSheet("NhaCungCap");
 
-    private void txtSearchFormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchFormKeyPressed
+                Row rowCol = sheet.createRow(0);
+                for (int i = 0; i < tblNCC.getColumnCount(); i++) {
+                    Cell cell = rowCol.createCell(i);
+                    cell.setCellValue(tblNCC.getColumnName(i));
+                }
 
-    private void txtSearchFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchFormActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchFormActionPerformed
+                for (int j = 0; j < tblNCC.getRowCount(); j++) {
+                    Row row = sheet.createRow(j + 1);
+                    for (int k = 0; k < tblNCC.getColumnCount(); k++) {
+                        Cell cell = row.createCell(k);
+                        if (tblNCC.getValueAt(j, k) != null) {
+                            cell.setCellValue(tblNCC.getValueAt(j, k).toString());
+                        }
 
-    private void txtSearchFormKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchFormKeyReleased
-        // TODO add your handling code here:
-        String luachon = (String) cbxlLuaChon.getSelectedItem();
-        String searchContent = txtSearchForm.getText();
-        ArrayList<NhaCungCap> result = new ArrayList<>();
-        switch (luachon) {
-            case "Tất cả":
-                result = SearchNhaCungCap.getInstance().searchTatCa(searchContent);
-                break;
-            case "Mã nhà cung cấp":
-                result = SearchNhaCungCap.getInstance().searchMaNCC(searchContent);
-                break;
-            case "Tên nhà cung cấp":
-                result = SearchNhaCungCap.getInstance().searchTenNCC(searchContent);
-                break;
-            case "Địa chỉ":
-                result = SearchNhaCungCap.getInstance().searchDiaChi(searchContent);
-                break;
-            case "Số điện thoại":
-                result = SearchNhaCungCap.getInstance().searchSdt(searchContent);
-                break;
+                    }
+                }
+                FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
+                wb.write(out);
+                wb.close();
+                out.close();
+                openFile(saveFile.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        loadDataToTable(result);
-    }//GEN-LAST:event_txtSearchFormKeyReleased
+    }//GEN-LAST:event_exportExcelActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (tblNCC.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà cung cấp muốn sửa");
+        } else {
+            UpdateNhaCungCap up = new UpdateNhaCungCap(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
+            up.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if (tblNCC.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm muốn xoá");
+        } else {
+            int output = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xoá nhà cung cấp", "Xác nhận xoá nhà cung cấp", JOptionPane.YES_NO_OPTION);
+            if (output == JOptionPane.YES_OPTION) {
+                NhaCungCapDAO.getInstance().delete(getNhaccSelect());
+                JOptionPane.showMessageDialog(this, "Xóa thành công !");
+                loadDataToTable(NhaCungCapDAO.getInstance().selectAll());
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        AddNhaCungCap a = new AddNhaCungCap(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
+        a.setVisible(true);
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

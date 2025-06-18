@@ -25,38 +25,43 @@ public class NhaCungCapDAO implements DAOInterface<NhaCungCap> {
     }
 
     @Override
-    public int insert(NhaCungCap t) {
-        int ketQua = 0;
-        try {
-            java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO NhaCungCap (maNhaCungCap, tenNhaCungCap, Sdt, diaChi) VALUES (?,?,?,?)";
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getMaNhaCungCap());
-            pst.setString(2, t.getTenNhaCungCap());
-            pst.setString(3, t.getSdt());
-            pst.setString(4, t.getDiaChi());
-            ketQua = pst.executeUpdate();
-            JDBCUtil.closeConnection(con);
-        } catch (Exception e) {
-            // TODO: handle exception
-            JOptionPane.showMessageDialog(null, "Không thêm được nhà cung cấp " + t.getMaNhaCungCap(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        }
-        return ketQua;
+public int insert(NhaCungCap t) {
+    if (isMaNCCExist(t.getMancc())) {
+        JOptionPane.showMessageDialog(null, "Mã nhà cung cấp " + t.getMancc() + " đã tồn tại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        return 0;
     }
+
+    int ketQua = 0;
+    try {
+        java.sql.Connection con = JDBCUtil.getConnection();
+        String sql = "INSERT INTO nhacungcap (Mancc, Tenncc, Sdt, Diachi) VALUES (?, ?, ?, ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, t.getMancc());
+        pst.setString(2, t.getTenncc());
+        pst.setString(3, t.getSdt());
+        pst.setString(4, t.getDiachi());
+        ketQua = pst.executeUpdate();
+        JDBCUtil.closeConnection(con);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return ketQua;
+}
+
+
 
     @Override
     public int update(NhaCungCap t) {
         int ketQua = 0;
         try {
             java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "UPDATE NhaCungCap SET maNhaCungCap=?, tenNhaCungCap=?, Sdt=?, diaChi=? WHERE maNhaCungCap=?";
+            String sql = "UPDATE nhacungcap SET Mancc=?, Tenncc=?, Sdt=?, Diachi=? WHERE Mancc=?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getMaNhaCungCap());
-            pst.setString(2, t.getTenNhaCungCap());
+            pst.setString(1, t.getMancc());
+            pst.setString(2, t.getTenncc());
             pst.setString(3, t.getSdt());
-            pst.setString(4, t.getDiaChi());
-            pst.setString(5, t.getMaNhaCungCap());
+            pst.setString(4, t.getDiachi());
+            pst.setString(5, t.getMancc());
             ketQua = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (Exception e) {
@@ -72,9 +77,9 @@ public class NhaCungCapDAO implements DAOInterface<NhaCungCap> {
         int ketQua = 0;
         try {
             java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "DELETE FROM nhacungcap WHERE maNhaCungCap=?";
+            String sql = "DELETE FROM nhacungcap WHERE Mancc=?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getMaNhaCungCap());
+            pst.setString(1, t.getMancc());
             ketQua = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (Exception e) {
@@ -93,11 +98,11 @@ public class NhaCungCapDAO implements DAOInterface<NhaCungCap> {
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maNhaCungCap = rs.getString("maNhaCungCap");
-                String tenNhaCungCap = rs.getString("tenNhaCungCap");
+                String Mancc = rs.getString("Mancc");
+                String Tenncc = rs.getString("Tenncc");
                 String sdt = rs.getString("Sdt");
-                String diaChi = rs.getString("diaChi");
-                NhaCungCap ncc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, sdt, diaChi);
+                String Diachi = rs.getString("Diachi");
+                NhaCungCap ncc = new NhaCungCap(Mancc, Tenncc, sdt, Diachi);
                 ketQua.add(ncc);
             }
         } catch (Exception e) {
@@ -112,16 +117,16 @@ public class NhaCungCapDAO implements DAOInterface<NhaCungCap> {
         NhaCungCap ketQua = null;
         try {
             java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT * FROM NhaCungCap WHERE maNhaCungCap=?";
+            String sql = "SELECT * FROM nhacungcap WHERE Mancc=?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, t);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maNhaCungCap = rs.getString("maNhaCungCap");
-                String tenNhaCungCap = rs.getString("tenNhaCungCap");
+                String Mancc = rs.getString("Mancc");
+                String Tenncc = rs.getString("Tenncc");
                 String sdt = rs.getString("Sdt");
-                String diaChi = rs.getString("diaChi");
-                ketQua = new NhaCungCap(maNhaCungCap, tenNhaCungCap, sdt, diaChi);
+                String Diachi = rs.getString("Diachi");
+                ketQua = new NhaCungCap(Mancc, Tenncc, sdt, Diachi);
             }
         } catch (Exception e) {
             // TODO: handle exception
@@ -129,4 +134,19 @@ public class NhaCungCapDAO implements DAOInterface<NhaCungCap> {
         }
         return ketQua;
     }
+    public boolean isMaNCCExist(String mancc) {
+    try {
+        java.sql.Connection con = JDBCUtil.getConnection();
+        String sql = "SELECT COUNT(*) FROM nhacungcap WHERE Mancc=?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, mancc);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            return rs.getInt(1) > 0;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return false;
+}
 }

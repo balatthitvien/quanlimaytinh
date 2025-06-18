@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import model.ChiTietPhieu;
+import model.ChiTietPhieuXuat;
 import model.Sanpham;
 import model.PhieuNhap;
 import model.PhieuXuat;
@@ -47,8 +47,8 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
     DecimalFormat formatter = new DecimalFormat("###,###,###");
     private ArrayList<Sanpham> allProduct;
     private String MaPhieu;
-    private ArrayList<ChiTietPhieu> CTPhieu;
-
+    private ArrayList<ChiTietPhieuXuat> CTPhieu;
+    private String currentUserName; 
     public XuatHangForm() {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
@@ -61,13 +61,13 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         tblNhapHang.setDefaultEditor(Object.class, null);
         MaPhieu = createId(PhieuXuatDAO.getInstance().selectAll());
         txtMaPhieu.setText(MaPhieu);
-        CTPhieu = new ArrayList<ChiTietPhieu>();
+        CTPhieu = new ArrayList<ChiTietPhieuXuat>();
         txtNguoiTao.setFocusable(false);
     }
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá"};
+        String[] headerTbl = new String[]{"Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -78,12 +78,12 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         tblNhapHang.getColumnModel().getColumn(2).setPreferredWidth(250);
     }
 
-    private void loadDataToTableProduct(ArrayList<MayTinh> arrProd) {
+    private void loadDataToTableProduct(ArrayList<Sanpham> arrProd) {
         try {
             tblModel.setRowCount(0);
             for (var i : arrProd) {
                 tblModel.addRow(new Object[]{
-                    i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ"
+                    i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGiaban()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -93,23 +93,23 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
     public double tinhTongTien() {
         double tt = 0;
         for (var i : CTPhieu) {
-            tt += i.getDonGia() * i.getSoLuong();
+            tt += i.getGiaban() * i.getSoluong();
         }
         return tt;
     }
 
-    public MayTinh findMayTinh(String maMay) {
+    public Sanpham findSanpham(String Masp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getMaMay())) {
+            if (Masp.equals(i.getMasp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieuXuat findCTPhieu(String Masp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (Masp.equals(i.getMasp())) {
                 return i;
             }
         }
@@ -124,17 +124,18 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getTenMay(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getMasp(), findSanpham(CTPhieu.get(i).getMasp()).getTensp(), CTPhieu.get(i).getSoluong(), formatter.format(CTPhieu.get(i).getGiaban()) + "đ"
                 });
-                sum += CTPhieu.get(i).getDonGia();
+                sum += CTPhieu.get(i).getGiaban();
             }
         } catch (Exception e) {
         }
         textTongTien.setText(formatter.format(sum) + "đ");
     }
 
-    public void setNguoiTao(String name) {
-        txtNguoiTao.setText(name);
+     public void setNguoiTao(String userName, String displayName) {
+        this.currentUserName = userName;       
+        txtNguoiTao.setText(displayName);       
     }
 
     /**
@@ -178,6 +179,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel1.setText("Mã phiếu nhập");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -186,6 +188,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         txtMaPhieu.setFocusable(false);
         jPanel2.add(txtMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 390, 36));
 
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Người tạo phiếu");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
@@ -210,7 +213,8 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 580, 450));
 
-        btnNhapHang.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        btnNhapHang.setBackground(new java.awt.Color(153, 0, 153));
+        btnNhapHang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         btnNhapHang.setForeground(new java.awt.Color(255, 255, 255));
         btnNhapHang.setText("Xuất hàng");
         btnNhapHang.setBorder(null);
@@ -222,15 +226,16 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         });
         jPanel2.add(btnNhapHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 690, 123, 37));
 
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel5.setText("Tổng tiền:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 690, 130, 30));
 
-        textTongTien.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        textTongTien.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         textTongTien.setForeground(new java.awt.Color(255, 0, 0));
         textTongTien.setText("0đ");
         jPanel2.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 690, -1, 30));
 
+        deleteProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         deleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_25px_1.png"))); // NOI18N
         deleteProduct.setText("Xoá sản phẩm");
         deleteProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -241,7 +246,8 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         });
         jPanel2.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 150, 40));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_25px.png"))); // NOI18N
+        jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         jButton1.setText("Sửa số lượng");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,6 +256,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 610, -1, 40));
 
+        deleteProduct1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         deleteProduct1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-microsoft-excel-2019-25.png"))); // NOI18N
         deleteProduct1.setText("Nhập excel");
         deleteProduct1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -273,13 +280,15 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã máy", "Tên máy", "Số lượng", "Đơn giá"
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán"
             }
         ));
         jScrollPane2.setViewportView(tblSanPham);
 
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel4.setText("Số lượng");
 
+        txtSoLuong.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         txtSoLuong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSoLuong.setText("1");
         txtSoLuong.addActionListener(new java.awt.event.ActionListener() {
@@ -288,9 +297,10 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
             }
         });
 
-        addProduct.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        addProduct.setBackground(new java.awt.Color(153, 0, 153));
+        addProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         addProduct.setForeground(new java.awt.Color(255, 255, 255));
-        addProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_25px_5.png"))); // NOI18N
+        addProduct.setIcon(new javax.swing.ImageIcon("E:\\anh java\\businesspackage_additionalpackage_box_add_insert_negoci_2335.png")); // NOI18N
         addProduct.setText("Thêm");
         addProduct.setBorder(null);
         addProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -309,7 +319,8 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
             }
         });
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        btnReset.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         btnReset.setText("Làm mới");
         btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -350,7 +361,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                 .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -398,13 +409,17 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                 long now = System.currentTimeMillis();
                 Timestamp sqlTimestamp = new Timestamp(now);
                 // Tao doi tuong phieu nhap
-                PhieuXuat pn = new PhieuXuat(MaPhieu, sqlTimestamp, txtNguoiTao.getText(), CTPhieu, tinhTongTien());
+                PhieuXuat pn = new PhieuXuat(MaPhieu, sqlTimestamp, currentUserName, CTPhieu, tinhTongTien());
                 try {
-                    PhieuXuatDAO.getInstance().insert(pn);
+                  int result = PhieuXuatDAO.getInstance().insert(pn);
+if (result <= 0) {
+    JOptionPane.showMessageDialog(this, "Tạo phiếu xuất thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    return;
+}
                     SanphamDAO mtdao = SanphamDAO.getInstance();
                     for (var i : CTPhieu) {
                         ChiTietPhieuXuatDAO.getInstance().insert(i);
-                        mtdao.updateSoLuong(i.getMaMay(), mtdao.selectById(i.getMaMay()).getSoLuong() - i.getSoLuong());
+                        mtdao.updateSoLuong(i.getMasp(), mtdao.selectById(i.getMasp()).getSoluong() - i.getSoluong());
                     }
 
                     JOptionPane.showMessageDialog(this, "Xuất hàng thành công !");
@@ -417,7 +432,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                     loadDataToTableProduct(allProduct);
                     DefaultTableModel l = (DefaultTableModel) tblNhapHang.getModel();
                     l.setRowCount(0);
-                    CTPhieu = new ArrayList<ChiTietPhieu>();
+                    CTPhieu = new ArrayList<ChiTietPhieuXuat>();
                     txtSoLuong.setText("1");
                     textTongTien.setText(0 + "đ");
                     this.MaPhieu = createId(PhieuXuatDAO.getInstance().selectAll());
@@ -435,27 +450,27 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         if (i_row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để xuất hàng !");
         } else {
-            int soluongselect = allProduct.get(i_row).getSoLuong();
+            int soluongselect = allProduct.get(i_row).getSoluong();
             if (soluongselect == 0) {
                 JOptionPane.showMessageDialog(this, "Sản phẩm đã hết hàng !");
             } else {
-                int soluong;
+                int Soluong;
                 try {
-                    soluong = Integer.parseInt(txtSoLuong.getText().trim());
-                    if (soluong > 0) {
-                        if (soluongselect < soluong) {
+                    Soluong = Integer.parseInt(txtSoLuong.getText().trim());
+                    if (Soluong > 0) {
+                        if (soluongselect < Soluong) {
                             JOptionPane.showMessageDialog(this, "Số lượng không đủ !");
                         } else {
-                            ChiTietPhieu mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
+                            ChiTietPhieuXuat mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
                             if (mtl != null) {
-                                if (findMayTinh((String) tblSanPham.getValueAt(i_row, 0)).getSoLuong() < mtl.getSoLuong() + soluong) {
+                                if (findSanpham((String) tblSanPham.getValueAt(i_row, 0)).getSoluong() < mtl.getSoluong() + Soluong) {
                                     JOptionPane.showMessageDialog(this, "Số lượng máy không đủ !");
                                 } else {
-                                    mtl.setSoLuong(mtl.getSoLuong() + soluong);
+                                    mtl.setSoluong(mtl.getSoluong() + Soluong);
                                 }
                             } else {
-                                MayTinh mt = SearchProduct.getInstance().searchId((String) tblSanPham.getValueAt(i_row, 0));
-                                ChiTietPhieu ctp = new ChiTietPhieu(MaPhieu, mt.getMaMay(), soluong, mt.getGia());
+                                Sanpham sp = SearchProduct.getInstance().searchId((String) tblSanPham.getValueAt(i_row, 0));
+                                ChiTietPhieuXuat ctp = new ChiTietPhieuXuat(MaPhieu, sp.getMasp(), Soluong, sp.getGiaban());
                                 CTPhieu.add(ctp);
                             }
                             loadDataToTableNhapHang();
@@ -491,14 +506,14 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         } else {
             String newSL = JOptionPane.showInputDialog(this, "Nhập số lượng cần thay đổi", "Thay đổi số lượng", QUESTION_MESSAGE);
             if (newSL != null) {
-                int soLuong;
+                int Soluong;
                 try {
-                    soLuong = Integer.parseInt(newSL);
-                    if (soLuong > 0) {
-                        if (soLuong > findMayTinh(CTPhieu.get(i_row).getMaMay()).getSoLuong()) {
+                    Soluong = Integer.parseInt(newSL);
+                    if (Soluong > 0) {
+                        if (Soluong > findSanpham(CTPhieu.get(i_row).getMasp()).getSoluong()) {
                             JOptionPane.showMessageDialog(this, "Số lượng không đủ !");
                         } else {
-                            CTPhieu.get(i_row).setSoLuong(soLuong);
+                            CTPhieu.get(i_row).setSoluong(Soluong);
                             loadDataToTableNhapHang();
                             textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
                         }
@@ -517,9 +532,9 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         DefaultTableModel tblsp = (DefaultTableModel) tblSanPham.getModel();
         String textSearch = txtSearch.getText().toLowerCase();
-        ArrayList<MayTinh> Mtkq = new ArrayList<>();
-        for (MayTinh i : allProduct) {
-            if (i.getMaMay().concat(i.getTenMay()).toLowerCase().contains(textSearch)) {
+        ArrayList<Sanpham> Mtkq = new ArrayList<>();
+        for (Sanpham i : allProduct) {
+            if (i.getMasp().concat(i.getTensp()).toLowerCase().contains(textSearch)) {
                 Mtkq.add(i);
             }
         }
@@ -542,7 +557,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         FileInputStream excelFIS = null;
         BufferedInputStream excelBIS = null;
         XSSFWorkbook excelJTableImport = null;
-        ArrayList<ChiTietPhieu> listAccExcel = new ArrayList<ChiTietPhieu>();
+        ArrayList<ChiTietPhieuXuat> listAccExcel = new ArrayList<ChiTietPhieuXuat>();
         JFileChooser jf = new JFileChooser();
         int result = jf.showOpenDialog(null);
         jf.setDialogTitle("Open file");
@@ -556,13 +571,13 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                 XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
                 for (int row = 1; row < excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    String maPhieu = txtMaPhieu.getText();
-                    String maSanPham = excelRow.getCell(1).getStringCellValue();
-                    String tenSanPham = excelRow.getCell(2).getStringCellValue();
-                    int soLuong = (int) (excelRow.getCell(3).getNumericCellValue());
+                    String Maphieu = txtMaPhieu.getText();
+                    String Masp = excelRow.getCell(1).getStringCellValue();
+                    String Tensp = excelRow.getCell(2).getStringCellValue();
+                    int Soluong = (int) (excelRow.getCell(3).getNumericCellValue());
                 
-                    double donGia = SanphamDAO.getInstance().selectById(maSanPham).getGia();
-                    ChiTietPhieu ctpnew = new ChiTietPhieu(maPhieu, maSanPham, soLuong, donGia);
+                    double Giaban = SanphamDAO.getInstance().selectById(Masp).getGiaban();
+                    ChiTietPhieuXuat ctpnew = new ChiTietPhieuXuat(Maphieu,Masp, Soluong, Giaban);
                     CTPhieu.add(ctpnew);
                 }
                 loadDataToTableNhapHang();
@@ -583,8 +598,8 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         int id = arr.size() + 1;
         String check = "";
         for (PhieuXuat phieuXuat : arr) {
-            if (phieuXuat.getMaPhieu().equals("PX" + id)) {
-                check = phieuXuat.getMaPhieu();
+            if (phieuXuat.getMaphieu().equals("PX" + id)) {
+                check = phieuXuat.getMaphieu();
             }
         }
 
@@ -592,8 +607,8 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
             String c = check;
             id++;
             for (int i = 0; i < arr.size(); i++) {
-                if (arr.get(i).getMaPhieu().equals("PX" + id)) {
-                    check = arr.get(i).getMaPhieu();
+                if (arr.get(i).getMaphieu().equals("PX" + id)) {
+                    check = arr.get(i).getMaphieu();
                 }
             }
             if (check.equals(c)) {

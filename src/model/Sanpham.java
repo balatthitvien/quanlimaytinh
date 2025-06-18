@@ -21,21 +21,21 @@ public class Sanpham {
     private Date Ngaysanxuat;
     private Date Hansudung;
     
-
-    public Sanpham(String masp, String tensp, String donvitinh, int soluong, Double gianhap, Double giaban,
-               String loaisp, String mancc, String ghichu, int trangthai, Date ngaysanxuat, Date hansudung) {
-    this.Masp = masp;
-    this.Tensp = tensp;
-    this.Donvitinh = donvitinh;
-    this.Soluong = soluong;
-    this.Gianhap = gianhap;
-    this.Giaban = giaban;
-    this.Loaisp = loaisp;
-    this.Mancc = mancc;
-    this.Ghichu = ghichu;
-    this.Trangthai = trangthai;
-    this.Ngaysanxuat = ngaysanxuat;
-    this.Hansudung = hansudung;
+public Sanpham(){}
+    public Sanpham(String Masp, String Tensp, String Donvitinh, int Soluong, Double Gianhap, Double Giaban,
+               Date Ngaysanxuat, Date Hansudung ,String Loaisp, String Mancc, int Trangthai,  String Ghichu) {
+    this.Masp = Masp;
+    this.Tensp = Tensp;
+    this.Donvitinh = Donvitinh;
+    this.Soluong = Soluong;
+    this.Gianhap = Gianhap;
+    this.Giaban = Giaban;
+    this.Loaisp = Loaisp;
+    this.Mancc = Mancc;
+    this.Ghichu = Ghichu;
+    this.Trangthai = Trangthai;
+    this.Ngaysanxuat = Ngaysanxuat;
+    this.Hansudung = Hansudung;
 }
 
     public Sanpham(String Masp, String Tensp, int Soluong, double Gianhap,double Giaban, String Loaisp, String Mancc, Date Ngaysanxuat, Date Hansudung, int Trangthai) {

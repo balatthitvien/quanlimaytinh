@@ -40,11 +40,11 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
     }
     
     private void displayInfo() {
-        NhaCungCap a = parent.getNhaCungCapSelect();
-        txtMaNhaCungCap.setText(a.getMaNhaCungCap());
-        txtDiaChi.setText(a.getDiaChi());
-        txtTenNhaCungCap.setText(a.getTenNhaCungCap());
-        txtphone1.setText(a.getSdt());
+        NhaCungCap a = parent.getNhaccSelect();
+        txtMancc.setText(a.getMancc());
+        txtDiachi.setText(a.getDiachi());
+        txtTenncc.setText(a.getTenncc());
+        txtSdt.setText(a.getSdt());
     }
 
     /**
@@ -58,17 +58,17 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtMaNhaCungCap = new javax.swing.JTextField();
+        txtMancc = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtTenNhaCungCap = new javax.swing.JTextField();
+        txtTenncc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtDiaChi = new javax.swing.JTextField();
+        txtDiachi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        txtSdt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtphone1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cập nhật thông tin");
@@ -76,25 +76,34 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(194, 248, 248));
         jLabel2.setText("Mã nhà cung cấp");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 120, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 130, -1));
 
-        txtMaNhaCungCap.setEnabled(false);
-        jPanel1.add(txtMaNhaCungCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 298, 38));
+        txtMancc.setEnabled(false);
+        jPanel1.add(txtMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 298, 38));
 
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(194, 248, 248));
         jLabel3.setText("Tên nhà cung cấp");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, 24));
-        jPanel1.add(txtTenNhaCungCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 298, 38));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, 24));
+        jPanel1.add(txtTenncc, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 298, 38));
 
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(194, 248, 248));
         jLabel4.setText("Số điện thoại");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 100, -1));
-        jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 298, 38));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 100, -1));
+        jPanel1.add(txtDiachi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 298, 38));
 
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(194, 248, 248));
         jLabel5.setText("Địa chỉ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 50, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 50, -1));
 
-        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(194, 248, 248));
+        jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 0, 102));
         jButton1.setText("Lưu");
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -103,10 +112,11 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 140, 38));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 140, 38));
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 51));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setBackground(new java.awt.Color(194, 248, 248));
+        jButton2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 0, 102));
         jButton2.setText("Huỷ");
         jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -115,39 +125,24 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 140, 38));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 140, 38));
+        jPanel1.add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 298, 38));
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-
-        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(194, 248, 248));
         jLabel1.setText("CẬP NHẬT THÔNG TIN");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19))
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 70));
-        jPanel1.add(txtphone1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 298, 38));
+        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\wallpapersden.com_town-8-bit_3840x2160 (1).jpg")); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,10 +159,10 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
         try {
             // TODO add your handling code here:
             NhaCungCap ncc = new NhaCungCap();
-            ncc.setMaNhaCungCap(txtMaNhaCungCap.getText());
-            ncc.setTenNhaCungCap(txtTenNhaCungCap.getText());
-            ncc.setSdt(txtphone1.getText());
-            ncc.setDiaChi(txtDiaChi.getText());
+            ncc.setMancc(txtMancc.getText());
+            ncc.setTenncc(txtTenncc.getText());
+            ncc.setSdt(txtSdt.getText());
+            ncc.setDiachi(txtDiachi.getText());
             NhaCungCapDAO nccDao = new NhaCungCapDAO();
             nccDao.update(ncc);
             this.dispose();
@@ -211,11 +206,11 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txtMaNhaCungCap;
-    private javax.swing.JTextField txtTenNhaCungCap;
-    private javax.swing.JTextField txtphone1;
+    private javax.swing.JTextField txtDiachi;
+    private javax.swing.JTextField txtMancc;
+    private javax.swing.JTextField txtSdt;
+    private javax.swing.JTextField txtTenncc;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
-import model.ChiTietPhieu;
+import model.ChiTietPhieuNhap;
+import model.ChiTietPhieuXuat;
 import model.Phieu;
 import model.PhieuNhap;
 import model.PhieuXuat;
@@ -39,10 +40,10 @@ public class CTThongKe extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         Phieu pn = this.parent.findPhieu();
-        labelMaPhieu.setText(pn.getMaPhieu());
-        labelNguoiTao.setText(AccountDAO.getInstance().selectById(pn.getNguoiTao()).getFullName());
-        labelTongTien.setText(this.parent.getFormatter().format(pn.getTongTien()) + "đ");
-        labelThoiGianTao.setText(this.parent.getFormatDate().format(pn.getThoiGianTao()));
+        labelMaPhieu.setText(pn.getMaphieu());
+        labelNguoiTao.setText(AccountDAO.getInstance().selectById(pn.getNguoitao()).getFullName());
+        labelTongTien.setText(this.parent.getFormatter().format(pn.getTongtien()) + "đ");
+        labelThoiGianTao.setText(this.parent.getFormatDate().format(pn.getThoigiantao()));
         loadDataToTableProduct();
         setWidthTable();
     }
@@ -58,29 +59,29 @@ public class CTThongKe extends javax.swing.JDialog {
             DefaultTableModel tblCTPhieumd = (DefaultTableModel) tblChiTietPhieu.getModel();
             tblCTPhieumd.setRowCount(0);
             Phieu pn = this.parent.findPhieu();
-            String check = pn.getMaPhieu();
+            String check = pn.getMaphieu();
             if (check.contains("PX")) {
-                ArrayList<ChiTietPhieu> CTPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(check);
+                ArrayList<ChiTietPhieuXuat> CTPhieu = ChiTietPhieuXuatDAO.getInstance().selectAll(check);
                 for (int i = 0; i < CTPhieu.size(); i++) {
                     tblCTPhieumd.addRow(new Object[]{
                         i + 1,
-                        CTPhieu.get(i).getMaMay(),
-                        SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
-                        CTPhieu.get(i).getSoLuong(),
-                        parent.getFormatter().format(CTPhieu.get(i).getDonGia()) + "đ",
-                        parent.getFormatter().format(CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong()) + "đ"
+                        CTPhieu.get(i).getMasp(),
+                        SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMasp()).getTensp(),
+                        CTPhieu.get(i).getSoluong(),
+                        parent.getFormatter().format(CTPhieu.get(i).getGiaban()) + "đ",
+                        parent.getFormatter().format(CTPhieu.get(i).getGiaban() * CTPhieu.get(i).getSoluong()) + "đ"
                     });
                 }
             } else {
-                ArrayList<ChiTietPhieu> CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(check);
+                ArrayList<ChiTietPhieuNhap> CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(check);
                 for (int i = 0; i < CTPhieu.size(); i++) {
                     tblCTPhieumd.addRow(new Object[]{
                         i + 1,
-                        CTPhieu.get(i).getMaMay(),
-                        SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
-                        CTPhieu.get(i).getSoLuong(),
-                        parent.getFormatter().format(CTPhieu.get(i).getDonGia()) + "đ",
-                        parent.getFormatter().format(CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong()) + "đ"
+                        CTPhieu.get(i).getMasp(),
+                        SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMasp()).getTensp(),
+                        CTPhieu.get(i).getSoluong(),
+                        parent.getFormatter().format(CTPhieu.get(i).getGianhap()) + "đ",
+                        parent.getFormatter().format(CTPhieu.get(i).getGianhap() * CTPhieu.get(i).getSoluong()) + "đ"
                     });
                 }
             }
@@ -93,20 +94,20 @@ public class CTThongKe extends javax.swing.JDialog {
         ArrayList<Phieu> result = new ArrayList<>();
         ArrayList<PhieuNhap> conten1 = PhieuNhapDAO.getInstance().selectAll();
         ArrayList<PhieuXuat> conten2 = PhieuXuatDAO.getInstance().selectAll();
-        for (PhieuNhap phieuNhap : conten1) {
-            String maPhieu = phieuNhap.getMaPhieu();
-            Timestamp thoiGianTao = phieuNhap.getThoiGianTao();
-            String nguoiTao = phieuNhap.getNguoiTao();
-            double tongTien = phieuNhap.getTongTien();
-            Phieu ac = new Phieu(maPhieu, thoiGianTao, nguoiTao, tongTien);
+        for (PhieuNhap phieunhap : conten1) {
+            String Maphieu = phieunhap.getMaphieu();
+            Timestamp Thoigiantao = phieunhap.getThoigiantao();
+            String Nguoitao = phieunhap.getNguoitao();
+            double Tongtien = phieunhap.getTongtien();
+            Phieu ac = new Phieu(Maphieu,Thoigiantao, Nguoitao, Tongtien);
             result.add(ac);
         }
-        for (PhieuXuat phieuXuat : conten2) {
-            String maPhieu = phieuXuat.getMaPhieu();
-            Timestamp thoiGianTao = phieuXuat.getThoiGianTao();
-            String nguoiTao = phieuXuat.getNguoiTao();
-            double tongTien = phieuXuat.getTongTien();
-            Phieu ac = new Phieu(maPhieu, thoiGianTao, nguoiTao, tongTien);
+        for (PhieuXuat phieuxuat : conten2) {
+            String Maphieu = phieuxuat.getMaphieu();
+            Timestamp Thoigiantao = phieuxuat.getThoigiantao();
+            String Nguoitao = phieuxuat.getNguoitao();
+            double Tongtien = phieuxuat.getTongtien();
+            Phieu ac = new Phieu(Maphieu, Thoigiantao, Nguoitao, Tongtien);
             result.add(ac);
         }
         return result;
@@ -122,8 +123,6 @@ public class CTThongKe extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblChiTietPhieu = new javax.swing.JTable();
@@ -134,38 +133,20 @@ public class CTThongKe extends javax.swing.JDialog {
         labelNguoiTao = new javax.swing.JLabel();
         labelThoiGianTao = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnExportPDF = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Chi tiết phiếu");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-
-        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CHI TIẾT PHIẾU ");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(317, 317, 317)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jLabel2.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Mã phiếu: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
 
         tblChiTietPhieu.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
         tblChiTietPhieu.setModel(new javax.swing.table.DefaultTableModel(
@@ -176,32 +157,56 @@ public class CTThongKe extends javax.swing.JDialog {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã máy", "Tên máy", "Số lượng", "Đơn giá", "Thành tiền"
+                "STT", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán", "Thành tiền"
             }
         ));
         jScrollPane1.setViewportView(tblChiTietPhieu);
 
-        jLabel4.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 782, 252));
+
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Người tạo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 78, -1));
 
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Thời gian tạo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
-        labelTongTien.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        labelTongTien.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelTongTien.setForeground(new java.awt.Color(0, 0, 153));
         labelTongTien.setText("...đ");
+        jPanel1.add(labelTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 203, -1));
 
-        labelMaPhieu.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        labelMaPhieu.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelMaPhieu.setForeground(new java.awt.Color(0, 0, 153));
         labelMaPhieu.setText("jLabel7");
+        jPanel1.add(labelMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 242, -1));
 
-        labelNguoiTao.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        labelNguoiTao.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelNguoiTao.setForeground(new java.awt.Color(0, 0, 153));
         labelNguoiTao.setText("jLabel7");
+        jPanel1.add(labelNguoiTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 234, -1));
 
-        labelThoiGianTao.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
+        labelThoiGianTao.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelThoiGianTao.setForeground(new java.awt.Color(0, 0, 153));
         labelThoiGianTao.setText("jLabel7");
+        jPanel1.add(labelThoiGianTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 242, -1));
 
-        jLabel7.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
         jLabel7.setText("TỔNG TIỀN:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setText("CHI TIẾT PHIẾU");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
+
+        btnExportPDF.setBackground(new java.awt.Color(0, 0, 153));
+        btnExportPDF.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        btnExportPDF.setForeground(new java.awt.Color(255, 255, 255));
         btnExportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_pdf_25px.png"))); // NOI18N
         btnExportPDF.setText("Xuất PDF");
         btnExportPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -209,66 +214,10 @@ public class CTThongKe extends javax.swing.JDialog {
                 btnExportPDFActionPerformed(evt);
             }
         });
+        jPanel1.add(btnExportPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 138, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(labelMaPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(labelNguoiTao, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(66, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1))
-                        .addGap(21, 21, 21))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelThoiGianTao, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(451, 451, 451))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(labelMaPhieu)
-                    .addComponent(labelNguoiTao))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(labelThoiGianTao))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(labelTongTien)
-                    .addComponent(btnExportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\anh java\\sRKbEzd.png")); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -150, 1020, 650));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,7 +236,7 @@ public class CTThongKe extends javax.swing.JDialog {
     private void btnExportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportPDFActionPerformed
         // TODO add your handling code here:
         WritePDF writepdf = new WritePDF();
-        writepdf.writePhieuNhap(this.parent.findPhieu().getMaPhieu());
+        writepdf.writePhieuNhap(this.parent.findPhieu().getMaphieu());
     }//GEN-LAST:event_btnExportPDFActionPerformed
 
     /**
@@ -325,11 +274,11 @@ public class CTThongKe extends javax.swing.JDialog {
     private javax.swing.JButton btnExportPDF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelMaPhieu;
     private javax.swing.JLabel labelNguoiTao;

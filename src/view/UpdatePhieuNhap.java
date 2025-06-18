@@ -20,8 +20,8 @@ import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
-import model.ChiTietPhieu;
-import model.MayTinh;
+import model.ChiTietPhieuNhap;
+import model.Sanpham;
 import model.NhaCungCap;
 import model.PhieuNhap;
 
@@ -36,10 +36,10 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
      */
     private DefaultTableModel tblModel;
     DecimalFormat formatter = new DecimalFormat("###,###,###");
-    private ArrayList<MayTinh> allProduct;
+    private ArrayList<Sanpham> allProduct;
     private PhieuNhap phieunhap;
-    private ArrayList<ChiTietPhieu> CTPhieu;
-    private ArrayList<ChiTietPhieu> CTPhieuOld;
+    private ArrayList<ChiTietPhieuNhap> CTPhieu;
+    private ArrayList<ChiTietPhieuNhap> CTPhieuOld;
     private PhieuNhapForm parent;
     private static final ArrayList<NhaCungCap> arrNcc = NhaCungCapDAO.getInstance().selectAll();
 
@@ -52,8 +52,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         allProduct = SanphamDAO.getInstance().selectAllExist();
         this.parent = (PhieuNhapForm) parent;
         this.phieunhap = this.parent.getPhieuNhapSelect();
-        CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(phieunhap.getMaPhieu());
-        CTPhieuOld = ChiTietPhieuNhapDAO.getInstance().selectAll(phieunhap.getMaPhieu());
+        CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(phieunhap.getMaphieu());
+        CTPhieuOld = ChiTietPhieuNhapDAO.getInstance().selectAll(phieunhap.getMaphieu());
         // Hien thi thong tin
         initTable();
         loadDataToTableProduct(allProduct);
@@ -68,9 +68,9 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
     }
 
     private void displayInfo() {
-        txtMaPhieu.setText(phieunhap.getMaPhieu());
-        textTongTien.setText(formatter.format(phieunhap.getTongTien()) + "đ");
-        txtNguoiTao.setText(AccountDAO.getInstance().selectById(phieunhap.getNguoiTao()).getUser());
+        txtMaPhieu.setText(phieunhap.getMaphieu());
+        textTongTien.setText(formatter.format(phieunhap.getTongtien()) + "đ");
+        txtNguoiTao.setText(AccountDAO.getInstance().selectById(phieunhap.getNguoitao()).getUser());
         int vitri = loadNccToComboBox();
         cboNhaCungCap.setSelectedIndex(vitri);
     }
@@ -78,8 +78,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
     private int loadNccToComboBox() {
         int vitri = -1;
         for (int i = 0; i < arrNcc.size(); i++) {
-            cboNhaCungCap.addItem(arrNcc.get(i).getTenNhaCungCap());
-            if (arrNcc.get(i).getMaNhaCungCap().equals(phieunhap.getNhaCungCap())) {
+            cboNhaCungCap.addItem(arrNcc.get(i).getTenncc());
+            if (arrNcc.get(i).getMancc().equals(phieunhap.getNhacc())) {
                 vitri = i;
             }
         }
@@ -88,7 +88,7 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Đơn giá"};
+        String[] headerTbl = new String[]{"Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
@@ -100,12 +100,12 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         tblSanPham.setDefaultEditor(Object.class, null);
     }
 
-    private void loadDataToTableProduct(ArrayList<MayTinh> arrProd) {
+    private void loadDataToTableProduct(ArrayList<Sanpham> arrProd) {
         try {
             tblModel.setRowCount(0);
             for (var i : arrProd) {
                 tblModel.addRow(new Object[]{
-                    i.getMaMay(), i.getTenMay(), i.getSoLuong(), formatter.format(i.getGia()) + "đ"
+                    i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGianhap()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -115,23 +115,23 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
     public double tinhTongTien() {
         double tt = 0;
         for (var i : CTPhieu) {
-            tt += i.getDonGia() * i.getSoLuong();
+            tt += i.getGianhap() * i.getSoluong();
         }
         return tt;
     }
 
-    public MayTinh findMayTinh(String maMay) {
+    public Sanpham findSanpham(String Masp) {
         for (var i : allProduct) {
-            if (maMay.equals(i.getMaMay())) {
+            if (Masp.equals(i.getMasp())) {
                 return i;
             }
         }
         return null;
     }
 
-    public ChiTietPhieu findCTPhieu(String maMay) {
+    public ChiTietPhieuNhap findCTPhieu(String Masp) {
         for (var i : CTPhieu) {
-            if (maMay.equals(i.getMaMay())) {
+            if (Masp.equals(i.getMasp())) {
                 return i;
             }
         }
@@ -145,7 +145,7 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
 
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMaMay(), findMayTinh(CTPhieu.get(i).getMaMay()).getTenMay(), CTPhieu.get(i).getSoLuong(), formatter.format(CTPhieu.get(i).getDonGia()) + "đ"
+                    i + 1, CTPhieu.get(i).getMasp(), findSanpham(CTPhieu.get(i).getMasp()).getTensp(), CTPhieu.get(i).getSoluong(), formatter.format(CTPhieu.get(i).getGianhap()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -196,6 +196,7 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel1.setText("Mã phiếu nhập");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -204,11 +205,13 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         txtMaPhieu.setFocusable(false);
         jPanel2.add(txtMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 390, 36));
 
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel2.setText("Nhà cung cấp");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jPanel2.add(cboNhaCungCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 390, 36));
 
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Người tạo phiếu");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
         jPanel2.add(txtNguoiTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 390, 36));
@@ -225,7 +228,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 580, 310));
 
-        btnNhapHang.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        btnNhapHang.setBackground(new java.awt.Color(153, 0, 153));
+        btnNhapHang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         btnNhapHang.setForeground(new java.awt.Color(255, 255, 255));
         btnNhapHang.setText("Lưu thay đổi");
         btnNhapHang.setBorder(null);
@@ -246,8 +250,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         textTongTien.setText("0đ");
         jPanel2.add(textTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, -1, 30));
 
-        deleteProduct.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        deleteProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_25px_1.png"))); // NOI18N
+        deleteProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        deleteProduct.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
         deleteProduct.setText("Xoá sản phẩm");
         deleteProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -255,10 +259,10 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
                 deleteProductActionPerformed(evt);
             }
         });
-        jPanel2.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 160, 40));
+        jPanel2.add(deleteProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 520, 190, 40));
 
-        jButton1.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_25px.png"))); // NOI18N
+        jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         jButton1.setText("Sửa số lượng");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -280,20 +284,21 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã máy", "Tên máy", "Số lượng", "Đơn giá"
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập"
             }
         ));
         jScrollPane2.setViewportView(tblSanPham);
 
-        jLabel4.setFont(new java.awt.Font("SF Pro Display", 0, 17)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel4.setText("Số lượng");
 
         txtSoLuong.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSoLuong.setText("1");
 
-        addProduct.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        addProduct.setBackground(new java.awt.Color(153, 0, 153));
+        addProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         addProduct.setForeground(new java.awt.Color(255, 255, 255));
-        addProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_25px_5.png"))); // NOI18N
+        addProduct.setIcon(new javax.swing.ImageIcon("E:\\anh java\\businesspackage_additionalpackage_box_add_insert_negoci_2335.png")); // NOI18N
         addProduct.setText("Thêm");
         addProduct.setBorder(null);
         addProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -312,7 +317,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
             }
         });
 
-        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        btnReset.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnReset.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         btnReset.setText("Làm mới");
         btnReset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -398,18 +404,18 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm để nhập hàng !","Cảnh báo", JOptionPane.WARNING_MESSAGE);
         } else {
             for (var ct : CTPhieuOld) {
-                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() - ct.getSoLuong());
-                System.out.println(ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMasp(), SanphamDAO.getInstance().selectById(ct.getMasp()).getSoluong() - ct.getSoluong());
+                System.out.println(ct.getSoluong());
             }
             for (var ct : CTPhieu) {
-                SanphamDAO.getInstance().updateSoLuong(ct.getMaMay(), SanphamDAO.getInstance().selectById(ct.getMaMay()).getSoLuong() + ct.getSoLuong());
-                System.out.println(ct.getSoLuong());
+                SanphamDAO.getInstance().updateSoLuong(ct.getMasp(), SanphamDAO.getInstance().selectById(ct.getMasp()).getSoluong() + ct.getSoluong());
+                System.out.println(ct.getSoluong());
             }
             // Lay thoi gian hien tai
             long now = System.currentTimeMillis();
             Timestamp sqlTimestamp = new Timestamp(now);
             // Tao doi tuong phieu nhap
-            PhieuNhap pn = new PhieuNhap(arrNcc.get(cboNhaCungCap.getSelectedIndex()).getMaNhaCungCap(), phieunhap.getMaPhieu(), sqlTimestamp, txtNguoiTao.getText(), CTPhieu, tinhTongTien());
+            PhieuNhap pn = new PhieuNhap(arrNcc.get(cboNhaCungCap.getSelectedIndex()).getMancc(), phieunhap.getMaphieu(), sqlTimestamp, txtNguoiTao.getText(), CTPhieu, tinhTongTien());
             try {
                 PhieuNhapDAO.getInstance().update(pn);
                 ChiTietPhieuNhapDAO.getInstance().delete(CTPhieuOld.get(CTPhieuOld.size() - 1));
@@ -445,10 +451,10 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         } else {
             String newSL = JOptionPane.showInputDialog(this, "Nhập số lượng cần thay đổi", "Thay đổi số lượng", QUESTION_MESSAGE);
             if (newSL != null) {
-                int soLuong;
+                int Soluong;
                 try {
-                    soLuong = Integer.parseInt(newSL);
-                    CTPhieu.get(i_row).setSoLuong(soLuong);
+                    Soluong = Integer.parseInt(newSL);
+                    CTPhieu.get(i_row).setSoluong(Soluong);
                     loadDataToTableNhapHang();
                     textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
                 } catch (Exception e) {
@@ -464,13 +470,13 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         if (i_row == -1) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm để nhập hàng !");
         } else {
-            int soluong = Integer.parseInt(txtSoLuong.getText().trim());
-            ChiTietPhieu mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
+            int Soluong = Integer.parseInt(txtSoLuong.getText().trim());
+            ChiTietPhieuNhap mtl = findCTPhieu((String) tblSanPham.getValueAt(i_row, 0));
             if (mtl != null) {
-                mtl.setSoLuong(mtl.getSoLuong() + soluong);
+                mtl.setSoluong(mtl.getSoluong() + Soluong);
             } else {
-                MayTinh mt = SearchProduct.getInstance().searchId((String) tblSanPham.getValueAt(i_row, 0));
-                ChiTietPhieu ctp = new ChiTietPhieu(phieunhap.getMaPhieu(), mt.getMaMay(), soluong, mt.getGia());
+                Sanpham sp = SearchProduct.getInstance().searchId((String) tblSanPham.getValueAt(i_row, 0));
+                ChiTietPhieuNhap ctp = new ChiTietPhieuNhap(phieunhap.getMaphieu(), sp.getMasp(), Soluong, sp.getGianhap());
                 CTPhieu.add(ctp);
             }
             loadDataToTableNhapHang();
@@ -482,9 +488,9 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         // TODO add your handling code here:
         DefaultTableModel tblsp = (DefaultTableModel) tblSanPham.getModel();
         String textSearch = txtSearch.getText().toLowerCase();
-        ArrayList<MayTinh> Mtkq = new ArrayList<>();
-        for (MayTinh i : allProduct) {
-            if (i.getMaMay().concat(i.getTenMay()).toLowerCase().contains(textSearch)) {
+        ArrayList<Sanpham> Mtkq = new ArrayList<>();
+        for (Sanpham i : allProduct) {
+            if (i.getMasp().concat(i.getTensp()).toLowerCase().contains(textSearch)) {
                 Mtkq.add(i);
             }
         }

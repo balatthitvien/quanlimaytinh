@@ -1,115 +1,99 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Phieu {
-
-    private String maPhieu;
-    private Timestamp thoiGianTao;
-    private String nguoiTao;
-    private ArrayList<ChiTietPhieu> CTPhieu;
-    private double tongTien;
+public class Phieu<T> {
+    private String Maphieu;
+    private Timestamp Thoigiantao;
+    String Nguoitao;
+    private ArrayList<T> CTPhieu;
+    private double Tongtien;
 
     public Phieu() {
     }
 
-    public Phieu(String maPhieu, Timestamp thoiGianTao, String nguoiTao, ArrayList<ChiTietPhieu> CTPhieu, double tongTien) {
-        this.maPhieu = maPhieu;
-        this.thoiGianTao = thoiGianTao;
-        this.nguoiTao = nguoiTao;
+    public Phieu(String Maphieu, Timestamp Thoigiantao, String Nguoitao, ArrayList<T> CTPhieu, double Tongtien) {
+        this.Maphieu = Maphieu;
+        this.Thoigiantao = Thoigiantao;
+        this.Nguoitao = Nguoitao;
         this.CTPhieu = CTPhieu;
-        this.tongTien = tongTien;
+        this.Tongtien = Tongtien;
     }
 
-    public Phieu(String maPhieu, Timestamp thoiGianTao, String nguoiTao, double tongTien) {
-        this.maPhieu = maPhieu;
-        this.thoiGianTao = thoiGianTao;
-        this.nguoiTao = nguoiTao;
-        this.tongTien = tongTien;
+    public Phieu(String Maphieu, Timestamp Thoigiantao, String Nguoitao, double Tongtien) {
+        this.Maphieu = Maphieu;
+        this.Thoigiantao = Thoigiantao;
+        this.Nguoitao = Nguoitao;
+        this.Tongtien = Tongtien;
     }
 
-    public String getMaPhieu() {
-        return maPhieu;
+    public String getMaphieu() {
+        return Maphieu;
     }
 
-    public void setMaPhieu(String maPhieu) {
-        this.maPhieu = maPhieu;
+    public void setMaphieu(String Maphieu) {
+        this.Maphieu = Maphieu;
     }
 
-    public Timestamp getThoiGianTao() {
-        return thoiGianTao;
+    public Timestamp getThoigiantao() {
+        return Thoigiantao;
     }
 
-    public void setThoiGianTao(Timestamp thoiGianTao) {
-        this.thoiGianTao = thoiGianTao;
+    public void setThoigiantao(Timestamp Thoigiantao) {
+        this.Thoigiantao = Thoigiantao;
     }
 
-    public String getNguoiTao() {
-        return nguoiTao;
+    public String getNguoitao() {
+        return Nguoitao;
     }
 
-    public void setNguoiTao(String nguoiTao) {
-        this.nguoiTao = nguoiTao;
+    public void setNguoitao(String Nguoitao) {
+        this.Nguoitao = Nguoitao;
     }
 
-    public ArrayList<ChiTietPhieu> getCTPhieu() {
+    public ArrayList<T> getCTPhieu() {
         return CTPhieu;
     }
 
-    public void setCTPhieu(ArrayList<ChiTietPhieu> CTPhieu) {
+    public void setCTPhieu(ArrayList<T> CTPhieu) {
         this.CTPhieu = CTPhieu;
     }
 
-    public double getTongTien() {
-        return tongTien;
+    public double getTongtien() {
+        return Tongtien;
     }
 
-    public void setTongTien(double tongTien) {
-        this.tongTien = tongTien;
+    public void setTongtien(double Tongtien) {
+        this.Tongtien = Tongtien;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return Objects.hash(Maphieu, Thoigiantao, Nguoitao, CTPhieu, Tongtien);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Phieu other = (Phieu) obj;
-        if (Double.doubleToLongBits(this.tongTien) != Double.doubleToLongBits(other.tongTien)) {
-            return false;
-        }
-        if (!Objects.equals(this.maPhieu, other.maPhieu)) {
-            return false;
-        }
-        if (!Objects.equals(this.nguoiTao, other.nguoiTao)) {
-            return false;
-        }
-        if (!Objects.equals(this.thoiGianTao, other.thoiGianTao)) {
-            return false;
-        }
-        return Objects.equals(this.CTPhieu, other.CTPhieu);
+        if (this == obj) return true;
+        if (!(obj instanceof Phieu)) return false;
+        Phieu<?> other = (Phieu<?>) obj;
+        return Double.compare(other.Tongtien, Tongtien) == 0 &&
+                Objects.equals(Maphieu, other.Maphieu) &&
+                Objects.equals(Thoigiantao, other.Thoigiantao) &&
+                Objects.equals(Nguoitao, other.Nguoitao) &&
+                Objects.equals(CTPhieu, other.CTPhieu);
     }
 
     @Override
     public String toString() {
-        return "Phieu{" + "maPhieu=" + maPhieu + ", thoiGianTao=" + thoiGianTao + ", nguoiTao=" + nguoiTao + ", CTPhieu=" + CTPhieu + ", tongTien=" + tongTien + '}';
+        return "Phieu{" +
+                "Maphieu='" + Maphieu + '\'' +
+                ", Thoigiantao=" + Thoigiantao +
+                ", Nguoitao='" + Nguoitao + '\'' +
+                ", CTPhieu=" + CTPhieu +
+                ", Tongtien=" + Tongtien +
+                '}';
     }
-
 }

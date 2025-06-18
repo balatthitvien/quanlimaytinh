@@ -12,67 +12,49 @@ import java.util.Objects;
  *
  * @author Tran Nhat Sinh
  */
-public class PhieuNhap extends Phieu {
+public class PhieuNhap extends Phieu<ChiTietPhieuNhap> {
 
-    private String nhaCungCap;
+    private String Nhacc;
 
     public PhieuNhap() {
     }
 
-    public PhieuNhap(String nhaCungCap) {
-        this.nhaCungCap = nhaCungCap;
+    public PhieuNhap(String Nhacc) {
+        this.Nhacc = Nhacc;
     }
 
-    public PhieuNhap(String nhaCungCap, String maPhieu, Timestamp thoiGianTao, String nguoiTao, ArrayList<ChiTietPhieu> CTPhieu, double tongTien) {
-        super(maPhieu, thoiGianTao, nguoiTao, CTPhieu, tongTien);
-        this.nhaCungCap = nhaCungCap;
+    public PhieuNhap(String Nhacc, String Maphieu, Timestamp Thoigiantao, String Nguoitao, ArrayList<ChiTietPhieuNhap> CTPhieu, double Tongtien) {
+        super(Maphieu, Thoigiantao, Nguoitao, CTPhieu, Tongtien);
+        this.Nhacc = Nhacc;
     }
 
-
-    private PhieuNhap(String maPhieu, Timestamp thoiGianTao, String nguoiTao, ArrayList<ChiTietPhieu> CTPhieu, double tongTien) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getNhacc() {
+        return Nhacc;
     }
 
-    public String getNhaCungCap() {
-        return nhaCungCap;
-    }
-
-    public void setNhaCungCap(String nhaCungCap) {
-        this.nhaCungCap = nhaCungCap;
+    public void setNhacc(String Nhacc) {
+        this.Nhacc = Nhacc;
     }
 
     @Override
     public String toString() {
-        return "PhieuNhap{" + "nhaCungCap=" + nhaCungCap + " maPhieu"+ this.getMaPhieu()+'}';
+        return "PhieuNhap{" + "Nhacc=" + Nhacc + ", Maphieu=" + getMaphieu() + '}';
     }
-
-    
-
-    
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.nhaCungCap);
+        hash = 23 * hash + Objects.hashCode(this.Nhacc);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         final PhieuNhap other = (PhieuNhap) obj;
-        return Objects.equals(this.nhaCungCap, other.nhaCungCap) && Objects.equals(this.getMaPhieu(), other.getMaPhieu()) && Double.doubleToLongBits(this.getTongTien()) != Double.doubleToLongBits(other.getTongTien()
-        );
+        return Objects.equals(this.Nhacc, other.Nhacc) &&
+               Objects.equals(this.getMaphieu(), other.getMaphieu()) &&
+               Double.compare(this.getTongtien(), other.getTongtien()) == 0;
     }
-    
-
-    
 }

@@ -31,7 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
-import model.ChiTietPhieu;
+import model.ChiTietPhieuNhap;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -96,7 +96,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (int i = 0; i < allPhieuNhap.size(); i++) {
                 tblModel.addRow(new Object[]{
-                    i + 1, allPhieuNhap.get(i).getMaPhieu(), NhaCungCapDAO.getInstance().selectById(allPhieuNhap.get(i).getNhaCungCap()).getTenNhaCungCap(), AccountDAO.getInstance().selectById(allPhieuNhap.get(i).getNguoiTao()).getFullName(), formatDate.format(allPhieuNhap.get(i).getThoiGianTao()), formatter.format(allPhieuNhap.get(i).getTongTien()) + "đ"
+                    i + 1, allPhieuNhap.get(i).getMaphieu(), NhaCungCapDAO.getInstance().selectById(allPhieuNhap.get(i).getNhacc()).getTenncc(), AccountDAO.getInstance().selectById(allPhieuNhap.get(i).getNguoitao()).getFullName(), formatDate.format(allPhieuNhap.get(i).getThoigiantao()), formatter.format(allPhieuNhap.get(i).getTongtien()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (int i = 0; i < result.size(); i++) {
                 tblModel.addRow(new Object[]{
-                    i + 1, result.get(i).getMaPhieu(), NhaCungCapDAO.getInstance().selectById(result.get(i).getNhaCungCap()).getTenNhaCungCap(), AccountDAO.getInstance().selectById(result.get(i).getNguoiTao()).getFullName(), formatDate.format(result.get(i).getThoiGianTao()), formatter.format(result.get(i).getTongTien()) + "đ"
+                    i + 1, result.get(i).getMaphieu(), NhaCungCapDAO.getInstance().selectById(result.get(i).getNhacc()).getTenncc(), AccountDAO.getInstance().selectById(result.get(i).getNguoitao()).getFullName(), formatDate.format(result.get(i).getThoigiantao()), formatter.format(result.get(i).getTongtien()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -120,9 +120,9 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuNhap> result = new ArrayList<>();
         ArrayList<PhieuNhap> armt = PhieuNhapDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())
-                    || phieu.getNhaCungCap().toLowerCase().contains(text.toLowerCase())
-                    || phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())
+                    || phieu.getNhacc().toLowerCase().contains(text.toLowerCase())
+                    || phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
 
@@ -134,7 +134,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuNhap> result = new ArrayList<>();
         ArrayList<PhieuNhap> armt = PhieuNhapDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
 
@@ -146,7 +146,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuNhap> result = new ArrayList<>();
         ArrayList<PhieuNhap> armt = PhieuNhapDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getNhacc().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
 
@@ -158,7 +158,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         ArrayList<PhieuNhap> result = new ArrayList<>();
         ArrayList<PhieuNhap> armt = PhieuNhapDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
 
@@ -192,15 +192,15 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         int id = arr.size() + 1;
         String check = "";
         for (PhieuNhap phieuNhap : arr) {
-            if (phieuNhap.getMaPhieu().equals("PN" + id)) {
-                check = phieuNhap.getMaPhieu();
+            if (phieuNhap.getMaphieu().equals("PN" + id)) {
+                check = phieuNhap.getMaphieu();
             }
         }
         while (check.length() != 0) {
             id++;
             for (int i = 0; i < arr.size(); i++) {
-                if (arr.get(i).getMaPhieu().equals("PN" + id)) {
-                    check = arr.get(i).getMaPhieu();
+                if (arr.get(i).getMaphieu().equals("PN" + id)) {
+                    check = arr.get(i).getMaphieu();
                 }
             }
         }
@@ -222,8 +222,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton6 = new javax.swing.JButton();
         btnImportExcel = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxLuaChon = new javax.swing.JComboBox<>();
         jTextFieldSearch = new javax.swing.JTextField();
@@ -251,7 +251,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jToolBar1.setRollover(true);
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_40px.png"))); // NOI18N
+        btnDelete.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
         btnDelete.setText("Xoá");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -263,7 +264,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnDelete);
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_40px.png"))); // NOI18N
+        btnEdit.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         btnEdit.setText("Sửa");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.setFocusable(false);
@@ -276,7 +278,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnEdit);
 
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_eye_40px.png"))); // NOI18N
+        btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\documents.png")); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setFocusable(false);
@@ -290,19 +293,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnDetail);
         jToolBar1.add(jSeparator1);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_spreadsheet_file_40px.png"))); // NOI18N
-        jButton6.setText("Xuất Excel");
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton6);
-
-        btnImportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_xls_40px.png"))); // NOI18N
+        btnImportExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnImportExcel.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logo.png")); // NOI18N
         btnImportExcel.setText("Nhập Excel");
         btnImportExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImportExcel.setFocusable(false);
@@ -314,6 +306,19 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
             }
         });
         jToolBar1.add(btnImportExcel);
+
+        jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
+        jButton6.setText("Xuất Excel");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
@@ -334,7 +339,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         });
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, 40));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -384,16 +390,18 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         });
         jPanel4.add(jDateChooserTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 170, -1));
 
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel1.setText("Đến");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 40, 20));
 
-        jLabel5.setFont(new java.awt.Font("SF Pro Display", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel5.setText("Từ");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 20, 20));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo giá"));
 
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Từ");
 
         giaTu.addActionListener(new java.awt.event.ActionListener() {
@@ -407,6 +415,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel4.setText("Đến");
 
         giaDen.addActionListener(new java.awt.event.ActionListener() {
@@ -496,14 +505,14 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     public void deletePhieuNhap(PhieuNhap pn) {
-        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xoá " + pn.getMaPhieu(), "Xác nhận xoá phiếu", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xoá " + pn.getMaphieu(), "Xác nhận xoá phiếu", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
-            ArrayList<ChiTietPhieu> ctPhieuNhap = ChiTietPhieuNhapDAO.getInstance().selectAll(pn.getMaPhieu());
-            for (ChiTietPhieu i : ctPhieuNhap) {
+            ArrayList<ChiTietPhieuNhap> ctPhieuNhap = ChiTietPhieuNhapDAO.getInstance().selectAll(pn.getMaphieu());
+            for (ChiTietPhieuNhap i : ctPhieuNhap) {
                 ChiTietPhieuNhapDAO.getInstance().delete(i);
             }
             PhieuNhapDAO.getInstance().delete(pn);
-            JOptionPane.showMessageDialog(this, "Đã xoá thành công phiếu " + pn.getMaPhieu());
+            JOptionPane.showMessageDialog(this, "Đã xoá thành công phiếu " + pn.getMaphieu());
             loadDataToTable();
         }
     }
@@ -581,8 +590,8 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
                 XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
-                    String maPhieuNhap = excelRow.getCell(1).getStringCellValue();
-                    String nguoiTao = excelRow.getCell(2).getStringCellValue();
+                    String Maphieunhap = excelRow.getCell(1).getStringCellValue();
+                    String Nguoitao = excelRow.getCell(2).getStringCellValue();
                     String dateText = excelRow.getCell(3).getStringCellValue();
                     SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                     Date dateCheck = format.parse(dateText);
@@ -590,9 +599,9 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
                     System.out.println(giaFomat);
                     int viTri = giaFomat.length() - 1;
                     String giaoke = giaFomat.substring(0, viTri) + giaFomat.substring(viTri + 1);
-                    double donGia = Double.parseDouble(giaoke);
+                    double Gianhap = Double.parseDouble(giaoke);
                     table_acc.addRow(new Object[]{
-                        row, maPhieuNhap, nguoiTao, formatDate.format(dateCheck), formatter.format(donGia) + "đ"
+                        row, Maphieunhap, Nguoitao, formatDate.format(dateCheck), formatter.format(Gianhap) + "đ"
                     });
                 }
             } catch (FileNotFoundException ex) {
@@ -695,9 +704,9 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         for (var phieu : armt) {
             System.out.println("From:" + from + " " + from.getTime());
             System.out.println("To: " + to + " " + to.getTime());
-            System.out.println("Current: " + phieu.getThoiGianTao() + " " + phieu.getThoiGianTao().getTime());
-            System.out.println("Check: " + checkDate(phieu.getThoiGianTao(), from, to));
-            if (checkDate(phieu.getThoiGianTao(), from, to)) {
+            System.out.println("Current: " + phieu.getThoigiantao() + " " + phieu.getThoigiantao().getTime());
+            System.out.println("Check: " + checkDate(phieu.getThoigiantao(), from, to));
+            if (checkDate(phieu.getThoigiantao(), from, to)) {
                 result.add(phieu);
             }
 
@@ -774,7 +783,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
                     to = ChangeTo(new Date());
                     while (itr.hasNext()) {
                         PhieuNhap phieu = itr.next();
-                        if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                        if (!checkDate(phieu.getThoigiantao(), from, to)) {
                             itr.remove();
                         }
                     }
@@ -788,7 +797,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
                     to = ChangeTo(jDateChooserTo.getDate());
                     while (itr.hasNext()) {
                         PhieuNhap phieu = itr.next();
-                        if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                        if (!checkDate(phieu.getThoigiantao(), from, to)) {
                             itr.remove();
                         }
                     }
@@ -806,7 +815,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
                     } else {
                         while (itr.hasNext()) {
                             PhieuNhap phieu = itr.next();
-                            if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                            if (!checkDate(phieu.getThoigiantao(), from, to)) {
                                 itr.remove();
                             }
                         }
@@ -824,14 +833,14 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
             if (giaTu.getText().length() > 0 && giaDen.getText().length() == 0) {
                 a = Double.parseDouble(giaTu.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() >= a) {
+                    if (result.get(i).getTongtien() >= a) {
                         result1.add(result.get(i));
                     }
                 }
             } else if (giaTu.getText().length() == 0 && giaDen.getText().length() > 0) {;
                 b = Double.parseDouble(giaDen.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() <= b) {
+                    if (result.get(i).getTongtien() <= b) {
                         result1.add(result.get(i));
                     }
                 }
@@ -839,7 +848,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
                 a = Double.parseDouble(giaTu.getText());
                 b = Double.parseDouble(giaDen.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() >= a && result.get(i).getTongTien() <= b) {
+                    if (result.get(i).getTongtien() >= a && result.get(i).getTongtien() <= b) {
                         result1.add(result.get(i));
                     }
                 }

@@ -89,7 +89,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (int i = 0; i < allPhieu.size(); i++) {
                 tblModel.addRow(new Object[]{
-                    allPhieu.get(i).getMaPhieu(), allPhieu.get(i).getNguoiTao(), formatDate.format(allPhieu.get(i).getThoiGianTao()), formatter.format(allPhieu.get(i).getTongTien()) + "đ"
+                    allPhieu.get(i).getMaphieu(), allPhieu.get(i).getNguoitao(), formatDate.format(allPhieu.get(i).getThoigiantao()), formatter.format(allPhieu.get(i).getTongtien()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             tblModel.setRowCount(0);
             for (int i = 0; i < result.size(); i++) {
                 tblModel.addRow(new Object[]{
-                    result.get(i).getMaPhieu(), result.get(i).getNguoiTao(), formatDate.format(result.get(i).getThoiGianTao()), formatter.format(result.get(i).getTongTien()) + "đ"
+                    result.get(i).getMaphieu(), result.get(i).getNguoitao(), formatDate.format(result.get(i).getThoigiantao()), formatter.format(result.get(i).getTongtien()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -112,8 +112,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         ArrayList<Phieu> result = new ArrayList<>();
         ArrayList<Phieu> armt = PhieuNhapDAO.getInstance().selectAllP();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())
-                    || phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())
+                    || phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
         }
@@ -124,8 +124,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         ArrayList<Phieu> result = new ArrayList<>();
         ArrayList<PhieuNhap> armt = PhieuNhapDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())
-                    || phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())
+                    || phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
         }
@@ -136,8 +136,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         ArrayList<Phieu> result = new ArrayList<>();
         ArrayList<PhieuXuat> armt = PhieuXuatDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (phieu.getMaPhieu().toLowerCase().contains(text.toLowerCase())
-                    || phieu.getNguoiTao().toLowerCase().contains(text.toLowerCase())) {
+            if (phieu.getMaphieu().toLowerCase().contains(text.toLowerCase())
+                    || phieu.getNguoitao().toLowerCase().contains(text.toLowerCase())) {
                 result.add(phieu);
             }
         }
@@ -257,7 +257,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã máy", "Tên máy", "Số lượng nhập", "Số lượng xuất"
+                "STT", "Mã sản phẩm", "Tên sản phẩm", "Số lượng nhập", "Số lượng xuất"
             }
         ));
         tblThongKeProduct.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -297,13 +297,16 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         });
         jPanel13.add(jDateChooserToPr, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 170, -1));
 
+        jLabel6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel6.setText("Đến");
         jPanel13.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 40, 20));
 
+        jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel8.setText("Từ");
         jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 20, 20));
 
-        btnResetThongKePr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        btnResetThongKePr.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnResetThongKePr.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         btnResetThongKePr.setText("Làm mới");
         btnResetThongKePr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +365,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jToolBar1.setRollover(true);
 
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_eye_40px.png"))); // NOI18N
+        btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\list (2).png")); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setFocusable(false);
@@ -379,6 +383,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBoxLuaChon.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Phiếu Nhập", "Phiếu Xuất" }));
         jComboBoxLuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,7 +404,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         });
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, 40));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -449,15 +455,18 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         });
         jPanel4.add(jDateChooserTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 170, -1));
 
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel1.setText("Đến");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 40, 20));
 
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel5.setText("Từ");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 20, 20));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo giá"));
 
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Từ");
 
         giaTu.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +480,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel4.setText("Đến");
 
         giaDen.addActionListener(new java.awt.event.ActionListener() {
@@ -511,16 +521,16 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel2.setText("TỔNG TIỀN");
 
-        soLuong.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        soLuong.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         soLuong.setText("0");
 
-        jLabel7.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel7.setText("TỔNG PHIẾU ");
 
-        tongTien.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        tongTien.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         tongTien.setForeground(new java.awt.Color(255, 0, 51));
         tongTien.setText("0");
 
@@ -587,6 +597,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBoxLuaChon1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jComboBoxLuaChon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "FullName", "UserName", "Role" }));
         jComboBoxLuaChon1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -607,7 +618,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         });
         jPanel7.add(jTextFieldSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 320, 40));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton1.setText("Làm mới");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -677,11 +689,11 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
 
         jPanel9.setBackground(new java.awt.Color(255, 204, 0));
 
-        txtQuantityProduct.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
+        txtQuantityProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
         txtQuantityProduct.setForeground(new java.awt.Color(255, 255, 255));
         txtQuantityProduct.setText("100");
 
-        jLabel10.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Sản phẩm trong kho");
 
@@ -694,7 +706,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtQuantityProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -703,7 +715,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -718,11 +730,11 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-supplier-80.png"))); // NOI18N
 
-        txtQuantityNcc.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
+        txtQuantityNcc.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
         txtQuantityNcc.setForeground(new java.awt.Color(255, 255, 255));
         txtQuantityNcc.setText("100");
 
-        jLabel14.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Nhà cung cấp ");
 
@@ -757,11 +769,11 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-account-80.png"))); // NOI18N
 
-        txtQuantityUser.setFont(new java.awt.Font("SF Pro Display", 1, 36)); // NOI18N
+        txtQuantityUser.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
         txtQuantityUser.setForeground(new java.awt.Color(255, 255, 255));
         txtQuantityUser.setText("100");
 
-        jLabel17.setFont(new java.awt.Font("SF Pro Display", 0, 18)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Tài khoản người dùng");
 
@@ -772,7 +784,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtQuantityUser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
@@ -799,7 +811,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1041,7 +1053,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         ArrayList<Phieu> phieuAll = PhieuNhapDAO.getInstance().selectAllP();
         Phieu phieuk = null;
         for (Phieu phieu : phieuAll) {
-            if (phieu.getMaPhieu().equals(text)) {
+            if (phieu.getMaphieu().equals(text)) {
                 return phieu;
             }
         }
@@ -1059,7 +1071,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         Date to = jDateChooserTo.getDate();
         ArrayList<PhieuNhap> armt = PhieuNhapDAO.getInstance().selectAll();
         for (var phieu : armt) {
-            if (checkDate(phieu.getThoiGianTao(), from, to)) {
+            if (checkDate(phieu.getThoigiantao(), from, to)) {
                 result.add(phieu);
             }
 
@@ -1170,7 +1182,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 to = ConvertDate.getInstance().ChangeTo(new Date());
                 while (itr.hasNext()) {
                     Phieu phieu = itr.next();
-                    if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                    if (!checkDate(phieu.getThoigiantao(), from, to)) {
                         itr.remove();
                     }
                 }
@@ -1180,7 +1192,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 to = ConvertDate.getInstance().ChangeTo(jDateChooserTo.getDate());
                 while (itr.hasNext()) {
                     Phieu phieu = itr.next();
-                    if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                    if (!checkDate(phieu.getThoigiantao(), from, to)) {
                         itr.remove();
                     }
                 }
@@ -1189,7 +1201,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 to = ConvertDate.getInstance().ChangeTo(jDateChooserTo.getDate());
                 while (itr.hasNext()) {
                     Phieu phieu = itr.next();
-                    if (!checkDate(phieu.getThoiGianTao(), from, to)) {
+                    if (!checkDate(phieu.getThoigiantao(), from, to)) {
                         itr.remove();
                     }
                 }
@@ -1204,14 +1216,14 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             if (giaTu.getText().length() > 0 && giaDen.getText().length() == 0) {
                 a = Double.parseDouble(giaTu.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() >= a) {
+                    if (result.get(i).getTongtien() >= a) {
                         result1.add(result.get(i));
                     }
                 }
             } else if (giaTu.getText().length() == 0 && giaDen.getText().length() > 0) {;
                 b = Double.parseDouble(giaDen.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() <= b) {
+                    if (result.get(i).getTongtien() <= b) {
                         result1.add(result.get(i));
                     }
                 }
@@ -1219,7 +1231,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
                 a = Double.parseDouble(giaTu.getText());
                 b = Double.parseDouble(giaDen.getText());
                 for (int i = 0; i < result.size(); i++) {
-                    if (result.get(i).getTongTien() >= a && result.get(i).getTongTien() <= b) {
+                    if (result.get(i).getTongtien() >= a && result.get(i).getTongtien() <= b) {
                         result1.add(result.get(i));
                     }
                 }
@@ -1229,7 +1241,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             loadDataToTableSearch(result1);
             double sum = 0;
             for (Phieu phieu : result1) {
-                sum += phieu.getTongTien();
+                sum += phieu.getTongtien();
             }
             soLuong.setText(result1.size() + "");
             tongTien.setText(formatter.format(sum) + "đ");
@@ -1237,7 +1249,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             loadDataToTableSearch(result);
             double sum = 0;
             for (Phieu phieu : result) {
-                sum += phieu.getTongTien();
+                sum += phieu.getTongtien();
             }
             soLuong.setText(result.size() + "");
             tongTien.setText(formatter.format(sum) + "đ");
@@ -1282,7 +1294,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             tblModelAcc.setRowCount(0);
             for (int i = 0; i < thongKe.size(); i++) {
                 tblModelAcc.addRow(new Object[]{
-                    (i + 1), thongKe.get(i).getMaMay(), thongKe.get(i).getTenMay(), thongKe.get(i).getSlNhap(), thongKe.get(i).getSlXuat()
+                    (i + 1), thongKe.get(i).getMasp(), thongKe.get(i).getTensp(), thongKe.get(i).getSlnhap(), thongKe.get(i).getSlxuat()
                 });
             }
             tblThongKeProduct.getColumnModel().getColumn(2).setPreferredWidth(400);
@@ -1293,7 +1305,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
     private ArrayList<ThongKeProduct> searchTenSanPhamThongKe(ArrayList<ThongKeProduct> arr, String name) {
         ArrayList<ThongKeProduct> result = new ArrayList<>();
         for (ThongKeProduct i : arr) {
-            if (i.getMaMay().toLowerCase().contains(name.toLowerCase()) || i.getTenMay().toLowerCase().contains(name.toLowerCase())) {
+            if (i.getMasp().toLowerCase().contains(name.toLowerCase()) || i.getTensp().toLowerCase().contains(name.toLowerCase())) {
                 result.add(i);
             }
         }

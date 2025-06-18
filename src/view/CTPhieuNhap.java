@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import model.ChiTietPhieu;
+import model.ChiTietPhieuNhap;
 import model.PhieuNhap;
 
 /**
@@ -30,15 +30,15 @@ public class CTPhieuNhap extends javax.swing.JDialog {
     public CTPhieuNhap(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) {
         super(owner, modal);
         this.parent = (PhieuNhapForm) parent;
-        System.out.println(this.parent.getPhieuNhapSelect().getMaPhieu().toString());
+        System.out.println(this.parent.getPhieuNhapSelect().getMaphieu().toString());
         initComponents();
         setLocationRelativeTo(null);
         PhieuNhap pn = this.parent.getPhieuNhapSelect();
-        labelMaPhieu.setText(pn.getMaPhieu());
-        labelNguoiTao.setText(AccountDAO.getInstance().selectById(pn.getNguoiTao()).getFullName());
-        labelTongTien.setText(this.parent.getFormatter().format(pn.getTongTien()) + "đ");
-        labelNhaCungCap.setText(pn.getNhaCungCap());
-        labelThoiGianTao.setText(this.parent.getFormatDate().format(pn.getThoiGianTao()));
+        labelMaPhieu.setText(pn.getMaphieu());
+        labelNguoiTao.setText(AccountDAO.getInstance().selectById(pn.getNguoitao()).getFullName());
+        labelTongTien.setText(this.parent.getFormatter().format(pn.getTongtien()) + "đ");
+        labelNhaCungCap.setText(pn.getNhacc());
+        labelThoiGianTao.setText(this.parent.getFormatDate().format(pn.getThoigiantao()));
         loadDataToTableProduct();
         setWidthTable();
     }
@@ -61,17 +61,17 @@ public class CTPhieuNhap extends javax.swing.JDialog {
     public void loadDataToTableProduct() {
         try {
             
-            ArrayList<ChiTietPhieu> CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(this.parent.getPhieuNhapSelect().getMaPhieu().toString());
+            ArrayList<ChiTietPhieuNhap> CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(this.parent.getPhieuNhapSelect().getMaphieu().toString());
             DefaultTableModel tblCTPhieumd = (DefaultTableModel) tblChiTietPhieu.getModel();
             tblCTPhieumd.setRowCount(0);
             for (int i = 0; i < CTPhieu.size(); i++) {
                 tblCTPhieumd.addRow(new Object[]{
                     i + 1, 
-                    CTPhieu.get(i).getMaMay(),
-                    SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMaMay()).getTenMay(),
-                    CTPhieu.get(i).getSoLuong(),
-                    parent.getFormatter().format(CTPhieu.get(i).getDonGia()) + "đ",
-                    parent.getFormatter().format(CTPhieu.get(i).getDonGia() * CTPhieu.get(i).getSoLuong()) + "đ"
+                    CTPhieu.get(i).getMasp(),
+                    SanphamDAO.getInstance().selectById(CTPhieu.get(i).getMasp()).getTensp(),
+                    CTPhieu.get(i).getSoluong(),
+                    parent.getFormatter().format(CTPhieu.get(i).getGianhap()) + "đ",
+                    parent.getFormatter().format(CTPhieu.get(i).getGianhap() * CTPhieu.get(i).getSoluong()) + "đ"
                 });
             }
         } catch (Exception e) {
@@ -88,8 +88,6 @@ public class CTPhieuNhap extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblChiTietPhieu = new javax.swing.JTable();
@@ -101,38 +99,21 @@ public class CTPhieuNhap extends javax.swing.JDialog {
         labelNguoiTao = new javax.swing.JLabel();
         labelNhaCungCap = new javax.swing.JLabel();
         labelThoiGianTao = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         exportPDF = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Chi tiết phiếu");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-
-        jLabel1.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("CHI TIẾT PHIẾU NHẬP");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(280, 280, 280)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã phiếu: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
         tblChiTietPhieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,31 +123,64 @@ public class CTPhieuNhap extends javax.swing.JDialog {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã máy", "Tên máy", "Số lượng", "Đơn giá", "Thành tiền"
+                "STT", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Thành tiền"
             }
         ));
         jScrollPane1.setViewportView(tblChiTietPhieu);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 777, 240));
+
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nhà cung cấp:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 104, -1));
 
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Người tạo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 78, -1));
 
+        jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Thời gian tạo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, -1, -1));
 
-        labelTongTien.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        labelTongTien.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
+        labelTongTien.setForeground(new java.awt.Color(255, 255, 255));
         labelTongTien.setText("...đ");
+        jPanel1.add(labelTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, 203, -1));
 
+        labelMaPhieu.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelMaPhieu.setForeground(new java.awt.Color(255, 255, 255));
         labelMaPhieu.setText("jLabel7");
+        jPanel1.add(labelMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 242, -1));
 
+        labelNguoiTao.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelNguoiTao.setForeground(new java.awt.Color(255, 255, 255));
         labelNguoiTao.setText("jLabel7");
+        jPanel1.add(labelNguoiTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 234, -1));
 
+        labelNhaCungCap.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelNhaCungCap.setForeground(new java.awt.Color(255, 255, 255));
         labelNhaCungCap.setText("jLabel7");
+        jPanel1.add(labelNhaCungCap, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 242, -1));
 
+        labelThoiGianTao.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        labelThoiGianTao.setForeground(new java.awt.Color(255, 255, 255));
         labelThoiGianTao.setText("jLabel7");
+        jPanel1.add(labelThoiGianTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, 242, -1));
 
-        jLabel7.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CHI TIẾT PHIẾU NHẬP");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("TỔNG TIỀN:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
 
+        exportPDF.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         exportPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_pdf_25px.png"))); // NOI18N
         exportPDF.setText("Xuất PDF");
         exportPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -174,68 +188,10 @@ public class CTPhieuNhap extends javax.swing.JDialog {
                 exportPDFActionPerformed(evt);
             }
         });
+        jPanel1.add(exportPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, 135, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelMaPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelNguoiTao, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelThoiGianTao, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(65, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(exportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1))
-                        .addGap(21, 21, 21))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(labelMaPhieu)
-                    .addComponent(labelNguoiTao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(labelThoiGianTao)
-                    .addComponent(labelNhaCungCap))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(labelTongTien)
-                    .addComponent(exportPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\open-sky-trees-shooting-stars-4k-5f-1280x800.jpg")); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, -20, 1000, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,7 +201,7 @@ public class CTPhieuNhap extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -254,7 +210,7 @@ public class CTPhieuNhap extends javax.swing.JDialog {
     private void exportPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportPDFActionPerformed
         // TODO add your handling code here:
         WritePDF writepdf = new WritePDF();
-        writepdf.writePhieuNhap(this.parent.getPhieuNhapSelect().getMaPhieu());
+        writepdf.writePhieuNhap(this.parent.getPhieuNhapSelect().getMaphieu());
     }//GEN-LAST:event_exportPDFActionPerformed
 
     /**
@@ -293,9 +249,9 @@ public class CTPhieuNhap extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelMaPhieu;
     private javax.swing.JLabel labelNguoiTao;

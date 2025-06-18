@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -51,7 +52,9 @@ public class ProductForm extends javax.swing.JInternalFrame {
     tblSanPham.setDefaultEditor(Object.class, null);
 
     initTable();
-    loadDataToTable();
+    SwingUtilities.invokeLater(() -> {
+        loadDataToTable();
+    });
 
     changeTextFind();
 }
@@ -77,8 +80,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
     tblModel.setRowCount(0);
 
     // Debug (tuỳ chọn)
-    System.out.println("Model row count: " + tblModel.getRowCount());
-    System.out.println("Table row count: " + tblSanPham.getRowCount());
 }
 
 
@@ -88,11 +89,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
     try {
         SanphamDAO mtdao = new SanphamDAO();
         ArrayList<Sanpham> armt = mtdao.selectAll();
-
-        System.out.println("Bắt đầu load dữ liệu...");
-        System.out.println("Số sản phẩm lấy về: " + armt.size());
-
-        tblModel.setRowCount(0); // Xoá dữ liệu cũ trong bảng
+        tblModel.setRowCount(0); 
 
         for (Sanpham sp : armt) {
             if (sp.getTrangthai() == 1) {
@@ -111,7 +108,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
             }
         }
 
-        System.out.println("Tổng dòng thêm vào bảng: " + tblModel.getRowCount());
 
     } catch (Exception e) {
         e.printStackTrace();
@@ -137,8 +133,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxLuaChon = new javax.swing.JComboBox<>();
         jTextFieldSearch = new javax.swing.JTextField();
@@ -150,12 +146,14 @@ public class ProductForm extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jToolBar1.setRollover(true);
 
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_add_40px.png"))); // NOI18N
+        btnAdd.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon("E:\\anh java\\add-to-cart.png")); // NOI18N
         btnAdd.setText("Thêm");
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdd.setFocusable(false);
@@ -168,7 +166,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnAdd);
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_delete_40px.png"))); // NOI18N
+        btnDelete.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon("E:\\anh java\\delete.png")); // NOI18N
         btnDelete.setText("Xoá");
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -180,7 +179,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnDelete);
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_edit_40px.png"))); // NOI18N
+        btnEdit.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon("E:\\anh java\\edit (1).png")); // NOI18N
         btnEdit.setText("Sửa");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.setFocusable(false);
@@ -193,7 +193,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnEdit);
 
-        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_eye_40px.png"))); // NOI18N
+        btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\list (2).png")); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setFocusable(false);
@@ -207,19 +208,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
         jToolBar1.add(btnDetail);
         jToolBar1.add(jSeparator1);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_spreadsheet_file_40px.png"))); // NOI18N
-        jButton6.setText("Xuất Excel");
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton6);
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_xls_40px.png"))); // NOI18N
+        jButton2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("E:\\anh java\\logo.png")); // NOI18N
         jButton2.setText("Nhập Excel");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusable(false);
@@ -232,11 +222,27 @@ public class ProductForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(jButton2);
 
+        jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("E:\\anh java\\spreadsheet.png")); // NOI18N
+        jButton6.setText("Xuất Excel");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
+
+        jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 8, 428, 84));
+
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Đã xóa" }));
+        jComboBoxLuaChon.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái", "Đã xóa" }));
         jComboBoxLuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLuaChonActionPerformed(evt);
@@ -259,7 +265,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
         });
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 360, 40));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reset_25px_1.png"))); // NOI18N
+        jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +275,8 @@ public class ProductForm extends javax.swing.JInternalFrame {
             }
         });
         jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 140, 40));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 8, 722, 84));
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,31 +288,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblSanPham);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1168, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 118, 1168, 626));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 750));
 
@@ -397,22 +382,22 @@ public class ProductForm extends javax.swing.JInternalFrame {
             for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                 XSSFRow excelRow = excelSheet.getRow(row);
 
-                String masp = excelRow.getCell(0).getStringCellValue();
-                String tensp = excelRow.getCell(1).getStringCellValue();
-                String donvitinh = excelRow.getCell(2).getStringCellValue();
-                int soluong = (int) excelRow.getCell(3).getNumericCellValue();
-                double gianhap = excelRow.getCell(4).getNumericCellValue();
-                double giaban = excelRow.getCell(5).getNumericCellValue();
-                String loaisp = excelRow.getCell(6).getStringCellValue();
-                String mancc = excelRow.getCell(7).getStringCellValue();
-                String ghichu = excelRow.getCell(8).getStringCellValue();
-                int trangthai = (int) excelRow.getCell(9).getNumericCellValue();
+                String Masp = excelRow.getCell(0).getStringCellValue();
+                String Tensp = excelRow.getCell(1).getStringCellValue();
+                String Donvitinh = excelRow.getCell(2).getStringCellValue();
+                int Soluong = (int) excelRow.getCell(3).getNumericCellValue();
+                double Gianhap = excelRow.getCell(4).getNumericCellValue();
+                double Giaban = excelRow.getCell(5).getNumericCellValue();
+                String Loaisp = excelRow.getCell(6).getStringCellValue();
+                String Mancc = excelRow.getCell(7).getStringCellValue();
+                String Ghichu = excelRow.getCell(8).getStringCellValue();
+                int Trangthai = (int) excelRow.getCell(9).getNumericCellValue();
 
-                Date ngaysanxuat = excelRow.getCell(10).getDateCellValue();
-                Date hansudung = excelRow.getCell(11).getDateCellValue();
+                Date Ngaysanxuat = excelRow.getCell(10).getDateCellValue();
+                Date Hansudung = excelRow.getCell(11).getDateCellValue();
 
-                Sanpham sp = new Sanpham(masp, tensp, donvitinh, soluong, gianhap, giaban,
-                                         loaisp, mancc, ghichu, trangthai, ngaysanxuat, hansudung);
+                Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban,
+                                        Ngaysanxuat, Hansudung ,Loaisp, Mancc,  Trangthai,Ghichu);
                 listAccExcel.add(sp);
             }
 
@@ -434,6 +419,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         jComboBoxLuaChon.setSelectedIndex(0);
+        jTextFieldSearch.setText("");
         loadDataToTable();
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -449,18 +435,25 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
     private void jTextFieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyReleased
         // TODO add your handling code here:
-        String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
-        String content = jTextFieldSearch.getText();
-        ArrayList<Sanpham> result = searchFn(luaChon, content);
-        loadDataToTableSearch(result);
+    String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
+    String content = jTextFieldSearch.getText().trim();
+
+    // Nếu rỗng, load lại toàn bộ bảng
+    if (content.isEmpty()) {
+        loadDataToTable();
+        return;
+    }
+
+    ArrayList<Sanpham> result = searchFn(luaChon, content);
+    loadDataToTableSearch(result);
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
 
     private void jComboBoxLuaChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLuaChonActionPerformed
         // TODO add your handling code here:
-        String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
-        String content = jTextFieldSearch.getText();
-        ArrayList<Sanpham> result = searchFn(luaChon, content);
-        loadDataToTableSearch(result);
+       // String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
+      //  String content = jTextFieldSearch.getText();
+     //   ArrayList<Sanpham> result = searchFn(luaChon, content);
+     //   loadDataToTableSearch(result);
     }//GEN-LAST:event_jComboBoxLuaChonActionPerformed
 
     private void jTextFieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyPressed
@@ -479,6 +472,12 @@ public class ProductForm extends javax.swing.JInternalFrame {
     public ArrayList<Sanpham> searchFn(String luaChon, String content) {
         ArrayList<Sanpham> result = new ArrayList<>();
         SearchProduct searchPr = new SearchProduct();
+        content = content == null ? "" : content.trim();
+        if (content.isEmpty()) {
+        
+        result = SanphamDAO.getInstance().selectAllExist();
+        return result;
+    }
         switch (luaChon) {
             case "Tất cả":
                 result = searchPr.searchTatCa(content);
@@ -512,36 +511,69 @@ public class ProductForm extends javax.swing.JInternalFrame {
                 break;
             case "Đã xóa":
                 result = searchPr.searchDaXoa(content);
+                break;
+                 default:
+            
+            result = SanphamDAO.getInstance().selectAllExist();
         }
         return result;
     }
-    public void xoaSanphamSelect() {
-        DefaultTableModel table_acc = (DefaultTableModel) tblSanPham.getModel();
-        int i_row = tblSanPham.getSelectedRow();
-        int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá sản phẩm này?", "Xoá sản phẩm",
-                JOptionPane.YES_NO_OPTION);
-        if (luaChon == JOptionPane.YES_OPTION) {
-            Sanpham remove = getSanphamSelect();
-            SanphamDAO.getInstance().deleteTrangthai(remove.getMasp());
-        }
-        loadDataToTable();
+   public void xoaSanphamSelect() {
+    int i_row = tblSanPham.getSelectedRow();
+    if (i_row == -1) {
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xoá");
+        return;
     }
 
-    public Sanpham getSanphamSelect() {
-        int i_row = tblSanPham.getSelectedRow();
-        Sanpham acc = SanphamDAO.getInstance().selectById(tblModel.getValueAt(i_row, 0).toString());
-        return acc;
+    int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá sản phẩm này?", "Xoá sản phẩm",
+            JOptionPane.YES_NO_OPTION);
+
+    System.out.println("Lựa chọn: " + luaChon); // Debug
+
+    if (luaChon == JOptionPane.YES_OPTION) {
+        Sanpham remove = getSanphamSelect();
+        if (remove == null) {
+            JOptionPane.showMessageDialog(this, "Không lấy được sản phẩm đang chọn!");
+            return;
+        }
+        System.out.println("Mã sản phẩm cần xóa: " + remove.getMasp());
+
+        int result = SanphamDAO.getInstance().deleteTrangthai(remove.getMasp());
+        if (result > 0) {
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            loadDataToTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại");
+        }
     }
+}
+
+
+    public Sanpham getSanphamSelect() {
+    int selectedRow = tblSanPham.getSelectedRow();
+    if (selectedRow == -1) return null;
+
+    String masp = tblSanPham.getValueAt(selectedRow, 0).toString(); 
+    return SanphamDAO.getInstance().selectById(masp);
+}
 
     public void loadDataToTableSearch(ArrayList<Sanpham> result) {
         try {
             tblModel.setRowCount(0);
+            System.out.println("Số kết quả tìm kiếm: " + result.size());
             for (Sanpham i : result) {         
                 tblModel.addRow(new Object[]{
-                     i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGianhap()) + "đ", formatter.format(i.getGiaban()) + "đ",i.getLoaisp(),i.getMancc(), i.getNgaysanxuat(),i.getHansudung()
-                });
+    i.getMasp(), i.getTensp(), i.getSoluong(),
+    formatter.format(i.getGianhap()) + "đ",
+    formatter.format(i.getGiaban()) + "đ",
+    i.getLoaisp(), i.getMancc(),
+    i.getNgaysanxuat(), i.getHansudung(),
+    i.getTrangthai() == 1 ? "Đang bán" : "Ngưng bán"
+});
+
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/ProductForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/SanphamDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/Sanpham.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/SearchProduct.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/PhieuXuatDAO.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/Admin.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/QuanLiKho.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/TonKhoForm.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/CTPhieuXuat.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/CTThongKe.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/CTThongKeAcc.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/DetailProduct.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/WritePDF.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/AddAccount.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/AccountForm.java</file>
         </group>
     </open-files>
 </project-private>

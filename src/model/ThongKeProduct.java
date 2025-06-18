@@ -11,60 +11,60 @@ import java.util.Objects;
  * @author sinh
  */
 public class ThongKeProduct {
-    private String maMay;
-    private String tenMay;
-    private int slNhap;
-    private int slXuat;
+    private String Masp;
+    private String Tensp;
+    private int Slnhap;
+    private int Slxuat;
 
     public ThongKeProduct() {
     }
 
-    public ThongKeProduct(String maMay, String tenMay, int slNhap, int slXuat) {
-        this.maMay = maMay;
-        this.tenMay = tenMay;
-        this.slNhap = slNhap;
-        this.slXuat = slXuat;
+    public ThongKeProduct(String Masp, String Tensp, int Slnhap, int Slxuat) {
+        this.Masp = Masp;
+        this.Tensp = Tensp;
+        this.Slnhap = Slnhap;
+        this.Slxuat = Slxuat;
     }
 
-    public String getMaMay() {
-        return maMay;
+    public String getMasp() {
+        return Masp;
     }
 
-    public void setMaMay(String maMay) {
-        this.maMay = maMay;
+    public void setMasp(String Masp) {
+        this.Masp = Masp;
     }
 
-    public String getTenMay() {
-        return tenMay;
+    public String getTensp() {
+        return Tensp;
     }
 
-    public void setTenMay(String tenMay) {
-        this.tenMay = tenMay;
+    public void setTensp(String Tensp) {
+        this.Tensp = Tensp;
     }
 
-    public int getSlNhap() {
-        return slNhap;
+    public int getSlnhap() {
+        return Slnhap;
     }
 
-    public void setSlNhap(int slNhap) {
-        this.slNhap = slNhap;
+    public void setSlNhap(int Slnhap) {
+        this.Slnhap= Slnhap;
     }
 
-    public int getSlXuat() {
-        return slXuat;
+    public int getSlxuat() {
+        return Slxuat;
     }
 
-    public void setSlXuat(int slXuat) {
-        this.slXuat = slXuat;
+    public void setSlxuat(int Slxuat) {
+        this.Slxuat = Slxuat;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.maMay);
-        hash = 53 * hash + Objects.hashCode(this.tenMay);
-        hash = 53 * hash + this.slNhap;
-        hash = 53 * hash + this.slXuat;
+        hash = 53 * hash + Objects.hashCode(this.Masp);
+        hash = 53 * hash + Objects.hashCode(this.Tensp);
+        hash = 53 * hash + this.Slnhap;
+        hash = 53 * hash + this.Slxuat;
         return hash;
     }
 
@@ -80,21 +80,21 @@ public class ThongKeProduct {
             return false;
         }
         final ThongKeProduct other = (ThongKeProduct) obj;
-        if (this.slNhap != other.slNhap) {
+        if (this.Slnhap != other.Slnhap) {
             return false;
         }
-        if (this.slXuat != other.slXuat) {
+        if (this.Slxuat != other.Slxuat) {
             return false;
         }
-        if (!Objects.equals(this.maMay, other.maMay)) {
+        if (!Objects.equals(this.Masp, other.Masp)) {
             return false;
         }
-        return Objects.equals(this.tenMay, other.tenMay);
+        return Objects.equals(this.Tensp, other.Tensp);
     }
 
     @Override
     public String toString() {
-        return "ThongKeProduct{" + "maMay=" + maMay + ", tenMay=" + tenMay + ", slNhap=" + slNhap + ", slXuat=" + slXuat + '}';
+        return "ThongKeProduct{" + "Masp=" + Masp + ",Tensp=" + Tensp + ", Slnhap=" + Slnhap + ", Slxuat=" + Slxuat + '}';
     }
     
     

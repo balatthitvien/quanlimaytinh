@@ -22,10 +22,10 @@ public class SearchNhaCungCap {
         ArrayList<NhaCungCap> result = new ArrayList<>();
         ArrayList<NhaCungCap> armt = NhaCungCapDAO.getInstance().selectAll();
         for (var ncc : armt) {
-            if (ncc.getMaNhaCungCap().toLowerCase().contains(text.toLowerCase())
-                    || ncc.getTenNhaCungCap().toLowerCase().contains(text.toLowerCase())
+            if (ncc.getMancc().toLowerCase().contains(text.toLowerCase())
+                    || ncc.getTenncc().toLowerCase().contains(text.toLowerCase())
                     || ncc.getSdt().toLowerCase().contains(text.toLowerCase())
-                    || ncc.getDiaChi().toLowerCase().contains(text.toLowerCase())) {
+                    || ncc.getDiachi().toLowerCase().contains(text.toLowerCase())) {
                 result.add(ncc);
             }
         }
@@ -36,7 +36,7 @@ public class SearchNhaCungCap {
         ArrayList<NhaCungCap> result = new ArrayList<>();
         ArrayList<NhaCungCap> armt = NhaCungCapDAO.getInstance().selectAll();
         for (var ncc : armt) {
-            if (ncc.getTenNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
+            if (ncc.getTenncc().toLowerCase().contains(text.toLowerCase())) {
                 result.add(ncc);
             }
         }
@@ -47,7 +47,7 @@ public class SearchNhaCungCap {
         ArrayList<NhaCungCap> result = new ArrayList<>();
         ArrayList<NhaCungCap> armt = NhaCungCapDAO.getInstance().selectAll();
         for (var ncc : armt) {
-            if (ncc.getMaNhaCungCap().toLowerCase().contains(text.toLowerCase())) {
+            if (ncc.getMancc().toLowerCase().contains(text.toLowerCase())) {
                 result.add(ncc);
             }
         }
@@ -58,7 +58,7 @@ public class SearchNhaCungCap {
         ArrayList<NhaCungCap> result = new ArrayList<>();
         ArrayList<NhaCungCap> armt = NhaCungCapDAO.getInstance().selectAll();
         for (var ncc : armt) {
-            if (ncc.getDiaChi().toLowerCase().contains(text.toLowerCase())) {
+            if (ncc.getDiachi().toLowerCase().contains(text.toLowerCase())) {
                 result.add(ncc);
             }
         }

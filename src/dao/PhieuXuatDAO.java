@@ -18,43 +18,48 @@ public class PhieuXuatDAO implements DAOInterface<PhieuXuat> {
     public static PhieuXuatDAO getInstance() {
         return new PhieuXuatDAO();
     }
+@Override
+public int insert(PhieuXuat t) {
+    int ketQua = 0;
+    try {
+        Connection con = JDBCUtil.getConnection();
+        String sql = "INSERT INTO phieuxuat (Maphieu, Thoigiantao, Nguoitao, Tongtien) VALUES (?,?,?,?)";
+        PreparedStatement pst = con.prepareStatement(sql);
 
-    @Override
-    public int insert(PhieuXuat t) {
-        int ketQua = 0;
-        try {
-            Connection con = JDBCUtil.getConnection();
-            String sql = "INSERT INTO PhieuXuat (maPhieu, thoiGianTao, nguoiTao, tongTien) VALUES (?,?,?,?)";
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getMaPhieu());
-            pst.setTimestamp(2, t.getThoiGianTao());
-            pst.setString(3, t.getNguoiTao());
-            pst.setDouble(4, t.getTongTien());
-            ketQua = pst.executeUpdate();
-            JDBCUtil.closeConnection(con);
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-        return ketQua;
+        // ⚠ Thêm dòng này để kiểm tra giá trị Nguoitao
+        System.out.println("Nguoitao: " + t.getNguoitao());
+
+        pst.setString(1, t.getMaphieu());
+        pst.setTimestamp(2, t.getThoigiantao());
+        pst.setString(3, t.getNguoitao());
+        pst.setDouble(4, t.getTongtien());
+
+        ketQua = pst.executeUpdate();
+        JDBCUtil.closeConnection(con);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return ketQua;
+}
+
 
     @Override
     public int update(PhieuXuat t) {
         int ketQua = 0;
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "UPDATE PhieuXuat SET maPhieu=?, thoiGianTao=?, nguoiTao=?, tongTien = ? WHERE maPhieu=?";
+            String sql = "UPDATE phieuxuat SET Maphieu=?, Thoigiantao=?, Nguoitao=?, Tongtien = ? WHERE Maphieu=?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getMaPhieu());
-            pst.setTimestamp(2, t.getThoiGianTao());
-            pst.setString(3, t.getNguoiTao());
-            pst.setDouble(4, t.getTongTien());
-            pst.setString(5, t.getMaPhieu());
+            pst.setString(1, t.getMaphieu());
+            pst.setTimestamp(2, t.getThoigiantao());
+            pst.setString(3, t.getNguoitao());
+            pst.setDouble(4, t.getTongtien());
+            pst.setString(5, t.getMaphieu());
             ketQua = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (Exception e) {
             // TODO: handle exception
+               System.err.println("Lỗi khi thêm phiếu xuất: " + e.getMessage());
             e.printStackTrace();
         }
         return ketQua;
@@ -65,9 +70,9 @@ public class PhieuXuatDAO implements DAOInterface<PhieuXuat> {
         int ketQua = 0;
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "DELETE FROM PhieuXuat WHERE maPhieu=?";
+            String sql = "DELETE FROM phieuxuat WHERE Maphieu=?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, t.getMaPhieu());
+            pst.setString(1, t.getMaphieu());
             ketQua = pst.executeUpdate();
             JDBCUtil.closeConnection(con);
         } catch (Exception e) {
@@ -82,15 +87,15 @@ public class PhieuXuatDAO implements DAOInterface<PhieuXuat> {
         ArrayList<PhieuXuat> ketQua = new ArrayList<PhieuXuat>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT * FROM PhieuXuat ORDER BY thoiGianTao DESC";
+            String sql = "SELECT * FROM phieuxuat ORDER BY Thoigiantao DESC";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maPhieu = rs.getString("maPhieu");
-                Timestamp thoiGianTao = rs.getTimestamp("thoiGianTao");
-                String nguoiTao = rs.getString("nguoiTao");
-                double tongTien = rs.getDouble("tongTien");
-                PhieuXuat p = new PhieuXuat(maPhieu, thoiGianTao, nguoiTao, ChiTietPhieuXuatDAO.getInstance().selectAll(maPhieu), tongTien);
+                String Maphieu = rs.getString("Maphieu");
+                Timestamp Thoigiantao = rs.getTimestamp("Thoigiantao");
+                String Nguoitao = rs.getString("Nguoitao");
+                double Tongtien = rs.getDouble("Tongtien");
+                PhieuXuat p = new PhieuXuat(Maphieu, Thoigiantao, Nguoitao, ChiTietPhieuXuatDAO.getInstance().selectAll(Maphieu), Tongtien);
                 ketQua.add(p);
             }
         } catch (Exception e) {
@@ -105,16 +110,16 @@ public class PhieuXuatDAO implements DAOInterface<PhieuXuat> {
         PhieuXuat ketQua = null;
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT * FROM PhieuXuat WHERE maPhieu=?";
+            String sql = "SELECT * FROM phieuxuat WHERE Maphieu=?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, t);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String maPhieu = rs.getString("maPhieu");
-                Timestamp thoiGianTao = rs.getTimestamp("thoiGianTao");
-                String nguoiTao = rs.getString("nguoiTao");
-                double tongTien = rs.getDouble("tongTien");
-                ketQua = new PhieuXuat(maPhieu, thoiGianTao, nguoiTao, ChiTietPhieuXuatDAO.getInstance().selectAll(maPhieu), tongTien);
+                String Maphieu = rs.getString("Maphieu");
+                Timestamp Thoigiantao = rs.getTimestamp("Thoigiantao");
+                String Nguoitao = rs.getString("Nguoitao");
+                double Tongtien = rs.getDouble("Tongtien");
+                ketQua = new PhieuXuat(Maphieu, Thoigiantao, Nguoitao, ChiTietPhieuXuatDAO.getInstance().selectAll(Maphieu), Tongtien);
             }
         } catch (Exception e) {
             // TODO: handle exception

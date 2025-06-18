@@ -11,60 +11,60 @@ import java.util.Objects;
  * @author kali
  */
 public class NhaCungCap {
-    private String maNhaCungCap;
-    private String tenNhaCungCap;
-    private String sdt;
-    private String diaChi;
+    private String Mancc;
+    private String Tenncc;
+    private String Sdt;
+    private String Diachi;
 
     public NhaCungCap() {
     }
 
-    public NhaCungCap(String maNhaCungCap, String tenNhaCungCap, String sdt, String diaChi) {
-        this.maNhaCungCap = maNhaCungCap;
-        this.tenNhaCungCap = tenNhaCungCap;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
+    public NhaCungCap(String Mancc, String Tenncc, String Sdt, String Diachi) {
+        this.Mancc = Mancc;
+        this.Tenncc = Tenncc;
+        this.Sdt = Sdt;
+        this.Diachi = Diachi;
     }
 
-    public String getMaNhaCungCap() {
-        return maNhaCungCap;
+    public String getMancc() {
+        return Mancc;
     }
 
-    public void setMaNhaCungCap(String maNhaCungCap) {
-        this.maNhaCungCap = maNhaCungCap;
+    public void setMancc(String Mancc) {
+        this.Mancc = Mancc;
     }
 
-    public String getTenNhaCungCap() {
-        return tenNhaCungCap;
+    public String getTenncc() {
+        return Tenncc;
     }
 
-    public void setTenNhaCungCap(String tenNhaCungCap) {
-        this.tenNhaCungCap = tenNhaCungCap;
+    public void setTenncc(String Tenncc) {
+        this.Tenncc = Tenncc;
     }
 
     public String getSdt() {
-        return sdt;
+        return Sdt;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setSdt(String Sdt) {
+        this.Sdt = Sdt;
     }
 
-    public String getDiaChi() {
-        return diaChi;
+    public String getDiachi() {
+        return Diachi;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public void setDiachi(String Diachi) {
+        this.Diachi = Diachi;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.maNhaCungCap);
-        hash = 29 * hash + Objects.hashCode(this.tenNhaCungCap);
-        hash = 29 * hash + Objects.hashCode(this.sdt);
-        hash = 29 * hash + Objects.hashCode(this.diaChi);
+        hash = 29 * hash + Objects.hashCode(this.Mancc);
+        hash = 29 * hash + Objects.hashCode(this.Tenncc);
+        hash = 29 * hash + Objects.hashCode(this.Sdt);
+        hash = 29 * hash + Objects.hashCode(this.Diachi);
         return hash;
     }
 
@@ -80,21 +80,21 @@ public class NhaCungCap {
             return false;
         }
         final NhaCungCap other = (NhaCungCap) obj;
-        if (!Objects.equals(this.maNhaCungCap, other.maNhaCungCap)) {
+        if (!Objects.equals(this.Mancc, other.Mancc)) {
             return false;
         }
-        if (!Objects.equals(this.tenNhaCungCap, other.tenNhaCungCap)) {
+        if (!Objects.equals(this.Tenncc, other.Tenncc)) {
             return false;
         }
-        if (!Objects.equals(this.sdt, other.sdt)) {
+        if (!Objects.equals(this.Sdt, other.Sdt)) {
             return false;
         }
-        return Objects.equals(this.diaChi, other.diaChi);
+        return Objects.equals(this.Diachi, other.Diachi);
     }
 
     @Override
     public String toString() {
-        return "NhaCungCap{" + "maNhaCungCap=" + maNhaCungCap + ", tenNhaCungCap=" + tenNhaCungCap + ", sdt=" + sdt + ", diaChi=" + diaChi + '}';
+        return "NhaCungCap{" + "Mancc=" + Mancc + ", Tenncc=" + Tenncc + ", Sdt=" + Sdt + ", Diachi=" + Diachi + '}';
     }
     
     

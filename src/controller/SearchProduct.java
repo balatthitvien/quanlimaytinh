@@ -15,12 +15,11 @@ public class SearchProduct {
     }
 
     public ArrayList<Sanpham> searchTatCa(String text) {
-    ArrayList<Sanpham> result = new ArrayList<>();
-    ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
-    String keyword = text.toLowerCase().trim();
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+        String keyword = text.toLowerCase().trim();
 
-    for (Sanpham sp : armt) {
-        if (sp.getTrangthai() == 1) {
+        for (Sanpham sp : armt) {
             if ((sp.getMasp() != null && sp.getMasp().toLowerCase().contains(keyword)) ||
                 (sp.getTensp() != null && sp.getTensp().toLowerCase().contains(keyword)) ||
                 (String.valueOf(sp.getSoluong()).contains(keyword)) ||
@@ -33,9 +32,8 @@ public class SearchProduct {
                 result.add(sp);
             }
         }
+        return result;
     }
-    return result;
-}
 
 
 
@@ -53,43 +51,44 @@ public class SearchProduct {
     }
 
     public ArrayList<Sanpham> searchTensp(String text) {
-        ArrayList<Sanpham> result = new ArrayList<>();
-        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
-        for (var mt : armt) {
-            if (mt.getTrangThai() == 1) {
-                if (mt.getTensp().toLowerCase().contains(text.toLowerCase())) {
-                    result.add(mt);
-                }
-            }
+    ArrayList<Sanpham> result = new ArrayList<>();
+    ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+    text = text.trim().toLowerCase();
+
+    for (Sanpham mt : armt) {
+        String tensp = mt.getTensp();
+        if (mt.getTrangthai() == 1 && tensp != null && tensp.toLowerCase().contains(text)) {
+            result.add(mt);
         }
-        return result;
     }
+    return result;
+}
+
 
     public ArrayList<Sanpham> searchSoluong(String text) {
-        ArrayList<Sanpham> result = new ArrayList<>();
-        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
-        for (var mt : armt) {
-            if (mt.getTrangthai() == 1) {
-                if (text.length() != 0) {
-                    if (mt.getSoluong() > Integer.parseInt(text)) {
-                        result.add(mt);
-                    }
-                } else {
-                    result.add(mt);
-                }
+    ArrayList<Sanpham> result = new ArrayList<>();
+    ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+    text = text.trim();
+
+    for (Sanpham mt : armt) {
+        if (mt.getTrangthai() == 1) {
+            if (String.valueOf(mt.getSoluong()).contains(text)) {
+                result.add(mt);
             }
         }
-        return result;
     }
+    return result;
+}
+
 
     public ArrayList<Sanpham> searchGianhap(String text) {
         ArrayList<Sanpham> result = new ArrayList<>();
         ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getTrangThai() == 1) {
+            if (mt.getTrangthai() == 1) {
 
                 if (text.length() != 0) {
-                    if (mt.getGianhap() > Integer.parseInt(text)) {
+                    if (mt.getGianhap() > Double.parseDouble(text)) {
                         result.add(mt);
                     }
                 }
@@ -104,10 +103,10 @@ public class SearchProduct {
         ArrayList<Sanpham> result = new ArrayList<>();
         ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
         for (var mt : armt) {
-            if (mt.getTrangThai() == 1) {
+            if (mt.getTrangthai() == 1) {
 
                 if (text.length() != 0) {
-                    if (mt.getGiaban() > Integer.parseInt(text)) {
+                    if (mt.getGiaban() > Double.parseDouble(text)) {
                         result.add(mt);
                     }
                 }
@@ -177,7 +176,7 @@ public class SearchProduct {
         ArrayList<Sanpham> result = new ArrayList<>();
         ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAll();
         for (var mt : armt) {
-            if (mt.getTrangThai() == 0) {
+            if (mt.getTrangthai() == 0) {
                 if (mt.getMasp().toLowerCase().contains(text.toLowerCase())) {
                     result.add(mt);
                 }

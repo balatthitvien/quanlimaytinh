@@ -155,8 +155,8 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="5" rowCount="1">
                             <Column editable="true" title="STT" type="java.lang.Object"/>
-                            <Column editable="true" title="M&#xe3; m&#xe1;y" type="java.lang.Object"/>
-                            <Column editable="true" title="T&#xea;n m&#xe1;y" type="java.lang.Object"/>
+                            <Column editable="true" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
+                            <Column editable="true" title="T&#xea;n s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                             <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng nh&#x1ead;p" type="java.lang.Object"/>
                             <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng xu&#x1ea5;t" type="java.lang.Object"/>
                           </Table>
@@ -224,6 +224,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf;n"/>
                       </Properties>
                       <Constraints>
@@ -234,6 +237,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel8">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="T&#x1eeb;"/>
                       </Properties>
                       <Constraints>
@@ -244,8 +250,11 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnResetThongKePr">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/icons8_reset_25px_1.png"/>
+                          <Image iconType="2" name="E:\anh java\reload (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                       </Properties>
@@ -364,8 +373,11 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnDetail">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icon/icons8_eye_40px.png"/>
+                      <Image iconType="2" name="E:\anh java\list (2).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Xem chi ti&#x1ebf;t"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -399,6 +411,9 @@
               <SubComponents>
                 <Component class="javax.swing.JComboBox" name="jComboBoxLuaChon">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
@@ -432,8 +447,11 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton7">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icon/icons8_reset_25px_1.png"/>
+                      <Image iconType="2" name="E:\anh java\reload (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -523,6 +541,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf;n"/>
                   </Properties>
                   <Constraints>
@@ -533,6 +554,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="T&#x1eeb;"/>
                   </Properties>
                   <Constraints>
@@ -589,6 +613,9 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="T&#x1eeb;"/>
                   </Properties>
                 </Component>
@@ -600,6 +627,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1ebf;n"/>
                   </Properties>
                 </Component>
@@ -614,7 +644,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#x1ed4;NG TI&#x1ec0;N"/>
               </Properties>
@@ -622,7 +652,7 @@
             <Component class="javax.swing.JLabel" name="soLuong">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
@@ -630,7 +660,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="18" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="T&#x1ed4;NG PHI&#x1ebe;U "/>
               </Properties>
@@ -638,7 +668,7 @@
             <Component class="javax.swing.JLabel" name="tongTien">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="18" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -729,6 +759,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JComboBox" name="jComboBoxLuaChon1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                        </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
                             <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
@@ -763,8 +796,11 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton1">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
+                        </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/icons8_reset_25px_1.png"/>
+                          <Image iconType="2" name="E:\anh java\reload (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                       </Properties>
@@ -834,7 +870,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
@@ -870,7 +906,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtQuantityProduct" min="-2" pref="108" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -882,7 +918,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -901,7 +937,7 @@
             <Component class="javax.swing.JLabel" name="txtQuantityProduct">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="36" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -912,7 +948,7 @@
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="0"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -980,7 +1016,7 @@
             <Component class="javax.swing.JLabel" name="txtQuantityNcc">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="36" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -991,7 +1027,7 @@
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="0"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1014,7 +1050,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtQuantityUser" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1052,7 +1088,7 @@
             <Component class="javax.swing.JLabel" name="txtQuantityUser">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="36" style="1"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1063,7 +1099,7 @@
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="SF Pro Display" size="18" style="0"/>
+                  <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="24" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
