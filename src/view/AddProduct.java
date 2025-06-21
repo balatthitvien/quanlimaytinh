@@ -4,6 +4,7 @@
  */
 package view;
 
+import dao.NhaCungCapDAO;
 import dao.SanphamDAO;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -12,15 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Sanpham;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class AddProduct extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ThemSP
-     */
+
     private ProductForm owner;
 
     public AddProduct(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) {
@@ -28,7 +24,19 @@ public class AddProduct extends javax.swing.JDialog {
         this.owner = (ProductForm) parent;
         initComponents();
         setLocationRelativeTo(null);
+        loadManccToComboBox();
+        String nextMasp = SanphamDAO.getInstance().generateNextMasp();
+        txtMasp.setText(nextMasp);
+        txtMasp.setEditable(false); 
     }
+    private void loadManccToComboBox() {
+    ArrayList<String> list = NhaCungCapDAO.getInstance().getAllMancc();
+    cbxMancc.removeAllItems();
+    cbxMancc.addItem("--Chọn nhà cung cấp--");
+    for (String mancc : list) {
+        cbxMancc.addItem(mancc);
+    }
+}
 
     private AddProduct(JFrame jFrame, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -54,7 +62,6 @@ public class AddProduct extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         txtGiaban = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtMancc = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cbxLoaisp = new javax.swing.JComboBox<>();
@@ -66,6 +73,7 @@ public class AddProduct extends javax.swing.JDialog {
         dateHansudung = new com.toedter.calendar.JDateChooser();
         dateNgaysanxuat = new com.toedter.calendar.JDateChooser();
         cbxTrangthai = new javax.swing.JComboBox<>();
+        cbxMancc = new javax.swing.JComboBox<>();
         txtGhichu = new javax.swing.JTextField();
         txtMasp = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -114,7 +122,6 @@ public class AddProduct extends javax.swing.JDialog {
         jLabel8.setForeground(new java.awt.Color(0, 0, 153));
         jLabel8.setText("Mã nhà cung cấp");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 140, -1));
-        jPanel1.add(txtMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 189, 32));
 
         jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
@@ -189,6 +196,9 @@ public class AddProduct extends javax.swing.JDialog {
 
         cbxTrangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn trạng thái--", "Đang bán", "Ngưng bán" }));
         jPanel1.add(cbxTrangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 202, 210, 30));
+
+        cbxMancc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn nhà cung cấp--" }));
+        jPanel1.add(cbxMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 190, 30));
         jPanel1.add(txtGhichu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, 210, 30));
         jPanel1.add(txtMasp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 190, 30));
 
@@ -240,7 +250,8 @@ public class AddProduct extends javax.swing.JDialog {
         double Giaban = Double.parseDouble(txtGiaban.getText().trim());
 
         String Loaisp = cbxLoaisp.getSelectedItem().toString();
-        String Mancc = txtMancc.getText().trim();
+        String Mancc = cbxMancc.getSelectedItem().toString();
+     
         String Ghichu = txtGhichu.getText().trim();
 
         java.util.Date ngaysanxuatUtil = dateNgaysanxuat.getDate();
@@ -336,6 +347,7 @@ public class AddProduct extends javax.swing.JDialog {
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCancel;
     private javax.swing.JComboBox<String> cbxLoaisp;
+    private javax.swing.JComboBox<String> cbxMancc;
     private javax.swing.JComboBox<String> cbxTrangthai;
     private com.toedter.calendar.JDateChooser dateHansudung;
     private com.toedter.calendar.JDateChooser dateNgaysanxuat;
@@ -359,7 +371,6 @@ public class AddProduct extends javax.swing.JDialog {
     private javax.swing.JTextField txtGhichu;
     private javax.swing.JTextField txtGiaban;
     private javax.swing.JTextField txtGianhap;
-    private javax.swing.JTextField txtMancc;
     private javax.swing.JTextField txtMasp;
     private javax.swing.JTextField txtSoluong;
     private javax.swing.JTextField txtTensp;

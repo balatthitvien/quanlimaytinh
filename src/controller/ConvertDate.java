@@ -9,10 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- *
- * @author sinh
- */
+
 public class ConvertDate {
 
     public static ConvertDate getInstance() {

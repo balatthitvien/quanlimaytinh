@@ -19,10 +19,6 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.Account;
 
-/**
- *
- * @author kali
- */
 public class Login extends javax.swing.JFrame {
 
     /**

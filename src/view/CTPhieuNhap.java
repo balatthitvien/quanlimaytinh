@@ -16,10 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ChiTietPhieuNhap;
 import model.PhieuNhap;
 
-/**
- *
- * @author Tran Nhat Sinh con lon
- */
+
 public class CTPhieuNhap extends javax.swing.JDialog {
 
     /**

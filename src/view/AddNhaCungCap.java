@@ -12,10 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.NhaCungCap;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class AddNhaCungCap extends javax.swing.JDialog {
 
     /**

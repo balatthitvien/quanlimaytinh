@@ -14,10 +14,7 @@ import view.AccountForm;
 import model.Account;
 import dao.AccountDAO;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class ChangePassword extends javax.swing.JDialog {
 
     /**

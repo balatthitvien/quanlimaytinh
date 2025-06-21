@@ -33,10 +33,7 @@ import model.Phieu;
 import model.PhieuXuat;
 import model.ThongKeProduct;
 
-/**
- *
- * @author Robot
- */
+
 public class ThongKeForm extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tblModel;

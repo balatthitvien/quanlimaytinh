@@ -8,10 +8,7 @@ import dao.AccountDAO;
 import java.util.ArrayList;
 import model.Account;
 
-/**
- *
- * @author sinh
- */
+
 public class SearchAccount {
 
     public static SearchAccount getInstance() {

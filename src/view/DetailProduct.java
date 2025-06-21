@@ -11,10 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Sanpham;
 
-/**
- *
- * @author Tran Nhat Sinh con lon
- */
+
 public class DetailProduct extends javax.swing.JDialog {
 
     /**
@@ -31,7 +28,7 @@ Sanpham sp = this.owner.getSanphamSelect();
     if (sp != null) {
             txtMasp.setText(sp.getMasp());
             txtTensp.setText(sp.getTensp());
-            txtDonvitinh.setText(sp.getTensp());
+            txtDonvitinh.setText(sp.getDonvitinh());
             txtGianhap.setText(formatter.format(sp.getGianhap())+"đ");
             txtGiaban.setText(formatter.format(sp.getGiaban())+"đ");
             txtMancc.setText(sp.getMancc());

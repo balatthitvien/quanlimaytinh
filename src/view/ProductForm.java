@@ -36,10 +36,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author Robot
- */
+
 public class ProductForm extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tblModel;
@@ -96,6 +93,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
                 tblModel.addRow(new Object[]{
                     sp.getMasp(),
                     sp.getTensp(),
+                    sp.getDonvitinh(),
                     sp.getSoluong(),
                     formatter.format(sp.getGianhap()) + "đ",
                     formatter.format(sp.getGiaban()) + "đ",
@@ -242,7 +240,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBoxLuaChon.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái", "Đã xóa" }));
+        jComboBoxLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Mã sản phẩm", "Tên sản phẩm", "Đơn vị tính", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái", "Đã xóa" }));
         jComboBoxLuaChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLuaChonActionPerformed(evt);
@@ -283,7 +281,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái"
+                "Mã sản phẩm", "Tên sản phẩm", "Đơn vị tính", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái"
             }
         ));
         jScrollPane1.setViewportView(tblSanPham);
@@ -563,7 +561,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
             System.out.println("Số kết quả tìm kiếm: " + result.size());
             for (Sanpham i : result) {         
                 tblModel.addRow(new Object[]{
-    i.getMasp(), i.getTensp(), i.getSoluong(),
+    i.getMasp(), i.getTensp(),i.getDonvitinh(), i.getSoluong(),
     formatter.format(i.getGianhap()) + "đ",
     formatter.format(i.getGiaban()) + "đ",
     i.getLoaisp(), i.getMancc(),

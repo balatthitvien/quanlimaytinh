@@ -4,10 +4,7 @@ import dao.SanphamDAO;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import model.Sanpham;
-/**
- *
- * @author sinh
- */
+
 public class SearchProduct {
 
     public static SearchProduct getInstance() {
@@ -63,7 +60,18 @@ public class SearchProduct {
     }
     return result;
 }
-
+public ArrayList<Sanpham> searchDonvitinh(String text) {
+        ArrayList<Sanpham> result = new ArrayList<>();
+        ArrayList<Sanpham> armt = SanphamDAO.getInstance().selectAllExist();
+        for (var mt : armt) {
+            if (mt.getTrangthai() == 1) {
+                if (mt.getDonvitinh().toLowerCase().contains(text.toLowerCase())) {
+                    result.add(mt);
+                }
+            }
+        }
+        return result;
+    }
 
     public ArrayList<Sanpham> searchSoluong(String text) {
     ArrayList<Sanpham> result = new ArrayList<>();

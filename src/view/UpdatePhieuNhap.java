@@ -25,10 +25,7 @@ import model.Sanpham;
 import model.NhaCungCap;
 import model.PhieuNhap;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class UpdatePhieuNhap extends javax.swing.JDialog {
 
     /**

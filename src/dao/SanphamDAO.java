@@ -111,12 +111,13 @@ public int update(Sanpham t) {
     ArrayList<Sanpham> ketQua = new ArrayList<>();
     try {
         Connection con = JDBCUtil.getConnection();
-        String sql = "SELECT Masp, Tensp, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ngaysanxuat, Hansudung, Trangthai FROM sanpham";
+        String sql = "SELECT Masp, Tensp,Donvitinh, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ngaysanxuat, Hansudung, Trangthai FROM sanpham";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         while (rs.next()) {
             String Masp = rs.getString("Masp");
             String Tensp = rs.getString("Tensp");
+            String Donvitinh = rs.getString("Donvitinh");
             int Soluong = rs.getInt("Soluong");
             double Gianhap = rs.getDouble("Gianhap");
             double Giaban = rs.getDouble("Giaban");
@@ -126,7 +127,8 @@ public int update(Sanpham t) {
             Date Hansudung = rs.getDate("Hansudung");
             int Trangthai =rs.getInt("Trangthai");
  
-           Sanpham sp = new Sanpham(Masp, Tensp, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ngaysanxuat, Hansudung, Trangthai);
+           Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp, Mancc, Trangthai, "");
+
             ketQua.add(sp);
         }
         JDBCUtil.closeConnection(con);
@@ -285,4 +287,32 @@ public int update(Sanpham t) {
         }
         return Soluong;
     }
+    public String generateNextMasp() {
+    String prefix = "SP";
+    int maxNumber = 0;
+    try {
+        Connection con = JDBCUtil.getConnection();
+        String sql = "SELECT Masp FROM sanpham";
+        PreparedStatement pst = con.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            String masp = rs.getString("Masp");
+            if (masp.startsWith(prefix)) {
+                try {
+                    int number = Integer.parseInt(masp.substring(prefix.length()));
+                    if (number > maxNumber) {
+                        maxNumber = number;
+                    }
+                } catch (NumberFormatException e) {
+                    // bỏ qua mã lỗi định dạng
+                }
+            }
+        }
+        JDBCUtil.closeConnection(con);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return prefix + String.format("%02d", maxNumber + 1); // SP01, SP02,...
+}
+
 }

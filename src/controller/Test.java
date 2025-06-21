@@ -6,10 +6,7 @@ package controller;
 
 import java.util.Date;
 
-/**
- *
- * @author sinh
- */
+
 public class Test {
 
     public static void main(String[] args) {

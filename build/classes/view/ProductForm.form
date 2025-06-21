@@ -211,19 +211,20 @@
                   <Font name="#9Slide03 Saira SemiCondensed SemiBold" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="12">
+                  <StringArray count="13">
                     <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
                     <StringItem index="1" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m"/>
                     <StringItem index="2" value="T&#xea;n s&#x1ea3;n ph&#x1ea9;m"/>
-                    <StringItem index="3" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
-                    <StringItem index="4" value="Gi&#xe1; nh&#x1ead;p"/>
-                    <StringItem index="5" value="Gi&#xe1; b&#xe1;n"/>
-                    <StringItem index="6" value="Lo&#x1ea1;i s&#x1ea3;n ph&#x1ea9;m"/>
-                    <StringItem index="7" value="M&#xe3; nh&#xe0; cung c&#x1ea5;p"/>
-                    <StringItem index="8" value="Ng&#xe0;y s&#x1ea3;n xu&#x1ea5;t"/>
-                    <StringItem index="9" value="H&#x1ea1;n s&#x1eed; d&#x1ee5;ng"/>
-                    <StringItem index="10" value="Tr&#x1ea1;ng th&#xe1;i"/>
-                    <StringItem index="11" value="&#x110;&#xe3; x&#xf3;a"/>
+                    <StringItem index="3" value="&#x110;&#x1a1;n v&#x1ecb; t&#xed;nh"/>
+                    <StringItem index="4" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
+                    <StringItem index="5" value="Gi&#xe1; nh&#x1ead;p"/>
+                    <StringItem index="6" value="Gi&#xe1; b&#xe1;n"/>
+                    <StringItem index="7" value="Lo&#x1ea1;i s&#x1ea3;n ph&#x1ea9;m"/>
+                    <StringItem index="8" value="M&#xe3; nh&#xe0; cung c&#x1ea5;p"/>
+                    <StringItem index="9" value="Ng&#xe0;y s&#x1ea3;n xu&#x1ea5;t"/>
+                    <StringItem index="10" value="H&#x1ea1;n s&#x1eed; d&#x1ee5;ng"/>
+                    <StringItem index="11" value="Tr&#x1ea1;ng th&#xe1;i"/>
+                    <StringItem index="12" value="&#x110;&#xe3; x&#xf3;a"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -290,9 +291,10 @@
             <Component class="javax.swing.JTable" name="tblSanPham">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="10" rowCount="0">
+                  <Table columnCount="11" rowCount="0">
                     <Column editable="true" title="M&#xe3; s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xea;n s&#x1ea3;n ph&#x1ea9;m" type="java.lang.Object"/>
+                    <Column editable="true" title="&#x110;&#x1a1;n v&#x1ecb; t&#xed;nh" type="java.lang.Object"/>
                     <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                     <Column editable="true" title="Gi&#xe1; nh&#x1ead;p" type="java.lang.Object"/>
                     <Column editable="true" title="Gi&#xe1; b&#xe1;n" type="java.lang.Object"/>

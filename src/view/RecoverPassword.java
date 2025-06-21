@@ -15,10 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import model.Account;
 
-/**
- *
- * @author sinh
- */
+
 public class RecoverPassword extends javax.swing.JDialog {
 
     /**

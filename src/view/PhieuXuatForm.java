@@ -40,10 +40,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author Tran Nhat Sinh
- */
+
 public class PhieuXuatForm extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tblModel;
