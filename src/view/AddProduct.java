@@ -30,11 +30,11 @@ public class AddProduct extends javax.swing.JDialog {
         txtMasp.setEditable(false); 
     }
     private void loadManccToComboBox() {
-    ArrayList<String> list = NhaCungCapDAO.getInstance().getAllMancc();
+    ArrayList<String> list = NhaCungCapDAO.getInstance().getAllManccDisplay();
     cbxMancc.removeAllItems();
     cbxMancc.addItem("--Chọn nhà cung cấp--");
-    for (String mancc : list) {
-        cbxMancc.addItem(mancc);
+    for (String display : list) {
+        cbxMancc.addItem(display);
     }
 }
 
@@ -250,7 +250,8 @@ public class AddProduct extends javax.swing.JDialog {
         double Giaban = Double.parseDouble(txtGiaban.getText().trim());
 
         String Loaisp = cbxLoaisp.getSelectedItem().toString();
-        String Mancc = cbxMancc.getSelectedItem().toString();
+        String selected = cbxMancc.getSelectedItem().toString();
+        String Mancc = selected.split(" - ")[0];
      
         String Ghichu = txtGhichu.getText().trim();
 

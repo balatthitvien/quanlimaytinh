@@ -379,20 +379,21 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
             for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                 XSSFRow excelRow = excelSheet.getRow(row);
-
+                if (excelRow == null) continue;
                 String Masp = excelRow.getCell(0).getStringCellValue();
                 String Tensp = excelRow.getCell(1).getStringCellValue();
                 String Donvitinh = excelRow.getCell(2).getStringCellValue();
                 int Soluong = (int) excelRow.getCell(3).getNumericCellValue();
                 double Gianhap = excelRow.getCell(4).getNumericCellValue();
                 double Giaban = excelRow.getCell(5).getNumericCellValue();
-                String Loaisp = excelRow.getCell(6).getStringCellValue();
-                String Mancc = excelRow.getCell(7).getStringCellValue();
-                String Ghichu = excelRow.getCell(8).getStringCellValue();
-                int Trangthai = (int) excelRow.getCell(9).getNumericCellValue();
-
+                
                 Date Ngaysanxuat = excelRow.getCell(10).getDateCellValue();
                 Date Hansudung = excelRow.getCell(11).getDateCellValue();
+                String Loaisp = excelRow.getCell(6).getStringCellValue();
+                String Mancc = excelRow.getCell(7).getStringCellValue();
+                int Trangthai = (int) excelRow.getCell(9).getNumericCellValue();
+                String Ghichu = excelRow.getCell(8).getStringCellValue();
+
 
                 Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban,
                                         Ngaysanxuat, Hansudung ,Loaisp, Mancc,  Trangthai,Ghichu);
@@ -404,14 +405,12 @@ public class ProductForm extends javax.swing.JInternalFrame {
             tableModel.setRowCount(0);
             loadDataToTableSearch(listAccExcel);
 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            ex.printStackTrace(); // In lỗi ra để dễ debug
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi đọc file Excel: " + ex.getMessage());
+        } // In lỗi ra để dễ debug
         }
-    }
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

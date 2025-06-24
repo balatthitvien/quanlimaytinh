@@ -363,7 +363,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jToolBar1.setRollover(true);
 
         btnDetail.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnDetail.setIcon(new javax.swing.ImageIcon("E:\\anh java\\list (2).png")); // NOI18N
+        btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/list (2).png"))); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDetail.setFocusable(false);
@@ -616,7 +616,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel7.add(jTextFieldSearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 320, 40));
 
         jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/reload (1).png"))); // NOI18N
         jButton1.setText("Làm mới");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

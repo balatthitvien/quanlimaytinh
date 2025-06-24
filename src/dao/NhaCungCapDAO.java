@@ -149,22 +149,23 @@ public int insert(NhaCungCap t) {
     }
     return false;
 }
-    public ArrayList<String> getAllMancc() {
-        ArrayList<String> list = new ArrayList<>();
-        try {
-            java.sql.Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT Mancc FROM nhacungcap";
-            PreparedStatement pst = con.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                list.add(rs.getString("Mancc"));
-            }
-            JDBCUtil.closeConnection(con);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public ArrayList<String> getAllManccDisplay() {
+    ArrayList<String> list = new ArrayList<>();
+    try {
+        java.sql.Connection con = JDBCUtil.getConnection();
+        String sql = "SELECT Mancc, Tenncc FROM nhacungcap";
+        PreparedStatement pst = con.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            String display = rs.getString("Mancc") + " - " + rs.getString("Tenncc");
+            list.add(display);
         }
-        return list;
+        JDBCUtil.closeConnection(con);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return list;
+}
 }
 
 

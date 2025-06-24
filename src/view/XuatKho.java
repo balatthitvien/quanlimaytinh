@@ -162,7 +162,7 @@ public class XuatKho extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(153, 0, 153));
         jLabel8.setText("Xin Chào");
-        NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 100, -1));
+        NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 120, -1));
 
         PhieuXuat.setBackground(new java.awt.Color(255, 211, 243));
         PhieuXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
