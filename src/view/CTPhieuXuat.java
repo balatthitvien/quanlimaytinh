@@ -93,7 +93,7 @@ public class CTPhieuXuat extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Mã phiếu: ");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 90, -1));
 
         tblChiTietPhieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +106,7 @@ public class CTPhieuXuat extends javax.swing.JDialog {
                 "STT", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán", "Thành tiền"
             }
         ));
+        tblChiTietPhieu.setEnabled(false);
         jScrollPane1.setViewportView(tblChiTietPhieu);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 772, 249));
@@ -113,12 +114,12 @@ public class CTPhieuXuat extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Người tạo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 78, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Thời gian tạo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 110, -1));
 
         labelTongTien.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         labelTongTien.setForeground(new java.awt.Color(0, 0, 153));

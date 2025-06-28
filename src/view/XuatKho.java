@@ -39,8 +39,8 @@ public class XuatKho extends javax.swing.JFrame {
         XuatHangForm xh = new XuatHangForm();
         xh.setNguoiTao(this.currentAcc.getUser(), this.currentAcc.getFullName());
         MainContent.add(xh).setVisible(true);
-        DefaultColor = new Color(89, 168, 105);
-        ClickedColor = new Color(26, 188, 156);
+         ClickedColor = new Color(0, 204, 204);
+        DefaultColor = new Color(254,211,243);
         NavbarMenu.setBackground(DefaultColor);
         XuatHang.setBackground(ClickedColor);
         PhieuXuat.setBackground(DefaultColor);
@@ -96,8 +96,8 @@ public class XuatKho extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export.png"))); // NOI18N
-        jLabel4.setText("XUẤT HÀNG");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/selling.png"))); // NOI18N
+        jLabel4.setText("BÁN HÀNG");
 
         javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);
         XuatHang.setLayout(XuatHangLayout);
@@ -106,7 +106,7 @@ public class XuatKho extends javax.swing.JFrame {
             .addGroup(XuatHangLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel4)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         XuatHangLayout.setVerticalGroup(
             XuatHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +178,7 @@ public class XuatKho extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(153, 0, 153));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/documents.png"))); // NOI18N
-        jLabel9.setText("PHIẾU XUẤT");
+        jLabel9.setText("PHIẾU BÁN HÀNG");
 
         javax.swing.GroupLayout PhieuXuatLayout = new javax.swing.GroupLayout(PhieuXuat);
         PhieuXuat.setLayout(PhieuXuatLayout);
@@ -187,7 +187,7 @@ public class XuatKho extends javax.swing.JFrame {
             .addGroup(PhieuXuatLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel9)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         PhieuXuatLayout.setVerticalGroup(
             PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

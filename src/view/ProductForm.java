@@ -7,6 +7,8 @@ package view;
 import controller.SearchProduct;
 import dao.SanphamDAO;
 import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,16 +49,13 @@ public class ProductForm extends javax.swing.JInternalFrame {
     BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
     ui.setNorthPane(null);
     tblSanPham.setDefaultEditor(Object.class, null);
-
     initTable();
     SwingUtilities.invokeLater(() -> {
         loadDataToTable();
     });
-
     changeTextFind();
+     initSearchComboBoxListener();
 }
-
-    
     public void checkRole(Account t) {
         if(t.getRole().equals("Nhân viên nhập") || t.getRole().equals("Nhân viên xuất")) {
             btnAdd.setEnabled(false);
@@ -68,15 +67,9 @@ public class ProductForm extends javax.swing.JInternalFrame {
             System.out.println("abcdjad");
         }
     }
-
     public final void initTable() {
-    // Lấy sẵn model đã gán từ thiết kế GUI
     tblModel = (DefaultTableModel) tblSanPham.getModel();
-
-    // Xóa hết dòng cũ nếu có
     tblModel.setRowCount(0);
-
-    // Debug (tuỳ chọn)
 }
 
 
@@ -297,7 +290,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
         AddProduct a = new AddProduct(this, (JFrame) javax.swing.SwingUtilities.getWindowAncestor(this), rootPaneCheckingEnabled);
         a.setVisible(true);
-
+        loadDataToTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -329,13 +322,11 @@ public class ProductForm extends javax.swing.JInternalFrame {
                 saveFile = new File(saveFile.toString() + ".xlsx");
                 Workbook wb = new XSSFWorkbook();
                 Sheet sheet = wb.createSheet("Product");
-
                 Row rowCol = sheet.createRow(0);
                 for (int i = 0; i < tblSanPham.getColumnCount(); i++) {
                     Cell cell = rowCol.createCell(i);
                     cell.setCellValue(tblSanPham.getColumnName(i));
                 }
-
                 for (int j = 0; j < tblSanPham.getRowCount(); j++) {
                     Row row = sheet.createRow(j + 1);
                     for (int k = 0; k < tblSanPham.getColumnCount(); k++) {
@@ -343,7 +334,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
                         if (tblSanPham.getValueAt(j, k) != null) {
                             cell.setCellValue(tblSanPham.getValueAt(j, k).toString());
                         }
-
                     }
                 }
                 FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
@@ -364,11 +354,9 @@ public class ProductForm extends javax.swing.JInternalFrame {
     BufferedInputStream excelBIS = null;
     XSSFWorkbook excelWorkbook = null;
     ArrayList<Sanpham> listAccExcel = new ArrayList<>();
-
     JFileChooser jf = new JFileChooser();
     jf.setDialogTitle("Open Excel File");
     int result = jf.showOpenDialog(null);
-    
     if (result == JFileChooser.APPROVE_OPTION) {
         try {
             excelFile = jf.getSelectedFile();
@@ -376,7 +364,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
             excelBIS = new BufferedInputStream(excelFIS);
             excelWorkbook = new XSSFWorkbook(excelBIS);
             XSSFSheet excelSheet = excelWorkbook.getSheetAt(0);
-
             for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                 XSSFRow excelRow = excelSheet.getRow(row);
                 if (excelRow == null) continue;
@@ -386,29 +373,23 @@ public class ProductForm extends javax.swing.JInternalFrame {
                 int Soluong = (int) excelRow.getCell(3).getNumericCellValue();
                 double Gianhap = excelRow.getCell(4).getNumericCellValue();
                 double Giaban = excelRow.getCell(5).getNumericCellValue();
-                
                 Date Ngaysanxuat = excelRow.getCell(10).getDateCellValue();
                 Date Hansudung = excelRow.getCell(11).getDateCellValue();
                 String Loaisp = excelRow.getCell(6).getStringCellValue();
                 String Mancc = excelRow.getCell(7).getStringCellValue();
                 int Trangthai = (int) excelRow.getCell(9).getNumericCellValue();
                 String Ghichu = excelRow.getCell(8).getStringCellValue();
-
-
                 Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban,
                                         Ngaysanxuat, Hansudung ,Loaisp, Mancc,  Trangthai,Ghichu);
                 listAccExcel.add(sp);
             }
-
-            // Cập nhật bảng
             DefaultTableModel tableModel = (DefaultTableModel) tblSanPham.getModel();
             tableModel.setRowCount(0);
             loadDataToTableSearch(listAccExcel);
-
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Lỗi khi đọc file Excel: " + ex.getMessage());
-        } // In lỗi ra để dễ debug
+        } 
         }
     
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -434,13 +415,10 @@ public class ProductForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
     String content = jTextFieldSearch.getText().trim();
-
-    // Nếu rỗng, load lại toàn bộ bảng
     if (content.isEmpty()) {
         loadDataToTable();
         return;
     }
-
     ArrayList<Sanpham> result = searchFn(luaChon, content);
     loadDataToTableSearch(result);
     }//GEN-LAST:event_jTextFieldSearchKeyReleased
@@ -467,66 +445,67 @@ public class ProductForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxLuaChonPropertyChange
 
     public ArrayList<Sanpham> searchFn(String luaChon, String content) {
-        ArrayList<Sanpham> result = new ArrayList<>();
-        SearchProduct searchPr = new SearchProduct();
-        content = content == null ? "" : content.trim();
-        if (content.isEmpty()) {
-        
+    ArrayList<Sanpham> result = new ArrayList<>();
+    SearchProduct searchPr = new SearchProduct();
+    content = content == null ? "" : content.trim();
+
+    if (luaChon.equals("Đã xóa")) {
+        // Luôn gọi searchDaXoa dù content rỗng hay không
+        result = searchPr.searchDaXoa(content);
+        return result;
+    }
+
+    if (content.isEmpty()) {
         result = SanphamDAO.getInstance().selectAllExist();
         return result;
     }
-        switch (luaChon) {
-            case "Tất cả":
-                result = searchPr.searchTatCa(content);
-                break;
-            case "Mã sản phẩm":
-                result = searchPr.searchMasp(content);
-                break;
-            case "Tên sản phẩm":
-                result = searchPr.searchTensp(content);
-                break;
-            case "Số lượng":
-                result = searchPr.searchSoluong(content);
-                break;
-            case "Giá nhập":
-                result = searchPr.searchGianhap(content);
-                break;
-            case "Giá bán":
-                result = searchPr.searchGiaban(content);
-                break;
-            case "Loại sản phẩm":
-                result = searchPr.searchLoaisp(content);
-                break;
-            case "Mã nhà cung cấp":
-                result = searchPr.searchMancc(content);
-                break;
-            case "Ngày sản xuất":
-                result = searchPr.searchNgaysanxuat(content);
-                break;
-            case "Hạn sử dụng":
-                result = searchPr.searchHansudung(content);
-                break;
-            case "Đã xóa":
-                result = searchPr.searchDaXoa(content);
-                break;
-                 default:
-            
+
+    switch (luaChon) {
+        case "Tất cả":
+            result = searchPr.searchTatCa(content);
+            break;
+        case "Mã sản phẩm":
+            result = searchPr.searchMasp(content);
+            break;
+        case "Tên sản phẩm":
+            result = searchPr.searchTensp(content);
+            break;
+        case "Số lượng":
+            result = searchPr.searchSoluong(content);
+            break;
+        case "Giá nhập":
+            result = searchPr.searchGianhap(content);
+            break;
+        case "Giá bán":
+            result = searchPr.searchGiaban(content);
+            break;
+        case "Loại sản phẩm":
+            result = searchPr.searchLoaisp(content);
+            break;
+        case "Mã nhà cung cấp":
+            result = searchPr.searchMancc(content);
+            break;
+        case "Ngày sản xuất":
+            result = searchPr.searchNgaysanxuat(content);
+            break;
+        case "Hạn sử dụng":
+            result = searchPr.searchHansudung(content);
+            break;
+        default:
             result = SanphamDAO.getInstance().selectAllExist();
-        }
-        return result;
     }
+    return result;
+}
+
    public void xoaSanphamSelect() {
     int i_row = tblSanPham.getSelectedRow();
     if (i_row == -1) {
         JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm cần xoá");
         return;
     }
-
     int luaChon = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá sản phẩm này?", "Xoá sản phẩm",
             JOptionPane.YES_NO_OPTION);
-
     System.out.println("Lựa chọn: " + luaChon); // Debug
-
     if (luaChon == JOptionPane.YES_OPTION) {
         Sanpham remove = getSanphamSelect();
         if (remove == null) {
@@ -549,11 +528,9 @@ public class ProductForm extends javax.swing.JInternalFrame {
     public Sanpham getSanphamSelect() {
     int selectedRow = tblSanPham.getSelectedRow();
     if (selectedRow == -1) return null;
-
     String masp = tblSanPham.getValueAt(selectedRow, 0).toString(); 
     return SanphamDAO.getInstance().selectById(masp);
 }
-
     public void loadDataToTableSearch(ArrayList<Sanpham> result) {
         try {
             tblModel.setRowCount(0);
@@ -567,20 +544,16 @@ public class ProductForm extends javax.swing.JInternalFrame {
     i.getNgaysanxuat(), i.getHansudung(),
     i.getTrangthai() == 1 ? "Đang bán" : "Ngưng bán"
 });
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     public void changeTextFind() {
         jTextFieldSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-
             }
-
             @Override
             public void removeUpdate(DocumentEvent e) {
                 /* do nothing */
@@ -588,14 +561,28 @@ public class ProductForm extends javax.swing.JInternalFrame {
                     loadDataToTable();
                 }
             }
-
             @Override
             public void changedUpdate(DocumentEvent e) {
-                /* do nothing */
-
             }
         });
     }
+private void initSearchComboBoxListener() {
+    jComboBoxLuaChon.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            String luaChon = jComboBoxLuaChon.getSelectedItem().toString();
+            String content = jTextFieldSearch.getText().trim();
+
+            if (luaChon.equals("Đã xóa") && content.isEmpty()) {
+                ArrayList<Sanpham> result = SearchProduct.getInstance().searchDaXoa("");
+                loadDataToTableSearch(result);
+            } else {
+                ArrayList<Sanpham> result = searchFn(luaChon, content);
+                loadDataToTableSearch(result);
+            }
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;

@@ -130,11 +130,18 @@ Sanpham sp = this.owner.getSanphamSelect();
 
         txtSoluong.setEnabled(false);
         jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 189, 33));
+
+        txtGianhap.setEnabled(false);
         jPanel1.add(txtGianhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 189, 32));
+
+        txtGiaban.setEnabled(false);
         jPanel1.add(txtGiaban, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 189, 32));
 
         txtMancc.setForeground(new java.awt.Color(19, 59, 89));
+        txtMancc.setEnabled(false);
         jPanel1.add(txtMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 189, 32));
+
+        dateNgaysanxuat.setEnabled(false);
         jPanel1.add(dateNgaysanxuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 200, 30));
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
@@ -183,6 +190,7 @@ Sanpham sp = this.owner.getSanphamSelect();
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
 
         cbxLoaisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn loại sản phẩm--", "Thực phẩm", "Đồ gia dụng", "Mỹ phẩm", "Văn phòng phẩm", "Đồ dùng các nhân", " " }));
+        cbxLoaisp.setEnabled(false);
         cbxLoaisp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxLoaispItemStateChanged(evt);
@@ -201,8 +209,13 @@ Sanpham sp = this.owner.getSanphamSelect();
         jPanel1.add(cbxLoaisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 200, 32));
 
         cbxTrangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn trạng thái--", "Đang bán", "Ngưng bán" }));
+        cbxTrangthai.setEnabled(false);
         jPanel1.add(cbxTrangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 200, 30));
+
+        dateHansudung.setEnabled(false);
         jPanel1.add(dateHansudung, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, 210, 30));
+
+        txtGhichu.setEnabled(false);
         jPanel1.add(txtGhichu, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 340, 200, 30));
 
         jLabel16.setForeground(new java.awt.Color(51, 0, 0));

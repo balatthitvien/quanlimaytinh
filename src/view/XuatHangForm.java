@@ -7,9 +7,12 @@ package view;
 import controller.SearchProduct;
 import controller.WritePDF;
 import dao.ChiTietPhieuXuatDAO;
+import dao.GiamgiaDAO;
 import dao.SanphamDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,12 +23,16 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import model.ChiTietPhieuXuat;
+import model.Giamgia;
 import model.Sanpham;
 import model.PhieuNhap;
 import model.PhieuXuat;
@@ -60,6 +67,58 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         txtMaPhieu.setText(MaPhieu);
         CTPhieu = new ArrayList<ChiTietPhieuXuat>();
         txtNguoiTao.setFocusable(false);
+        // Lắng nghe khi chọn dòng trong bảng sản phẩm
+tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+            int row = tblSanPham.getSelectedRow();
+            if (row != -1) {
+                String masp = tblSanPham.getValueAt(row, 0).toString();
+                Sanpham sp = findSanpham(masp);
+
+                // Tìm các mã giảm giá theo loại sản phẩm
+                ArrayList<Giamgia> dsGiamGia = GiamgiaDAO.getInstance().selectAllExist()
+                    .stream()
+                    .filter(g -> g.getLoaisp().equalsIgnoreCase(sp.getLoaisp()))
+                    .collect(Collectors.toCollection(ArrayList::new));
+
+                cbxMagiamgia.removeAllItems();
+                for (Giamgia g : dsGiamGia) {
+                    cbxMagiamgia.addItem(g.getMagiamgia() + " - " + g.getPhantramgiam() + "%");
+                }
+            }
+        }
+    }
+})
+        ;
+    btnApdung.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int row = tblSanPham.getSelectedRow();
+        if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
+            String Masp = tblSanPham.getValueAt(row, 0).toString();
+            Sanpham sp = findSanpham(Masp);
+
+            String selectedItem = cbxMagiamgia.getSelectedItem().toString();
+            String Magiamgia = selectedItem.split(" - ")[0];
+            int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
+
+            double giagoc = sp.getGiaban();
+            double giam = giagoc * (phantram / 100.0);
+            double giasaugiam = giagoc - giam;
+
+            ChiTietPhieuXuat item = findCTPhieu(Masp);
+            if (item != null) {
+                item.setGiaban(giasaugiam);
+            }
+
+            loadDataToTableNhapHang();
+            textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
+        }
+    }
+});
+
     }
 
     public final void initTable() {
@@ -158,6 +217,9 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         deleteProduct = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         deleteProduct1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cbxMagiamgia = new javax.swing.JComboBox<>();
+        btnApdung = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
@@ -177,17 +239,17 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jLabel1.setText("Mã phiếu nhập");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        jLabel1.setText("Mã phiếu bán hàng");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         txtMaPhieu.setEditable(false);
         txtMaPhieu.setEnabled(false);
         txtMaPhieu.setFocusable(false);
-        jPanel2.add(txtMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 390, 36));
+        jPanel2.add(txtMaPhieu, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 390, 36));
 
         jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jLabel3.setText("Người tạo phiếu");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
+        jLabel3.setText("Mã giảm giá");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         txtNguoiTao.setEditable(false);
         txtNguoiTao.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +257,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
                 txtNguoiTaoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtNguoiTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 390, 36));
+        jPanel2.add(txtNguoiTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 390, 36));
 
         tblNhapHang.setFont(tblNhapHang.getFont().deriveFont((float)15));
         tblNhapHang.setModel(new javax.swing.table.DefaultTableModel(
@@ -208,7 +270,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblNhapHang);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 580, 450));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 580, 410));
 
         btnNhapHang.setBackground(new java.awt.Color(153, 0, 153));
         btnNhapHang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
@@ -263,6 +325,25 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(deleteProduct1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, -1, 40));
+
+        jLabel6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        jLabel6.setText("Người tạo phiếu");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+
+        cbxMagiamgia.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        cbxMagiamgia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn mã giảm giá--" }));
+        jPanel2.add(cbxMagiamgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 250, 40));
+
+        btnApdung.setBackground(new java.awt.Color(0, 0, 204));
+        btnApdung.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
+        btnApdung.setForeground(new java.awt.Color(255, 255, 255));
+        btnApdung.setText("ÁP DỤNG");
+        btnApdung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnApdungMouseClicked(evt);
+            }
+        });
+        jPanel2.add(btnApdung, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 90, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 620, 750));
 
@@ -591,6 +672,10 @@ if (result <= 0) {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoLuongActionPerformed
 
+    private void btnApdungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApdungMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnApdungMouseClicked
+
     public String createId(ArrayList<PhieuXuat> arr) {
         int id = arr.size() + 1;
         String check = "";
@@ -617,8 +702,10 @@ if (result <= 0) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProduct;
+    private javax.swing.JButton btnApdung;
     private javax.swing.JButton btnNhapHang;
     private javax.swing.JButton btnReset;
+    private javax.swing.JComboBox<String> cbxMagiamgia;
     private javax.swing.JButton deleteProduct;
     private javax.swing.JButton deleteProduct1;
     private javax.swing.JButton jButton1;
@@ -626,6 +713,7 @@ if (result <= 0) {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

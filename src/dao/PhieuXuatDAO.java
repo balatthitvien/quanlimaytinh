@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import database.JDBCUtil;
+import java.util.stream.Collectors;
+import model.Giamgia;
 import model.PhieuXuat;
 
 public class PhieuXuatDAO implements DAOInterface<PhieuXuat> {
@@ -127,4 +129,10 @@ public int insert(PhieuXuat t) {
         }
         return ketQua;
     }
+    public ArrayList<Giamgia> getMaGiamGiaTheoLoai(String loaiSP) {
+    return GiamgiaDAO.getInstance().selectAllExist()
+        .stream()
+        .filter(g -> g.getLoaisp().equalsIgnoreCase(loaiSP) && g.getTrangthai() == 1)
+        .collect(Collectors.toCollection(ArrayList::new));
+}
 }

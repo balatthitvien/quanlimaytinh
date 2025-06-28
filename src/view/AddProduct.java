@@ -133,7 +133,7 @@ public class AddProduct extends javax.swing.JDialog {
         jLabel10.setText("Loại sản phẩm");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, -1, -1));
 
-        cbxLoaisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn loại sản phẩm--", "Thực phẩm", "Đồ gia dụng", "Mỹ phẩm", "Văn phòng phẩm", "Đồ dùng các nhân", " " }));
+        cbxLoaisp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn loại sản phẩm--", "Thực phẩm", "Đồ gia dụng", "Mỹ phẩm", "Văn phòng phẩm", "Đồ dùng cá nhân", " " }));
         cbxLoaisp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxLoaispItemStateChanged(evt);

@@ -94,6 +94,7 @@ public class CTThongKeAcc extends javax.swing.JDialog {
                 "STT", "Mã phiếu", "Thời gian", "Thành tiền"
             }
         ));
+        tblChiTietPhieu.setEnabled(false);
         jScrollPane1.setViewportView(tblChiTietPhieu);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 782, 319));
@@ -101,7 +102,7 @@ public class CTThongKeAcc extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(194, 248, 248));
         jLabel4.setText("Người tạo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 110, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 130, -1));
 
         labelNguoiTao.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 24)); // NOI18N
         labelNguoiTao.setForeground(new java.awt.Color(194, 248, 248));

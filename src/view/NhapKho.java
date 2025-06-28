@@ -40,8 +40,8 @@ public class NhapKho extends javax.swing.JFrame {
         nhaphang.setNguoiNhapHang(this.currentAcc.getUser());
         MainContent.removeAll();
         MainContent.add(nhaphang).setVisible(true);
-        DefaultColor = new Color(89, 168, 105);
-        ClickedColor = new Color(26, 188, 156);
+        ClickedColor = new Color(0, 204, 204);
+        DefaultColor = new Color(254,211,243);
         NavbarMenu.setBackground(DefaultColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(ClickedColor);
@@ -73,6 +73,7 @@ public class NhapKho extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lý kho hàng máy tính");
+        setMinimumSize(new java.awt.Dimension(1300, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -198,7 +199,7 @@ public class NhapKho extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(153, 0, 153));
         jLabel8.setText("Xin chào");
-        NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 90, -1));
+        NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 110, -1));
 
         Account.setBackground(new java.awt.Color(255, 211, 243));
         Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -238,19 +239,20 @@ public class NhapKho extends javax.swing.JFrame {
         getContentPane().add(NavbarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 750));
 
         MainContent.setBackground(new java.awt.Color(255, 255, 255));
+        MainContent.setPreferredSize(new java.awt.Dimension(1200, 650));
 
         javax.swing.GroupLayout MainContentLayout = new javax.swing.GroupLayout(MainContent);
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1180, Short.MAX_VALUE)
+            .addGap(0, 1410, Short.MAX_VALUE)
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 750, Short.MAX_VALUE)
         );
 
-        getContentPane().add(MainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, -30, 1180, 750));
+        getContentPane().add(MainContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 1410, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

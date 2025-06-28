@@ -26,6 +26,7 @@ public class UpdateProduct extends javax.swing.JDialog {
 
     // Lấy sản phẩm đang chọn từ ProductForm
     Sanpham sp = this.owner.getSanphamSelect();
+    
     if (sp != null) {
         txtMasp.setText(sp.getMasp());
         txtTensp.setText(sp.getTensp());

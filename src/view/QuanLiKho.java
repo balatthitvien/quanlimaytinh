@@ -240,8 +240,8 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         txtxuathang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtxuathang.setForeground(new java.awt.Color(153, 0, 153));
-        txtxuathang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export.png"))); // NOI18N
-        txtxuathang.setText("XUẤT HÀNG");
+        txtxuathang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/selling.png"))); // NOI18N
+        txtxuathang.setText("BÁN HÀNG");
 
         javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);
         XuatHang.setLayout(XuatHangLayout);
@@ -250,7 +250,7 @@ public class QuanLiKho extends javax.swing.JFrame {
             .addGroup(XuatHangLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(txtxuathang)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         XuatHangLayout.setVerticalGroup(
             XuatHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +359,7 @@ public class QuanLiKho extends javax.swing.JFrame {
         txtphieuxuat.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         txtphieuxuat.setForeground(new java.awt.Color(153, 0, 153));
         txtphieuxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/documents.png"))); // NOI18N
-        txtphieuxuat.setText("PHIẾU XUẤT");
+        txtphieuxuat.setText("PHIẾU BÁN HÀNG");
 
         javax.swing.GroupLayout PhieuXuatLayout = new javax.swing.GroupLayout(PhieuXuat);
         PhieuXuat.setLayout(PhieuXuatLayout);
@@ -367,8 +367,8 @@ public class QuanLiKho extends javax.swing.JFrame {
             PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PhieuXuatLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(txtphieuxuat)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(txtphieuxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         PhieuXuatLayout.setVerticalGroup(
             PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

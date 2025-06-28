@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>src/view/AddProduct.java</url>
+            <bookmark id="2">
+                <name/>
+                <line>294</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/view/DetailProduct.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>31</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/ProductForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/DetailProduct.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/NhaCungCapDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/DAOInterface.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/SearchProduct.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/AddProduct.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/ThongKeForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/ThongKeProduct.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/SendEmailSMTP.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/WritePDF.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/AccountDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/ChiTietPhieuNhapDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/ChiTietPhieuXuatDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/PhieuNhapDAO.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/MagiamgiaForm.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/SanphamDAO.java</file>
             <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/PhieuXuatDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/database/JDBCUtil.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/Account.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/ChiTietPhieuNhap.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/ChiTietPhieuXuat.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/AccountForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/AddAccount.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/Admin.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/CTThongKe.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/CTThongKeAcc.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/ChangePassword.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/Login.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/QuanLiKho.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/NhaCungCapForm.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/Giamgia.java</file>
+            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/XuatHangForm.java</file>
         </group>
     </open-files>
 </project-private>

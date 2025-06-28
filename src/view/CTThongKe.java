@@ -157,6 +157,7 @@ public class CTThongKe extends javax.swing.JDialog {
                 "STT", "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán", "Thành tiền"
             }
         ));
+        tblChiTietPhieu.setEnabled(false);
         jScrollPane1.setViewportView(tblChiTietPhieu);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 782, 252));
@@ -164,7 +165,7 @@ public class CTThongKe extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Người tạo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 78, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 100, -1));
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
