@@ -227,7 +227,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/selling.png"))); // NOI18N
         jLabel4.setText("BÁN HÀNG");
 
         javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);

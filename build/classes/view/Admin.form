@@ -262,7 +262,7 @@
                   <Color blue="99" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/picture/export.png"/>
+                  <Image iconType="3" name="/picture/selling.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="B&#xc1;N H&#xc0;NG"/>
               </Properties>

@@ -77,21 +77,22 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
                 String masp = tblSanPham.getValueAt(row, 0).toString();
                 Sanpham sp = findSanpham(masp);
 
-                // Tìm các mã giảm giá theo loại sản phẩm
+                cbxMagiamgia.removeAllItems(); // Clear
+                cbxMagiamgia.addItem("Không có"); // Default option
+
                 ArrayList<Giamgia> dsGiamGia = GiamgiaDAO.getInstance().selectAllExist()
                     .stream()
                     .filter(g -> g.getLoaisp().equalsIgnoreCase(sp.getLoaisp()))
                     .collect(Collectors.toCollection(ArrayList::new));
 
-                cbxMagiamgia.removeAllItems();
                 for (Giamgia g : dsGiamGia) {
                     cbxMagiamgia.addItem(g.getMagiamgia() + " - " + g.getPhantramgiam() + "%");
                 }
             }
         }
     }
-})
-        ;
+});
+
     btnApdung.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -117,7 +118,8 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
             textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
         }
     }
-});
+}
+    );
 
     }
 
@@ -331,7 +333,7 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         cbxMagiamgia.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        cbxMagiamgia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn mã giảm giá--" }));
+        cbxMagiamgia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn mã giảm giá--", "Không có" }));
         jPanel2.add(cbxMagiamgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 250, 40));
 
         btnApdung.setBackground(new java.awt.Color(0, 0, 204));

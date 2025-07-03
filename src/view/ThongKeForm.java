@@ -70,6 +70,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         tblPhieuNhap.setDefaultEditor(Object.class, null);
         //
         loadDataToTableThongKeProduct(ThongKeDAO.getInstance().getThongKe());
+        System.out.println("Gọi xong loadDataToTableThongKeProduct");
     }
 
     public final void initTable() {
@@ -1297,6 +1298,10 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
             tblThongKeProduct.getColumnModel().getColumn(2).setPreferredWidth(400);
         } catch (Exception e) {
         }
+        System.out.println("Số dòng thống kê: " + thongKe.size());
+for (ThongKeProduct tk : thongKe) {
+    System.out.println(tk); // sử dụng toString() đã ghi đè
+}
     }
 
     private ArrayList<ThongKeProduct> searchTenSanPhamThongKe(ArrayList<ThongKeProduct> arr, String name) {

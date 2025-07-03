@@ -20,26 +20,28 @@ public class ThongKeDAO {
     }
 
     public ArrayList<ThongKeProduct> getThongKe(Date timeStart, Date timeEnd) {
-        System.out.println(timeStart);
-        System.out.println(timeEnd);
 
-        ArrayList<ThongKeProduct> ketQua = new ArrayList<ThongKeProduct>();
+        ArrayList<ThongKeProduct> ketQua = new ArrayList<>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT t1.Masp,Tensp,slNhap,slXuat FROM (\n"
-                    + "	SELECT Masp, SUM(Soluong) AS slNhap FROM chitietphieunhap \n"
-                    + "	JOIN phieunhap ON phieunhap.Maphieu = chitietphieunhap.Maphieu\n"
-                    + "	WHERE Thoigiantao BETWEEN ? AND ?"
-                    + "	GROUP BY Masp\n"
-                    + ") t1 \n"
-                    + "JOIN(\n"
-                    + "	SELECT Masp, SUM(Soluong) AS slXuat FROM chitietphieuxuat \n"
-                    + "	JOIN phieuxuat ON phieuxuat.Maphieu = chitietphieuxuat.Maphieu \n"
-                    + "	WHERE Thoigiantao BETWEEN ? AND ?"
-                    + "	GROUP BY Masp\n"
-                    + ") t2\n"
-                    + "ON t1.Masp = t2.Masp\n"
-                    + "JOIN Sanpham ON t1.Masp= Sanpham.Masp";
+            String sql = "SELECT sp.Masp, sp.Tensp, "
+           + "IFNULL(tn.slNhap, 0) AS slNhap, "
+           + "IFNULL(tx.slXuat, 0) AS slXuat "
+           + "FROM Sanpham sp "
+           + "LEFT JOIN ("
+           + "    SELECT ctpn.Masp, SUM(ctpn.Soluong) AS slNhap "
+           + "    FROM chitietphieunhap ctpn "
+           + "    JOIN phieunhap pn ON pn.Maphieu = ctpn.Maphieu "
+           + "    GROUP BY ctpn.Masp "
+           + ") tn ON sp.Masp = tn.Masp "
+           + "LEFT JOIN ("
+           + "    SELECT ctpx.Masp, SUM(ctpx.Soluong) AS slXuat "
+           + "    FROM chitietphieuxuat ctpx "
+           + "    JOIN phieuxuat px ON px.Maphieu = ctpx.Maphieu "
+           + "    GROUP BY ctpx.Masp "
+           + ") tx ON sp.Masp = tx.Masp";
+
+
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setTimestamp(1, new Timestamp(timeStart.getTime()));
             pst.setTimestamp(2, new Timestamp(timeEnd.getTime()));
@@ -54,42 +56,48 @@ public class ThongKeDAO {
                 int slXuat = rs.getInt("slXuat");
                 ThongKeProduct p = new ThongKeProduct(Masp, Tensp, slNhap, slXuat);
                 ketQua.add(p);
+                System.out.println(" -> " + Masp + " | " + Tensp + " | Nhập: " + slNhap + " | Xuất: " + slXuat);
             }
+            System.out.println("Tổng số dòng: " + ketQua.size());
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return ketQua;
     }
 
     public ArrayList<ThongKeProduct> getThongKe() {
-        ArrayList<ThongKeProduct> ketQua = new ArrayList<ThongKeProduct>();
+        ArrayList<ThongKeProduct> ketQua = new ArrayList<>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT t1.Masp,Tensp,slNhap,slXuat FROM (\n"
-                    + "	SELECT Masp, SUM(Soluong) AS slNhap FROM chitietphieunhap \n"
-                    + "	JOIN phieunhap ON phieunhap.Maphieu = chitietphieunhap.Maphieu\n"
-                    + "	GROUP BY Masp\n"
-                    + ") t1 \n"
-                    + "JOIN(\n"
-                    + "	SELECT Masp, SUM(Soluong) AS slXuat FROM chitietphieuxuat \n"
-                    + "	JOIN phieuxuat ON phieuxuat.Maphieu = chitietphieuxuat.Maphieu \n"
-                    + "	GROUP BY Masp\n"
-                    + ") t2\n"
-                    + "ON t1.Masp = t2.Masp\n"
-                    + "JOIN Sanpham ON t1.Masp = Sanpham.Masp";
+           String sql = "SELECT sp.Masp, sp.Tensp, "
+           + "IFNULL(tn.slNhap, 0) AS slNhap, "
+           + "IFNULL(tx.slXuat, 0) AS slXuat "
+           + "FROM Sanpham sp "
+           + "LEFT JOIN ("
+           + "    SELECT ctpn.Masp, SUM(ctpn.Soluong) AS slNhap "
+           + "    FROM chitietphieunhap ctpn "
+           + "    JOIN phieunhap pn ON pn.Maphieu = ctpn.Maphieu "
+           + "    GROUP BY ctpn.Masp "
+           + ") tn ON sp.Masp = tn.Masp "
+           + "LEFT JOIN ("
+           + "    SELECT ctpx.Masp, SUM(ctpx.Soluong) AS slXuat "
+           + "    FROM chitietphieuxuat ctpx "
+           + "    JOIN phieuxuat px ON px.Maphieu = ctpx.Maphieu "
+           + "    GROUP BY ctpx.Masp "
+           + ") tx ON sp.Masp = tx.Masp";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                String Masp= rs.getString("Masp");
+                String Masp = rs.getString("Masp");
                 String Tensp = rs.getString("Tensp");
                 int slNhap = rs.getInt("slNhap");
                 int slXuat = rs.getInt("slXuat");
                 ThongKeProduct p = new ThongKeProduct(Masp, Tensp, slNhap, slXuat);
                 ketQua.add(p);
+                System.out.println(" -> " + Masp + " | " + Tensp + " | Nhập: " + slNhap + " | Xuất: " + slXuat);
             }
+            System.out.println("Tổng số dòng: " + ketQua.size());
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return ketQua;
