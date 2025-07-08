@@ -86,7 +86,7 @@ public class AddAccount extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Vai trò");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 50, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 90, -1));
 
         vaitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lý kho", "Nhân viên nhập", "Nhân viên xuất" }));
         vaitro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

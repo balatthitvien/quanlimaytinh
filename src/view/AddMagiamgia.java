@@ -72,7 +72,7 @@ public class AddMagiamgia extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 153));
         jLabel9.setText("NGÀY BẮT ĐẦU");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 130, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 140, -1));
 
         jLabel10.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 153));
@@ -129,7 +129,7 @@ public class AddMagiamgia extends javax.swing.JDialog {
         jLabel15.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 153));
         jLabel15.setText("PHẦN TRĂM GIẢM");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 150, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 160, -1));
 
         txtPhantramgiam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +158,7 @@ public class AddMagiamgia extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("NGÀY KẾT THÚC");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 140, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 170, -1));
 
         jLabel16.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 36)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 153));

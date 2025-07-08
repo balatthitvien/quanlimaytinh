@@ -20,21 +20,45 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/MagiamgiaForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/SanphamDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/PhieuXuatDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/Giamgia.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/XuatHangForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/Admin.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/QuanLiKho.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/PhieuXuatForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/WritePDF.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/Test.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/BCrypt.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/controller/ConvertDate.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/view/ThongKeForm.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/dao/ThongKeDAO.java</file>
-            <file>file:/C:/Users/ADMIn/QuanLyKhoHangMayTinh1/src/model/ThongKeProduct.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/controller/WritePDF.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/dao/GiamgiaDAO.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/model/Giamgia.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/model/PhieuXuat.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/model/Phieu.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/dao/PhieuXuatDAO.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/XuatHangForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/AccountForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/AddAccount.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/AddMagiamgia.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/AddNhaCungCap.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/AddProduct.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/Admin.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/CTPhieuNhap.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/CTPhieuXuat.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/CTThongKe.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/CTThongKeAcc.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/ChangePassword.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/DetailMagiamgia.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/DetailProduct.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/Login.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/MagiamgiaForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/NhaCungCapForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/NhapHangForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/NhapKho.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/PhieuNhapForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/PhieuXuatForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/ProductForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/QuanLiKho.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/RecoverPassword.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/ThongKeForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/TonKhoForm.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/UpdateAccount.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/UpdateMagiamgia.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/UpdateNhaCungCap.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/UpdatePhieuNhap.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/UpdatePhieuXuat.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/UpdateProduct.java</file>
+            <file>file:/E:/HOCTAP/JavaNC/quanlimaytinh/quanlimaytinh/src/view/XuatKho.java</file>
         </group>
     </open-files>
 </project-private>

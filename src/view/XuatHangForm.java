@@ -53,6 +53,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
     private String MaPhieu;
     private ArrayList<ChiTietPhieuXuat> CTPhieu;
     private String currentUserName; 
+
     public XuatHangForm() {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
@@ -277,9 +278,10 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
         btnNhapHang.setBackground(new java.awt.Color(153, 0, 153));
         btnNhapHang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         btnNhapHang.setForeground(new java.awt.Color(255, 255, 255));
-        btnNhapHang.setText("Xuất hàng");
+        btnNhapHang.setActionCommand("Xuất Hàng");
         btnNhapHang.setBorder(null);
         btnNhapHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNhapHang.setLabel("Xuất Hoá Đơn");
         btnNhapHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNhapHangActionPerformed(evt);
@@ -334,6 +336,11 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
 
         cbxMagiamgia.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         cbxMagiamgia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn mã giảm giá--", "Không có" }));
+        cbxMagiamgia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMagiamgiaActionPerformed(evt);
+            }
+        });
         jPanel2.add(cbxMagiamgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 250, 40));
 
         btnApdung.setBackground(new java.awt.Color(0, 0, 204));
@@ -345,7 +352,12 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
                 btnApdungMouseClicked(evt);
             }
         });
-        jPanel2.add(btnApdung, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 90, 40));
+        btnApdung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApdungActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnApdung, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 100, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 620, 750));
 
@@ -489,7 +501,11 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
                 long now = System.currentTimeMillis();
                 Timestamp sqlTimestamp = new Timestamp(now);
                 // Tao doi tuong phieu nhap
+                String maggFull = cbxMagiamgia.getSelectedItem().toString();
+                String magg = maggFull.split("-")[0].trim();
                 PhieuXuat pn = new PhieuXuat(MaPhieu, sqlTimestamp, currentUserName, CTPhieu, tinhTongTien());
+                pn.setMagiamgia(magg);
+                System.out.println("Đã set mã giảm giá: " + pn.getMagiamgia());
                 try {
                   int result = PhieuXuatDAO.getInstance().insert(pn);
 if (result <= 0) {
@@ -677,6 +693,16 @@ if (result <= 0) {
     private void btnApdungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApdungMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnApdungMouseClicked
+
+    private void btnApdungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApdungActionPerformed
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnApdungActionPerformed
+
+    private void cbxMagiamgiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMagiamgiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxMagiamgiaActionPerformed
 
     public String createId(ArrayList<PhieuXuat> arr) {
         int id = arr.size() + 1;

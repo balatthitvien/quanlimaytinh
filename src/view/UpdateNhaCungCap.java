@@ -76,7 +76,7 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(194, 248, 248));
         jLabel2.setText("Mã nhà cung cấp");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 130, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
         txtMancc.setEnabled(false);
         jPanel1.add(txtMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 298, 38));
@@ -90,13 +90,13 @@ public class UpdateNhaCungCap extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(194, 248, 248));
         jLabel4.setText("Số điện thoại");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 100, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 120, -1));
         jPanel1.add(txtDiachi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 298, 38));
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(194, 248, 248));
         jLabel5.setText("Địa chỉ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 50, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 80, -1));
 
         jButton1.setBackground(new java.awt.Color(194, 248, 248));
         jButton1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N

@@ -10,7 +10,7 @@ public class Phieu<T> {
     String Nguoitao;
     private ArrayList<T> CTPhieu;
     private double Tongtien;
-
+private String magiamgia;
     public Phieu() {
     }
 
@@ -69,6 +69,13 @@ public class Phieu<T> {
         this.Tongtien = Tongtien;
     }
 
+      public String getMagiamgia() {
+        return magiamgia;
+    }
+
+    public void setMagiamgia(String Magiamgia) {
+        this.magiamgia = Magiamgia;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(Maphieu, Thoigiantao, Nguoitao, CTPhieu, Tongtien);

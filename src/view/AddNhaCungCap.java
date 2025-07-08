@@ -67,7 +67,7 @@ public class AddNhaCungCap extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Mã nhà cung cấp");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 130, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 140, -1));
 
         txtMancc.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
         jPanel1.add(txtMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 298, 38));
@@ -75,7 +75,7 @@ public class AddNhaCungCap extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("Tên nhà cung cấp");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 140, 24));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 150, 24));
 
         txtTenncc.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
         jPanel1.add(txtTenncc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 298, 38));

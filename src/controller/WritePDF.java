@@ -43,6 +43,9 @@ import model.ChiTietPhieuXuat;
 import model.Sanpham;
 import model.PhieuNhap;
 import model.PhieuXuat;
+import model.Giamgia;
+import dao.GiamgiaDAO;
+
 
 
 public class WritePDF {
@@ -257,6 +260,27 @@ public class WritePDF {
             }
             document.add(pdfTable);
             document.add(Chunk.NEWLINE);
+            // Thêm dòng hiển thị phần trăm giảm giá
+double phantram = 0;
+
+if (pn.getMagiamgia() != null && !pn.getMagiamgia().trim().isEmpty()) {
+    Giamgia gg = GiamgiaDAO.getInstance().selectById(pn.getMagiamgia());
+    if (gg != null) {
+        phantram = gg.getPhantramgiam();
+
+        // ✅ Thêm debug ở đây
+        System.out.println("Mã giảm giá: " + pn.getMagiamgia());
+        System.out.println("Phần trăm giảm giá: " + phantram);
+    } else {
+        System.out.println("Không tìm thấy mã giảm giá trong CSDL: " + pn.getMagiamgia());
+    }
+} else {
+    System.out.println("Mã giảm giá null hoặc rỗng.");
+}
+Paragraph paraGiamgia = new Paragraph(new Phrase("Giảm giá: " + formatter.format(phantram) + "%", fontData));
+paraGiamgia.setIndentationLeft(300);
+document.add(paraGiamgia);
+
             Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thanh toán: " + formatter.format(pn.getTongtien()) + "đ", fontData));
             paraTongThanhToan.setIndentationLeft(300);
             document.add(paraTongThanhToan);

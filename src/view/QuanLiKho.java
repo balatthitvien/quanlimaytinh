@@ -367,8 +367,8 @@ public class QuanLiKho extends javax.swing.JFrame {
             PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PhieuXuatLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(txtphieuxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(txtphieuxuat)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         PhieuXuatLayout.setVerticalGroup(
             PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

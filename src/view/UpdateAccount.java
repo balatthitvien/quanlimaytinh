@@ -91,7 +91,7 @@ public class UpdateAccount extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(194, 248, 248));
         jLabel5.setText("Vai trò");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 50, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 60, -1));
 
         vaitro.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         vaitro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lý kho", "Nhân viên nhập", "Nhân viên xuất" }));
