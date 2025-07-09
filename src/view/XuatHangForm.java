@@ -41,7 +41,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 public class XuatHangForm extends javax.swing.JInternalFrame {
 
     /**
@@ -52,7 +51,7 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
     private ArrayList<Sanpham> allProduct;
     private String MaPhieu;
     private ArrayList<ChiTietPhieuXuat> CTPhieu;
-    private String currentUserName; 
+    private String currentUserName;
 
     public XuatHangForm() {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
@@ -69,58 +68,58 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         CTPhieu = new ArrayList<ChiTietPhieuXuat>();
         txtNguoiTao.setFocusable(false);
         // Lắng nghe khi chọn dòng trong bảng sản phẩm
-tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
-            int row = tblSanPham.getSelectedRow();
-            if (row != -1) {
-                String masp = tblSanPham.getValueAt(row, 0).toString();
-                Sanpham sp = findSanpham(masp);
+        tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int row = tblSanPham.getSelectedRow();
+                    if (row != -1) {
+                        String masp = tblSanPham.getValueAt(row, 0).toString();
+                        Sanpham sp = findSanpham(masp);
 
-                cbxMagiamgia.removeAllItems(); // Clear
-                cbxMagiamgia.addItem("Không có"); // Default option
+                        cbxMagiamgia.removeAllItems(); // Clear
+                        cbxMagiamgia.addItem("None"); // Default option
 
-                ArrayList<Giamgia> dsGiamGia = GiamgiaDAO.getInstance().selectAllExist()
-                    .stream()
-                    .filter(g -> g.getLoaisp().equalsIgnoreCase(sp.getLoaisp()))
-                    .collect(Collectors.toCollection(ArrayList::new));
+                        ArrayList<Giamgia> dsGiamGia = GiamgiaDAO.getInstance().selectAllExist()
+                                .stream()
+                                .filter(g -> g.getLoaisp().equalsIgnoreCase(sp.getLoaisp()))
+                                .collect(Collectors.toCollection(ArrayList::new));
 
-                for (Giamgia g : dsGiamGia) {
-                    cbxMagiamgia.addItem(g.getMagiamgia() + " - " + g.getPhantramgiam() + "%");
+                        for (Giamgia g : dsGiamGia) {
+                            cbxMagiamgia.addItem(g.getMagiamgia() + " - " + g.getPhantramgiam() + "%");
+                        }
+                    }
+                }
+            }
+        });
+
+        btnApdung.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = tblSanPham.getSelectedRow();
+                if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
+                    String Masp = tblSanPham.getValueAt(row, 0).toString();
+                    Sanpham sp = findSanpham(Masp);
+
+                    String selectedItem = cbxMagiamgia.getSelectedItem().toString();
+                    String Magiamgia = selectedItem.split(" - ")[0];
+                    int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
+
+                    double giagoc = sp.getGiaban();
+                    double giam = giagoc * (phantram / 100.0);
+                    double giasaugiam = giagoc - giam;
+
+                    ChiTietPhieuXuat item = findCTPhieu(Masp);
+                    if (item != null) {
+                        item.setGiaban(giasaugiam);
+                    }
+
+                    loadDataToTableNhapHang();
+                    textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
                 }
             }
         }
-    }
-});
-
-    btnApdung.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        int row = tblSanPham.getSelectedRow();
-        if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
-            String Masp = tblSanPham.getValueAt(row, 0).toString();
-            Sanpham sp = findSanpham(Masp);
-
-            String selectedItem = cbxMagiamgia.getSelectedItem().toString();
-            String Magiamgia = selectedItem.split(" - ")[0];
-            int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
-
-            double giagoc = sp.getGiaban();
-            double giam = giagoc * (phantram / 100.0);
-            double giasaugiam = giagoc - giam;
-
-            ChiTietPhieuXuat item = findCTPhieu(Masp);
-            if (item != null) {
-                item.setGiaban(giasaugiam);
-            }
-
-            loadDataToTableNhapHang();
-            textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
-        }
-    }
-}
-    );
+        );
 
     }
 
@@ -192,9 +191,9 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
         textTongTien.setText(formatter.format(sum) + "đ");
     }
 
-     public void setNguoiTao(String userName, String displayName) {
-        this.currentUserName = userName;       
-        txtNguoiTao.setText(displayName);       
+    public void setNguoiTao(String userName, String displayName) {
+        this.currentUserName = userName;
+        txtNguoiTao.setText(displayName);
     }
 
     /**
@@ -493,7 +492,7 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
 
     private void btnNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapHangActionPerformed
         if (CTPhieu.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm để xuất hàng !","Cảnh báo", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm để xuất hàng !", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
         } else {
             int check = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xuất hàng ?", "Xác nhận xuất hàng", JOptionPane.YES_NO_OPTION);
             if (check == JOptionPane.YES_OPTION) {
@@ -503,15 +502,24 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
                 // Tao doi tuong phieu nhap
                 String maggFull = cbxMagiamgia.getSelectedItem().toString();
                 String magg = maggFull.split("-")[0].trim();
+
                 PhieuXuat pn = new PhieuXuat(MaPhieu, sqlTimestamp, currentUserName, CTPhieu, tinhTongTien());
-                pn.setMagiamgia(magg);
-                System.out.println("Đã set mã giảm giá: " + pn.getMagiamgia());
+
+// ✅ Nếu chọn "None" thì không set mã giảm giá
+                if (!magg.equalsIgnoreCase("None")) {
+                    pn.setMagiamgia(magg);
+                    System.out.println("Đã set mã giảm giá: " + pn.getMagiamgia());
+                } else {
+                    pn.setMagiamgia(null);
+                    System.out.println("Không có mã giảm giá, đã set null");
+                }
+
                 try {
-                  int result = PhieuXuatDAO.getInstance().insert(pn);
-if (result <= 0) {
-    JOptionPane.showMessageDialog(this, "Tạo phiếu xuất thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    return;
-}
+                    int result = PhieuXuatDAO.getInstance().insert(pn);
+                    if (result <= 0) {
+                        JOptionPane.showMessageDialog(this, "Tạo phiếu xuất thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     SanphamDAO mtdao = SanphamDAO.getInstance();
                     for (var i : CTPhieu) {
                         ChiTietPhieuXuatDAO.getInstance().insert(i);
@@ -671,9 +679,9 @@ if (result <= 0) {
                     String Masp = excelRow.getCell(1).getStringCellValue();
                     String Tensp = excelRow.getCell(2).getStringCellValue();
                     int Soluong = (int) (excelRow.getCell(3).getNumericCellValue());
-                
+
                     double Giaban = SanphamDAO.getInstance().selectById(Masp).getGiaban();
-                    ChiTietPhieuXuat ctpnew = new ChiTietPhieuXuat(Maphieu,Masp, Soluong, Giaban);
+                    ChiTietPhieuXuat ctpnew = new ChiTietPhieuXuat(Maphieu, Masp, Soluong, Giaban);
                     CTPhieu.add(ctpnew);
                 }
                 loadDataToTableNhapHang();
@@ -695,7 +703,6 @@ if (result <= 0) {
     }//GEN-LAST:event_btnApdungMouseClicked
 
     private void btnApdungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApdungActionPerformed
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnApdungActionPerformed
