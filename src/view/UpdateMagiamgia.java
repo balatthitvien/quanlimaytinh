@@ -184,7 +184,7 @@ private MagiamgiaForm owner;
         }
         
              if (!Ngaybatdau.before(Ngayketthuc)) {
-    JOptionPane.showMessageDialog(this, "Ngày sản xuất phải nhỏ hơn hạn sử dụng!");
+    JOptionPane.showMessageDialog(this, "Ngày bắt đầu phải trước ngày kết thúc!");
     return;
 }
         //Kiểm tra kiểu dữ liệu

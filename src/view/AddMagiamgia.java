@@ -205,7 +205,7 @@ public class AddMagiamgia extends javax.swing.JDialog {
             }
             
                     if (!ngaybatdauUtil.before(ngayketthucUtil)) {
-                        JOptionPane.showMessageDialog(this, "Ngày sản xuất phải nhỏ hơn hạn sử dụng!");
+                        JOptionPane.showMessageDialog(this, "Ngày bắt đầu phải trước ngày kết thúc!");
                         return;
                     }
             java.sql.Date Ngayketthuc = new java.sql.Date(ngayketthucUtil.getTime());
