@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 08, 2025 lúc 10:47 AM
+-- Thời gian đã tạo: Th7 10, 2025 lúc 08:05 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -66,7 +66,8 @@ CREATE TABLE `chitietphieunhap` (
 --
 
 INSERT INTO `chitietphieunhap` (`Maphieu`, `Masp`, `Soluong`, `Gianhap`) VALUES
-('PN1', 'SP02', 10, 5000);
+('PN1', 'SP02', 10, 5000),
+('PN2', 'SP08', 8, 40000);
 
 -- --------------------------------------------------------
 
@@ -108,11 +109,40 @@ INSERT INTO `chitietphieuxuat` (`Maphieu`, `Masp`, `Soluong`, `Giaban`) VALUES
 ('PX26', 'SP09', 1, 96000),
 ('PX27', 'SP09', 1, 96000),
 ('PX28', 'SP09', 1, 96000),
+('PX29', 'SP08', 1, 45000),
 ('PX29', 'SP09', 1, 96000),
 ('PX3', 'SP05', 1, 70000),
 ('PX30', 'SP09', 1, 96000),
+('PX31', 'SP05', 1, 56000),
+('PX31', 'SP09', 1, 96000),
+('PX32', 'SP09', 1, 120000),
+('PX33', 'SP05', 1, 56000),
+('PX33', 'SP09', 1, 90000),
+('PX34', 'SP04', 1, 3000),
+('PX35', 'SP04', 1, 3000),
+('PX35', 'SP05', 1, 70000),
+('PX35', 'SP08', 1, 60000),
+('PX35', 'SP09', 1, 90000),
+('PX36', 'SP09', 2, 120000),
+('PX37', 'SP08', 2, 45000),
+('PX37', 'SP09', 1, 120000),
+('PX38', 'SP04', 1, 3000),
+('PX38', 'SP05', 2, 56000),
+('PX38', 'SP09', 1, 90000),
+('PX39', 'SP09', 1, 120000),
 ('PX4', 'SP08', 1, 60000),
 ('PX4', 'SP10', 1, 900000),
+('PX40', 'SP05', 2, 56000),
+('PX40', 'SP08', 2, 45000),
+('PX40', 'SP09', 1, 90000),
+('PX41', 'SP04', 1, 3000),
+('PX41', 'SP08', 1, 60000),
+('PX41', 'SP09', 1, 90000),
+('PX42', 'SP09', 1, 90000),
+('PX43', 'SP04', 1, 3000),
+('PX43', 'SP08', 1, 60000),
+('PX43', 'SP09', 1, 120000),
+('PX44', 'SP09', 1, 120000),
 ('PX5', 'SP05', 1, 56000),
 ('PX6', 'SP05', 1, 70000),
 ('PX6', 'SP06', 1, 3500),
@@ -146,7 +176,7 @@ INSERT INTO `giamgia` (`Magiamgia`, `Loaisp`, `Phantramgiam`, `Ngaybatdau`, `Nga
 ('HappyValentine', 'Mỹ phẩm', 30, '2025-06-25', '2025-06-28', 'Chúc mừng cặp đôi', 0),
 ('HappyWomanDay', 'Mỹ phẩm', 20, '2025-06-25', '2025-07-17', 'Chúc mừng', 1),
 ('NhaGiaoVN', 'Văn phòng phẩm', 20, '2025-06-26', '2025-06-30', 'xin chao', 0),
-('Sale7', 'Thực phẩm', 20, '2025-07-08', '2025-08-08', 'sale 1 month', 1);
+('Sale7', 'Thực phẩm', 25, '2025-07-08', '2025-08-08', 'sale 1 month', 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +224,8 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`Maphieu`, `Thoigiantao`, `Nguoitao`, `Mancc`, `Tongtien`) VALUES
-('PN1', '2025-06-25 00:08:12', 'admin', 'NC002', 50000);
+('PN1', '2025-06-25 00:08:12', 'admin', 'NC002', 50000),
+('PN2', '2025-07-10 03:20:04', 'admin', 'NC002', 320000);
 
 -- --------------------------------------------------------
 
@@ -206,45 +237,55 @@ CREATE TABLE `phieuxuat` (
   `Maphieu` varchar(50) NOT NULL,
   `Thoigiantao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `Nguoitao` varchar(50) NOT NULL,
-  `Tongtien` double NOT NULL,
-  `Magiamgia` varchar(20) DEFAULT NULL
+  `Tongtien` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phieuxuat`
 --
 
-INSERT INTO `phieuxuat` (`Maphieu`, `Thoigiantao`, `Nguoitao`, `Tongtien`, `Magiamgia`) VALUES
-('PX1', '2025-06-21 10:00:49', 'admin', 750000, NULL),
-('PX10', '2025-07-01 17:44:43', 'admin', 96000, NULL),
-('PX11', '2025-07-01 17:48:35', 'admin', 96000, NULL),
-('PX12', '2025-07-01 17:51:16', 'admin', 96000, NULL),
-('PX13', '2025-07-01 18:14:37', 'admin', 96000, NULL),
-('PX14', '2025-07-01 18:18:46', 'admin', 120000, NULL),
-('PX15', '2025-07-08 06:32:34', 'admin', 28000, NULL),
-('PX16', '2025-07-08 06:49:04', 'admin', 96000, NULL),
-('PX17', '2025-07-08 06:49:30', 'admin', 60000, NULL),
-('PX18', '2025-07-08 06:49:39', 'admin', 120000, NULL),
-('PX19', '2025-07-08 06:49:56', 'admin', 120000, NULL),
-('PX2', '2025-06-25 01:35:29', 'bobo', 153000, NULL),
-('PX20', '2025-07-08 06:55:06', 'admin', 120000, NULL),
-('PX21', '2025-07-08 06:55:30', 'admin', 96000, NULL),
-('PX22', '2025-07-08 07:07:21', 'admin', 96000, NULL),
-('PX23', '2025-07-08 07:20:00', 'admin', 120000, NULL),
-('PX24', '2025-07-08 07:41:07', 'admin', 120000, NULL),
-('PX25', '2025-07-08 07:41:38', 'admin', 168000, NULL),
-('PX26', '2025-07-08 07:48:22', 'admin', 96000, NULL),
-('PX27', '2025-07-08 08:21:01', 'admin', 96000, 'Sale7'),
-('PX28', '2025-07-08 08:24:44', 'admin', 96000, 'Sale7'),
-('PX29', '2025-07-08 08:34:12', 'admin', 96000, 'Sale7'),
-('PX3', '2025-06-25 01:35:51', 'bobo', 70000, NULL),
-('PX30', '2025-07-08 08:36:16', 'admin', 96000, 'Sale7'),
-('PX4', '2025-06-25 01:38:13', 'bobo', 960000, NULL),
-('PX5', '2025-06-28 09:55:57', 'admin', 56000, NULL),
-('PX6', '2025-06-30 16:10:16', 'bobo', 3500, NULL),
-('PX7', '2025-07-01 17:26:10', 'admin', 96000, NULL),
-('PX8', '2025-07-01 17:27:10', 'admin', 48000, NULL),
-('PX9', '2025-07-01 18:06:05', 'admin', 120000, '2/9');
+INSERT INTO `phieuxuat` (`Maphieu`, `Thoigiantao`, `Nguoitao`, `Tongtien`) VALUES
+('PX1', '2025-06-21 10:00:49', 'admin', 750000),
+('PX10', '2025-07-01 17:44:43', 'admin', 96000),
+('PX11', '2025-07-01 17:48:35', 'admin', 96000),
+('PX12', '2025-07-01 17:51:16', 'admin', 96000),
+('PX13', '2025-07-01 18:14:37', 'admin', 96000),
+('PX14', '2025-07-01 18:18:46', 'admin', 120000),
+('PX15', '2025-07-08 06:32:34', 'admin', 28000),
+('PX16', '2025-07-08 06:49:04', 'admin', 96000),
+('PX17', '2025-07-08 06:49:30', 'admin', 60000),
+('PX18', '2025-07-08 06:49:39', 'admin', 120000),
+('PX19', '2025-07-08 06:49:56', 'admin', 120000),
+('PX2', '2025-06-25 01:35:29', 'bobo', 153000),
+('PX20', '2025-07-08 06:55:06', 'admin', 120000),
+('PX21', '2025-07-08 06:55:30', 'admin', 96000),
+('PX22', '2025-07-08 07:07:21', 'admin', 96000),
+('PX23', '2025-07-08 07:20:00', 'admin', 120000),
+('PX24', '2025-07-08 07:41:07', 'admin', 120000),
+('PX25', '2025-07-08 07:41:38', 'admin', 168000),
+('PX26', '2025-07-08 07:48:22', 'admin', 96000),
+('PX29', '2025-07-09 16:32:54', 'admin', 135000),
+('PX3', '2025-06-25 01:35:51', 'bobo', 70000),
+('PX30', '2025-07-09 16:46:18', 'admin', 120000),
+('PX31', '2025-07-09 16:54:09', 'admin', 120000),
+('PX32', '2025-07-09 03:06:47', 'admin', 120000),
+('PX33', '2025-07-09 16:54:34', 'admin', 120000),
+('PX34', '2025-07-09 15:43:57', 'admin', 3000),
+('PX35', '2025-07-09 16:57:52', 'admin', 120000),
+('PX36', '2025-07-09 16:58:27', 'admin', 120000),
+('PX37', '2025-07-09 16:58:39', 'admin', 120000),
+('PX38', '2025-07-09 16:58:45', 'admin', 120000),
+('PX39', '2025-07-09 16:15:15', 'admin', 120000),
+('PX4', '2025-06-25 01:38:13', 'bobo', 960000),
+('PX40', '2025-07-09 16:58:53', 'admin', 120000),
+('PX41', '2025-07-09 17:08:20', 'admin', 120000),
+('PX42', '2025-07-09 17:08:59', 'admin', 90000),
+('PX43', '2025-07-09 17:09:39', 'admin', 183000),
+('PX44', '2025-07-09 17:10:04', 'admin', 120000),
+('PX5', '2025-06-28 09:55:57', 'admin', 56000),
+('PX6', '2025-06-30 16:10:16', 'bobo', 3500),
+('PX7', '2025-07-01 17:26:10', 'admin', 96000),
+('PX8', '2025-07-01 17:27:10', 'admin', 48000);
 
 -- --------------------------------------------------------
 
@@ -275,12 +316,12 @@ INSERT INTO `sanpham` (`Masp`, `Tensp`, `Donvitinh`, `Soluong`, `Gianhap`, `Giab
 ('SP01', 'Ca tuoi', 'con', 10, 70000, 100000, 'Thực phẩm', 'NC002', '', 0, '2025-06-17', '2025-06-24'),
 ('SP02', 'kẹo kéo', 'miếng', 20, 5000, 10000, 'Thực phẩm', 'NC002', '', 0, '2025-06-23', '2025-06-25'),
 ('SP03', 'bánh ly que quẻ', 'túi', 19, 120000, 150000, 'Thực phẩm', 'NC002', '', 0, '2025-06-11', '2025-06-27'),
-('SP04', 'bút bi', 'chiếc', 99, 1000, 3000, 'Văn phòng phẩm', 'NCC01', '', 1, '2025-06-17', '2026-04-24'),
-('SP05', 'Son dưỡng', 'Cái', 17, 50000, 70000, 'Mỹ phẩm', 'NCC04', '', 1, '2025-06-23', '2026-06-24'),
+('SP04', 'bút bi', 'chiếc', 94, 1000, 3000, 'Văn phòng phẩm', 'NCC01', '', 1, '2025-06-17', '2026-04-24'),
+('SP05', 'Son dưỡng', 'Cái', 10, 50000, 70000, 'Mỹ phẩm', 'NCC04', '', 1, '2025-06-23', '2026-06-24'),
 ('SP06', 'Mì hảo hảo', 'Gói', 89, 2000, 3500, 'Thực phẩm', 'NCC07', '', 1, '2025-06-17', '2026-06-26'),
 ('SP07', 'Bột canh Hảo hảo', 'hộp', 20, 7000, 10000, 'Thực phẩm', 'NCC07', '', 1, '2025-06-17', '2026-06-25'),
 ('SP08', 'Bánh Bông Lan', 'Hộp', 16, 40000, 60000, 'Thực phẩm', 'NCC08', '', 1, '2025-06-17', '2026-06-26'),
-('SP09', 'Mì tám tôm', 'Thùng', 379, 100000, 120000, 'Thực phẩm', 'NCC06', '', 1, '2025-06-17', '2026-06-25'),
+('SP09', 'Mì tám tôm', 'Thùng', 356, 100000, 120000, 'Thực phẩm', 'NCC06', '', 1, '2025-06-17', '2026-06-25'),
 ('SP10', 'Ghế văn phòng công thái học', 'Chiếc', 39, 600000, 900000, 'Văn phòng phẩm', 'NCC05', '', 0, '2025-06-24', '2027-06-26');
 
 --
@@ -332,8 +373,7 @@ ALTER TABLE `phieunhap`
 --
 ALTER TABLE `phieuxuat`
   ADD PRIMARY KEY (`Maphieu`),
-  ADD KEY `FK_PhieuXuat_Account` (`Nguoitao`),
-  ADD KEY `fk_magiamgia` (`Magiamgia`);
+  ADD KEY `FK_PhieuXuat_Account` (`Nguoitao`);
 
 --
 -- Chỉ mục cho bảng `sanpham`
@@ -369,8 +409,7 @@ ALTER TABLE `phieunhap`
 -- Các ràng buộc cho bảng `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
-  ADD CONSTRAINT `FK_PhieuXuat_Account` FOREIGN KEY (`Nguoitao`) REFERENCES `account` (`userName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_magiamgia` FOREIGN KEY (`Magiamgia`) REFERENCES `giamgia` (`Magiamgia`);
+  ADD CONSTRAINT `FK_PhieuXuat_Account` FOREIGN KEY (`Nguoitao`) REFERENCES `account` (`userName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
