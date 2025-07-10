@@ -595,7 +595,7 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBoxLuaChon1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jComboBoxLuaChon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "FullName", "UserName", "Role" }));
+        jComboBoxLuaChon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Tên tài khoản", "Tên đăng nhập", "Vai trò" }));
         jComboBoxLuaChon1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxLuaChon1ActionPerformed(evt);
@@ -608,6 +608,11 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         });
         jPanel7.add(jComboBoxLuaChon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 210, 40));
 
+        jTextFieldSearch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSearch1ActionPerformed(evt);
+            }
+        });
         jTextFieldSearch1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldSearch1KeyReleased(evt);
@@ -1037,6 +1042,10 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jTextFieldSearch1.setText("");
         loadDataToTableAcc(AccountDAO.getInstance().selectAll());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearch1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearch1ActionPerformed
 
     public Phieu getPhieuNhapSelect() {
         int i_row = tblPhieuNhap.getSelectedRow();

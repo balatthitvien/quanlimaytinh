@@ -75,7 +75,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã máy", "Tên máy", "Số lượng", "Giá nhập"};
+        String[] headerTbl = new String[]{"Mã sẩn phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập"};
         tblModel.setColumnIdentifiers(headerTbl);
         tblSanPham.setModel(tblModel);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);

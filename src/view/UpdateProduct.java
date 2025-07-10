@@ -14,43 +14,41 @@ import model.Sanpham;
 
 public class UpdateProduct extends javax.swing.JDialog {
 
-
     private ProductForm owner;
     DecimalFormat formatterE = new DecimalFormat("0");
-    
-   public UpdateProduct(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) {
-    super(owner, modal);
-    this.owner = (ProductForm) parent;
-    initComponents();
-    setLocationRelativeTo(null);
 
-    // Lấy sản phẩm đang chọn từ ProductForm
-    Sanpham sp = this.owner.getSanphamSelect();
-    
-    if (sp != null) {
-        txtMasp.setText(sp.getMasp());
-        txtTensp.setText(sp.getTensp());
-        txtDonvitinh.setText(sp.getDonvitinh());
-        txtSoluong.setText(String.valueOf(sp.getSoluong()));
-        txtGianhap1.setText(String.valueOf(sp.getGianhap()));
-        txtGiaban.setText(String.valueOf(sp.getGiaban()));
-        txtMancc.setText(sp.getMancc());
-        dateNgaysanxuat.setDate(sp.getNgaysanxuat());
-        dateHansudung.setDate(sp.getHansudung());
-        txtGhichu.setText(sp.getGhichu());
+    public UpdateProduct(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) {
+        super(owner, modal);
+        this.owner = (ProductForm) parent;
+        initComponents();
+        setLocationRelativeTo(null);
 
-        // Gán giá trị cho ComboBox loại sản phẩm
-        cbxLoaisp1.setSelectedItem(sp.getLoaisp());
+        // Lấy sản phẩm đang chọn từ ProductForm
+        Sanpham sp = this.owner.getSanphamSelect();
 
-        // Gán giá trị cho ComboBox trạng thái
-        if (sp.getTrangthai() == 1) {
-            cbxTrangthai.setSelectedItem("Đang bán");
-        } else {
-            cbxTrangthai.setSelectedItem("Ngưng bán");
+        if (sp != null) {
+            txtMasp.setText(sp.getMasp());
+            txtTensp.setText(sp.getTensp());
+            txtDonvitinh.setText(sp.getDonvitinh());
+            txtSoluong.setText(String.valueOf(sp.getSoluong()));
+            txtGianhap1.setText(String.valueOf(sp.getGianhap()));
+            txtGiaban.setText(String.valueOf(sp.getGiaban()));
+            txtMancc.setText(sp.getMancc());
+            dateNgaysanxuat.setDate(sp.getNgaysanxuat());
+            dateHansudung.setDate(sp.getHansudung());
+            txtGhichu.setText(sp.getGhichu());
+
+            // Gán giá trị cho ComboBox loại sản phẩm
+            cbxLoaisp1.setSelectedItem(sp.getLoaisp());
+
+            // Gán giá trị cho ComboBox trạng thái
+            if (sp.getTrangthai() == 1) {
+                cbxTrangthai.setSelectedItem("Đang bán");
+            } else {
+                cbxTrangthai.setSelectedItem("Ngưng bán");
+            }
         }
     }
-}
-
 
     private UpdateProduct(JFrame jFrame, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -264,43 +262,47 @@ public class UpdateProduct extends javax.swing.JDialog {
         Date Ngaysanxuat = dateNgaysanxuat.getDate();
         String Loaisp = cbxLoaisp1.getSelectedItem().toString();
         String TrangthaiStr = cbxTrangthai.getSelectedItem().toString();
-        Date Hansudung= dateHansudung.getDate(); 
-      
-        //Kiểm tra rỗng
-         if (Masp.isEmpty() || Tensp.isEmpty() || Donvitinh.isEmpty() ||
-        SoluongStr.isEmpty() || GianhapStr.isEmpty() || GiabanStr.isEmpty() ||
-        Mancc.isEmpty() || Ngaysanxuat == null || Hansudung == null ||
-        Loaisp.equals("--Chọn loại sản phẩm--") ||
-        TrangthaiStr.equals("--Chọn trạng thái--")) {
+        Date Hansudung = dateHansudung.getDate();
 
-        JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
-        return;
-    }
-         //Kiểm tra kiểu dữ liệu
+        //Kiểm tra rỗng
+        if (Masp.isEmpty() || Tensp.isEmpty() || Donvitinh.isEmpty()
+                || SoluongStr.isEmpty() || GianhapStr.isEmpty() || GiabanStr.isEmpty()
+                || Mancc.isEmpty() || Ngaysanxuat == null || Hansudung == null
+                || Loaisp.equals("--Chọn loại sản phẩm--")
+                || TrangthaiStr.equals("--Chọn trạng thái--")) {
+
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
+            return;
+        }
+        //Kiểm tra kiểu dữ liệu
         int Soluong = 0;
         double Gianhap = 0;
         double Giaban = 0;
         try {
-        Soluong = Integer.parseInt(SoluongStr);
-        Gianhap = Double.parseDouble(GianhapStr);
-        Giaban = Double.parseDouble(GiabanStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Số lượng và giá phải ở dạng số hợp lệ!");
-        return;
-    }
+            Soluong = Integer.parseInt(SoluongStr);
+            Gianhap = Double.parseDouble(GianhapStr);
+            Giaban = Double.parseDouble(GiabanStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Số lượng và giá phải ở dạng số hợp lệ!");
+            return;
+        }
+        if (!Ngaysanxuat.before(Hansudung)) {
+            JOptionPane.showMessageDialog(this, "Ngày sản xuất phải trước hơn hạn sử dụng!");
+            return;
+        }
         int Trangthai = TrangthaiStr.equals("Đang bán") ? 1 : 0;
-        String Ghichu = txtGhichu.getText().trim();          
-         // Cập nhật đối tượng sản phẩm
-    Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung,Loaisp, Mancc,Trangthai,Ghichu );
-                // Cập nhật DB
-    int result = SanphamDAO.getInstance().update(sp);
-    if (result > 0) {
-        JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công!");
-        owner.loadDataToTable();
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(this, "Sửa sản phẩm thất bại!");
-    }
+        String Ghichu = txtGhichu.getText().trim();
+        // Cập nhật đối tượng sản phẩm
+        Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp, Mancc, Trangthai, Ghichu);
+        // Cập nhật DB
+        int result = SanphamDAO.getInstance().update(sp);
+        if (result > 0) {
+            JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công!");
+            owner.loadDataToTable();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa sản phẩm thất bại!");
+        }
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void cbxLoaisp1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLoaisp1ItemStateChanged

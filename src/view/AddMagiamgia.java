@@ -203,6 +203,11 @@ public class AddMagiamgia extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày kết thúc!");
                 return;
             }
+            
+                    if (!ngaybatdauUtil.before(ngayketthucUtil)) {
+                        JOptionPane.showMessageDialog(this, "Ngày sản xuất phải nhỏ hơn hạn sử dụng!");
+                        return;
+                    }
             java.sql.Date Ngayketthuc = new java.sql.Date(ngayketthucUtil.getTime());
             String Mota = txtMota.getText().trim();
             int Trangthai = cbxTrangthai.getSelectedItem().toString().equalsIgnoreCase("Khả dụng") ? 1 : 0;

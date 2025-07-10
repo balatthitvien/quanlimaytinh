@@ -71,7 +71,7 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         if (accCur.getRole().equals("Nhân viên nhập")) {
             btnDelete.setEnabled(false);
             btnEdit.setEnabled(false);
-            btnImportExcel.setEnabled(false);
+           
             jButton6.setEnabled(false);
         }
     }
@@ -219,7 +219,6 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        btnImportExcel = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxLuaChon = new javax.swing.JComboBox<>();
@@ -289,20 +288,6 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnDetail);
         jToolBar1.add(jSeparator1);
-
-        btnImportExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnImportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo.png"))); // NOI18N
-        btnImportExcel.setText("Nhập Excel");
-        btnImportExcel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImportExcel.setFocusable(false);
-        btnImportExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnImportExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnImportExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportExcelActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnImportExcel);
 
         jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/spreadsheet.png"))); // NOI18N
@@ -564,53 +549,6 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void btnImportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportExcelActionPerformed
-        // TODO add your handling code here:
-        //import excel
-        File excelFile;
-        FileInputStream excelFIS = null;
-        BufferedInputStream excelBIS = null;
-        XSSFWorkbook excelJTableImport = null;
-        ArrayList<PhieuNhap> listAccExcel = new ArrayList<PhieuNhap>();
-        JFileChooser jf = new JFileChooser();
-        int result = jf.showOpenDialog(null);
-        jf.setDialogTitle("Open file");
-        Workbook workbook = null;
-        DefaultTableModel table_acc = (DefaultTableModel) tblPhieuNhap.getModel();
-        table_acc.setRowCount(0);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                excelFile = jf.getSelectedFile();
-                excelFIS = new FileInputStream(excelFile);
-                excelBIS = new BufferedInputStream(excelFIS);
-                excelJTableImport = new XSSFWorkbook(excelBIS);
-                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
-                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-                    XSSFRow excelRow = excelSheet.getRow(row);
-                    String Maphieunhap = excelRow.getCell(1).getStringCellValue();
-                    String Nguoitao = excelRow.getCell(2).getStringCellValue();
-                    String dateText = excelRow.getCell(3).getStringCellValue();
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    Date dateCheck = format.parse(dateText);
-                    String giaFomat = excelRow.getCell(4).getStringCellValue().replaceAll(",", "");
-                    System.out.println(giaFomat);
-                    int viTri = giaFomat.length() - 1;
-                    String giaoke = giaFomat.substring(0, viTri) + giaFomat.substring(viTri + 1);
-                    double Gianhap = Double.parseDouble(giaoke);
-                    table_acc.addRow(new Object[]{
-                        row, Maphieunhap, Nguoitao, formatDate.format(dateCheck), formatter.format(Gianhap) + "đ"
-                    });
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(PhieuNhapForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_btnImportExcelActionPerformed
-
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -715,7 +653,6 @@ public class PhieuNhapForm extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnImportExcel;
     private javax.swing.JTextField giaDen;
     private javax.swing.JTextField giaTu;
     private javax.swing.JButton jButton6;

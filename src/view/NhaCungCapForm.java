@@ -106,7 +106,6 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        importExcel = new javax.swing.JButton();
         exportExcel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         cbxlLuaChon = new javax.swing.JComboBox<>();
@@ -241,18 +240,6 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         jToolBar1.add(jButton5);
         jToolBar1.add(jSeparator1);
 
-        importExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        importExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo.png"))); // NOI18N
-        importExcel.setText("Nhập Excel");
-        importExcel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        importExcel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        importExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                importExcelActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(importExcel);
-
         exportExcel.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         exportExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/spreadsheet.png"))); // NOI18N
         exportExcel.setText("Xuất Excel");
@@ -370,55 +357,6 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
         loadDataToTable(NhaCungCapDAO.getInstance().selectAll());
     }//GEN-LAST:event_btnResetActionPerformed
 
-    private void importExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importExcelActionPerformed
-        // TODO add your handling code here:
-        //Import excel
-        File excelFile;
-        FileInputStream excelFIS = null;
-        BufferedInputStream excelBIS = null;
-        XSSFWorkbook excelJTableImport = null;
-        ArrayList<NhaCungCap> listAccExcel = new ArrayList<NhaCungCap>();
-        JFileChooser jf = new JFileChooser();
-        int result = jf.showOpenDialog(null);
-        jf.setDialogTitle("Open file");
-        Workbook workbook = null;
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                excelFile = jf.getSelectedFile();
-                excelFIS = new FileInputStream(excelFile);
-                excelBIS = new BufferedInputStream(excelFIS);
-                excelJTableImport = new XSSFWorkbook(excelBIS);
-                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
-                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-                    XSSFRow excelRow = excelSheet.getRow(row);
-                    String maNhaCungCap = excelRow.getCell(0).getStringCellValue();
-                    String tenNhaCungCap = excelRow.getCell(1).getStringCellValue();
-                    String sdt = excelRow.getCell(2).getStringCellValue();
-                    String diaChi = excelRow.getCell(3).getStringCellValue();
-                    NhaCungCap acc = new NhaCungCap(maNhaCungCap, tenNhaCungCap, sdt, diaChi);
-                    listAccExcel.add(acc);
-                    DefaultTableModel table_acc = (DefaultTableModel) tblNCC.getModel();
-                    table_acc.setRowCount(0);
-                    loadDataToTable(listAccExcel);
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(NhaCungCapForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(NhaCungCapForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        try {
-            int k = 0;
-            for (NhaCungCap nhaCungCap : listAccExcel) {
-                k = NhaCungCapDAO.getInstance().insert(nhaCungCap);
-            }
-            if(k!=0) {
-                JOptionPane.showMessageDialog(this, "Import thành công !");
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_importExcelActionPerformed
-
     private void exportExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportExcelActionPerformed
         // TODO add your handling code here:
         try {
@@ -493,7 +431,6 @@ public class NhaCungCapForm extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxlLuaChon;
     private javax.swing.JButton exportExcel;
-    private javax.swing.JButton importExcel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

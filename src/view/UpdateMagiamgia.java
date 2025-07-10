@@ -182,6 +182,11 @@ private MagiamgiaForm owner;
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
             return;
         }
+        
+             if (!Ngaybatdau.before(Ngayketthuc)) {
+    JOptionPane.showMessageDialog(this, "Ngày sản xuất phải nhỏ hơn hạn sử dụng!");
+    return;
+}
         //Kiểm tra kiểu dữ liệu
         int Phantramgiam = 0;
 

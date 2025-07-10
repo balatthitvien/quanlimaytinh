@@ -760,9 +760,9 @@
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
                             <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
-                            <StringItem index="1" value="FullName"/>
-                            <StringItem index="2" value="UserName"/>
-                            <StringItem index="3" value="Role"/>
+                            <StringItem index="1" value="T&#xea;n t&#xe0;i kho&#x1ea3;n"/>
+                            <StringItem index="2" value="T&#xea;n &#x111;&#x103;ng nh&#x1ead;p"/>
+                            <StringItem index="3" value="Vai tr&#xf2;"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -781,6 +781,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldSearch1">
                       <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSearch1ActionPerformed"/>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldSearch1KeyReleased"/>
                       </Events>
                       <Constraints>

@@ -185,6 +185,8 @@ public class CTPhieuXuat extends javax.swing.JDialog {
         // TODO add your handling code here:
         WritePDF writepdf = new WritePDF();
         writepdf.writePhieuXuat(this.parent.getPhieuXuatSelect().getMaphieu());
+   
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

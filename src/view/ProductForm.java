@@ -62,7 +62,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
             btnDelete.setEnabled(false);
             btnEdit.setEnabled(false);
             jButton6.setEnabled(false);
-            jButton2.setEnabled(false);
+           
         } else {
             System.out.println("abcdjad");
         }
@@ -124,7 +124,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        jButton2 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jComboBoxLuaChon = new javax.swing.JComboBox<>();
@@ -198,20 +197,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(btnDetail);
         jToolBar1.add(jSeparator1);
-
-        jButton2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo.png"))); // NOI18N
-        jButton2.setText("Nhập Excel");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton2);
 
         jButton6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/spreadsheet.png"))); // NOI18N
@@ -346,53 +331,6 @@ public class ProductForm extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-         File excelFile;
-    FileInputStream excelFIS = null;
-    BufferedInputStream excelBIS = null;
-    XSSFWorkbook excelWorkbook = null;
-    ArrayList<Sanpham> listAccExcel = new ArrayList<>();
-    JFileChooser jf = new JFileChooser();
-    jf.setDialogTitle("Open Excel File");
-    int result = jf.showOpenDialog(null);
-    if (result == JFileChooser.APPROVE_OPTION) {
-        try {
-            excelFile = jf.getSelectedFile();
-            excelFIS = new FileInputStream(excelFile);
-            excelBIS = new BufferedInputStream(excelFIS);
-            excelWorkbook = new XSSFWorkbook(excelBIS);
-            XSSFSheet excelSheet = excelWorkbook.getSheetAt(0);
-            for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-                XSSFRow excelRow = excelSheet.getRow(row);
-                if (excelRow == null) continue;
-                String Masp = excelRow.getCell(0).getStringCellValue();
-                String Tensp = excelRow.getCell(1).getStringCellValue();
-                String Donvitinh = excelRow.getCell(2).getStringCellValue();
-                int Soluong = (int) excelRow.getCell(3).getNumericCellValue();
-                double Gianhap = excelRow.getCell(4).getNumericCellValue();
-                double Giaban = excelRow.getCell(5).getNumericCellValue();
-                Date Ngaysanxuat = excelRow.getCell(10).getDateCellValue();
-                Date Hansudung = excelRow.getCell(11).getDateCellValue();
-                String Loaisp = excelRow.getCell(6).getStringCellValue();
-                String Mancc = excelRow.getCell(7).getStringCellValue();
-                int Trangthai = (int) excelRow.getCell(9).getNumericCellValue();
-                String Ghichu = excelRow.getCell(8).getStringCellValue();
-                Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban,
-                                        Ngaysanxuat, Hansudung ,Loaisp, Mancc,  Trangthai,Ghichu);
-                listAccExcel.add(sp);
-            }
-            DefaultTableModel tableModel = (DefaultTableModel) tblSanPham.getModel();
-            tableModel.setRowCount(0);
-            loadDataToTableSearch(listAccExcel);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Lỗi khi đọc file Excel: " + ex.getMessage());
-        } 
-        }
-    
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -589,7 +527,6 @@ private void initSearchComboBoxListener() {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBoxLuaChon;

@@ -267,6 +267,11 @@ public class AddProduct extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn hạn sử dụng!");
             return;
         }
+        
+         if (!ngaysanxuatUtil.before(hansudungUtil)) {
+        JOptionPane.showMessageDialog(this, "Ngày sản xuất phải trước hơn hạn sử dụng!");
+        return;
+    }
         java.sql.Date Hansudung = new java.sql.Date(hansudungUtil.getTime());
 
         int Trangthai = cbxTrangthai.getSelectedItem().toString().equalsIgnoreCase("Đang bán") ? 1 : 0;
