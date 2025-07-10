@@ -12,7 +12,6 @@ import java.util.Date;
 import model.ThongKeProduct;
 import java.sql.*;
 
-
 public class ThongKeDAO {
 
     public static ThongKeDAO getInstance() {
@@ -25,29 +24,27 @@ public class ThongKeDAO {
         try {
             Connection con = JDBCUtil.getConnection();
             String sql = "SELECT sp.Masp, sp.Tensp, "
-           + "IFNULL(tn.slNhap, 0) AS slNhap, "
-           + "IFNULL(tx.slXuat, 0) AS slXuat "
-           + "FROM Sanpham sp "
-           + "LEFT JOIN ("
-           + "    SELECT ctpn.Masp, SUM(ctpn.Soluong) AS slNhap "
-           + "    FROM chitietphieunhap ctpn "
-           + "    JOIN phieunhap pn ON pn.Maphieu = ctpn.Maphieu "
-           + "    GROUP BY ctpn.Masp "
-           + ") tn ON sp.Masp = tn.Masp "
-           + "LEFT JOIN ("
-           + "    SELECT ctpx.Masp, SUM(ctpx.Soluong) AS slXuat "
-           + "    FROM chitietphieuxuat ctpx "
-           + "    JOIN phieuxuat px ON px.Maphieu = ctpx.Maphieu "
-           + "    GROUP BY ctpx.Masp "
-           + ") tx ON sp.Masp = tx.Masp";
-
+                    + "IFNULL(tn.slNhap, 0) AS slNhap, "
+                    + "IFNULL(tx.slXuat, 0) AS slXuat "
+                    + "FROM Sanpham sp "
+                    + "LEFT JOIN ("
+                    + "    SELECT ctpn.Masp, SUM(ctpn.Soluong) AS slNhap "
+                    + "    FROM chitietphieunhap ctpn "
+                    + "    JOIN phieunhap pn ON pn.Maphieu = ctpn.Maphieu "
+                    + "    GROUP BY ctpn.Masp "
+                    + ") tn ON sp.Masp = tn.Masp "
+                    + "LEFT JOIN ("
+                    + "    SELECT ctpx.Masp, SUM(ctpx.Soluong) AS slXuat "
+                    + "    FROM chitietphieuxuat ctpx "
+                    + "    JOIN phieuxuat px ON px.Maphieu = ctpx.Maphieu "
+                    + "    GROUP BY ctpx.Masp "
+                    + ") tx ON sp.Masp = tx.Masp "
+                    + "WHERE sp.Hansudung BETWEEN ? AND ?";
 
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setTimestamp(1, new Timestamp(timeStart.getTime()));
             pst.setTimestamp(2, new Timestamp(timeEnd.getTime()));
-            pst.setTimestamp(3, new Timestamp(timeStart.getTime()));
-            pst.setTimestamp(4, new Timestamp(timeEnd.getTime()));
-
+       
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 String Masp = rs.getString("Masp");
@@ -69,22 +66,22 @@ public class ThongKeDAO {
         ArrayList<ThongKeProduct> ketQua = new ArrayList<>();
         try {
             Connection con = JDBCUtil.getConnection();
-           String sql = "SELECT sp.Masp, sp.Tensp, "
-           + "IFNULL(tn.slNhap, 0) AS slNhap, "
-           + "IFNULL(tx.slXuat, 0) AS slXuat "
-           + "FROM Sanpham sp "
-           + "LEFT JOIN ("
-           + "    SELECT ctpn.Masp, SUM(ctpn.Soluong) AS slNhap "
-           + "    FROM chitietphieunhap ctpn "
-           + "    JOIN phieunhap pn ON pn.Maphieu = ctpn.Maphieu "
-           + "    GROUP BY ctpn.Masp "
-           + ") tn ON sp.Masp = tn.Masp "
-           + "LEFT JOIN ("
-           + "    SELECT ctpx.Masp, SUM(ctpx.Soluong) AS slXuat "
-           + "    FROM chitietphieuxuat ctpx "
-           + "    JOIN phieuxuat px ON px.Maphieu = ctpx.Maphieu "
-           + "    GROUP BY ctpx.Masp "
-           + ") tx ON sp.Masp = tx.Masp";
+            String sql = "SELECT sp.Masp, sp.Tensp, "
+                    + "IFNULL(tn.slNhap, 0) AS slNhap, "
+                    + "IFNULL(tx.slXuat, 0) AS slXuat "
+                    + "FROM Sanpham sp "
+                    + "LEFT JOIN ("
+                    + "    SELECT ctpn.Masp, SUM(ctpn.Soluong) AS slNhap "
+                    + "    FROM chitietphieunhap ctpn "
+                    + "    JOIN phieunhap pn ON pn.Maphieu = ctpn.Maphieu "
+                    + "    GROUP BY ctpn.Masp "
+                    + ") tn ON sp.Masp = tn.Masp "
+                    + "LEFT JOIN ("
+                    + "    SELECT ctpx.Masp, SUM(ctpx.Soluong) AS slXuat "
+                    + "    FROM chitietphieuxuat ctpx "
+                    + "    JOIN phieuxuat px ON px.Maphieu = ctpx.Maphieu "
+                    + "    GROUP BY ctpx.Masp "
+                    + ") tx ON sp.Masp = tx.Masp";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {

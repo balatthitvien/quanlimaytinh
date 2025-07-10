@@ -46,8 +46,6 @@ import model.PhieuXuat;
 import model.Giamgia;
 import dao.GiamgiaDAO;
 
-
-
 public class WritePDF {
 
     DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -250,36 +248,33 @@ public class WritePDF {
             }
 
             //Truyen thong tin tung chi tiet vao table
+            double tongTienGoc = 0.0;
+
             for (ChiTietPhieuXuat ctpn : ChiTietPhieuXuatDAO.getInstance().selectAll(mapn)) {
                 Sanpham sp = SanphamDAO.getInstance().selectById(ctpn.getMasp());
+                double tien = ctpn.getSoluong() * sp.getGiaban();
+                tongTienGoc += tien;
+
                 pdfTable.addCell(new PdfPCell(new Phrase(ctpn.getMasp(), fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(sp.getTensp(), fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(sp.getGiaban()) + "đ", fontData)));
                 pdfTable.addCell(new PdfPCell(new Phrase(String.valueOf(ctpn.getSoluong()), fontData)));
-                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(ctpn.getSoluong() * sp.getGiaban()) + "đ", fontData)));
+                pdfTable.addCell(new PdfPCell(new Phrase(formatter.format(tien) + "đ", fontData)));
             }
+
             document.add(pdfTable);
             document.add(Chunk.NEWLINE);
             // Thêm dòng hiển thị phần trăm giảm giá
-double phantram = 0;
 
-if (pn.getMagiamgia() != null && !pn.getMagiamgia().trim().isEmpty()) {
-    Giamgia gg = GiamgiaDAO.getInstance().selectById(pn.getMagiamgia());
-    if (gg != null) {
-        phantram = gg.getPhantramgiam();
-
-        // ✅ Thêm debug ở đây
-        System.out.println("Mã giảm giá: " + pn.getMagiamgia());
-        System.out.println("Phần trăm giảm giá: " + phantram);
-    } else {
-        System.out.println("Không tìm thấy mã giảm giá trong CSDL: " + pn.getMagiamgia());
-    }
-} else {
-    System.out.println("Mã giảm giá null hoặc rỗng.");
-}
-Paragraph paraGiamgia = new Paragraph(new Phrase("Giảm giá: " + formatter.format(phantram) + "%", fontData));
-paraGiamgia.setIndentationLeft(300);
-document.add(paraGiamgia);
+            double tienGiam = tongTienGoc - pn.getTongtien();
+            
+            Paragraph paratongTienGoc = new Paragraph(new Phrase("Tổng tiền: " + formatter.format(tongTienGoc) + "đ", fontData));
+            paratongTienGoc.setIndentationLeft(300);
+            document.add(paratongTienGoc);
+            
+            Paragraph paraGiamgia = new Paragraph(new Phrase("Giảm giá: -" + formatter.format(tienGiam) + "đ", fontData));
+            paraGiamgia.setIndentationLeft(300);
+            document.add(paraGiamgia);
 
             Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thanh toán: " + formatter.format(pn.getTongtien()) + "đ", fontData));
             paraTongThanhToan.setIndentationLeft(300);

@@ -266,7 +266,8 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(tblThongKeProduct);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo ngày"));
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc theo hạn sử dụng"));
+        jPanel13.setName("Lọc theo hạn sử dung"); // NOI18N
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDateChooserFromPr.setBackground(new java.awt.Color(255, 255, 255));
@@ -304,7 +305,6 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel13.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 20, 20));
 
         btnResetThongKePr.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        btnResetThongKePr.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         btnResetThongKePr.setText("Làm mới");
         btnResetThongKePr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,7 +403,6 @@ public class ThongKeForm extends javax.swing.JInternalFrame {
         jPanel3.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 310, 40));
 
         jButton7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon("E:\\anh java\\reload (1).png")); // NOI18N
         jButton7.setText("Làm mới");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {

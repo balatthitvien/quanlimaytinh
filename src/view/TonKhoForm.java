@@ -326,6 +326,8 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+loadDataToTable();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -388,7 +390,7 @@ public class TonKhoForm extends javax.swing.JInternalFrame {
             for (Sanpham i : result) {
                 if (i.getTrangthai() == 1) {   
                     tblModel.addRow(new Object[]{
-                         i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGianhap()) + "đ",  formatter.format(i.getGiaban()) + "đ", i.getSoluong(), i.getNgaysanxuat(),i.getHansudung(),i.getTrangthai()
+                         i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGianhap()) + "đ",  formatter.format(i.getGiaban()) + "đ", i.getLoaisp(),i.getMancc(), i.getNgaysanxuat(),i.getHansudung(),i.getTrangthai()
                     });
                 }
             }

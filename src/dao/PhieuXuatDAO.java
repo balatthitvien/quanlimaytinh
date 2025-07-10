@@ -25,7 +25,7 @@ public int insert(PhieuXuat t) {
     int ketQua = 0;
     try {
         Connection con = JDBCUtil.getConnection();
-        String sql = "INSERT INTO phieuxuat (Maphieu, Thoigiantao, Nguoitao, Tongtien, Magiamgia) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO phieuxuat (Maphieu, Thoigiantao, Nguoitao, Tongtien) VALUES (?,?,?,?)";
         PreparedStatement pst = con.prepareStatement(sql);
 
         // ⚠ Thêm dòng này để kiểm tra giá trị Nguoitao
@@ -35,7 +35,7 @@ public int insert(PhieuXuat t) {
         pst.setTimestamp(2, t.getThoigiantao());
         pst.setString(3, t.getNguoitao());
         pst.setDouble(4, t.getTongtien());
-        pst.setString(5, t.getMagiamgia());
+
         ketQua = pst.executeUpdate();
         JDBCUtil.closeConnection(con);
     } catch (Exception e) {
@@ -106,39 +106,29 @@ public int insert(PhieuXuat t) {
         }
         return ketQua;
     }
-@Override
-public PhieuXuat selectById(String t) {
-    PhieuXuat ketQua = null;
-    try {
-        Connection con = JDBCUtil.getConnection();
-        String sql = "SELECT * FROM phieuxuat WHERE Maphieu=?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, t);
-        ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-            String magiamgia = rs.getString("Magiamgia");
-            String Maphieu = rs.getString("Maphieu");
-            Timestamp Thoigiantao = rs.getTimestamp("Thoigiantao");
-            String Nguoitao = rs.getString("Nguoitao");
-            double Tongtien = rs.getDouble("Tongtien");
 
-            ketQua = new PhieuXuat(
-                Maphieu,
-                Thoigiantao,
-                Nguoitao,
-                ChiTietPhieuXuatDAO.getInstance().selectAll(Maphieu),
-                Tongtien
-            );
-            
-            // ✅ Gán mã giảm giá vào đối tượng
-            ketQua.setMagiamgia(magiamgia);
+    @Override
+    public PhieuXuat selectById(String t) {
+        PhieuXuat ketQua = null;
+        try {
+            Connection con = JDBCUtil.getConnection();
+            String sql = "SELECT * FROM phieuxuat WHERE Maphieu=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, t);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String Maphieu = rs.getString("Maphieu");
+                Timestamp Thoigiantao = rs.getTimestamp("Thoigiantao");
+                String Nguoitao = rs.getString("Nguoitao");
+                double Tongtien = rs.getDouble("Tongtien");
+                ketQua = new PhieuXuat(Maphieu, Thoigiantao, Nguoitao, ChiTietPhieuXuatDAO.getInstance().selectAll(Maphieu), Tongtien);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+        return ketQua;
     }
-    return ketQua;
-}
-
     public ArrayList<Giamgia> getMaGiamGiaTheoLoai(String loaiSP) {
     return GiamgiaDAO.getInstance().selectAllExist()
         .stream()
