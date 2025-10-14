@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Sanpham {
     private String Masp;
     private String Tensp;
+    private String Anhpath;
     private String Donvitinh;
     private int Soluong;
     private double Gianhap;
@@ -22,10 +23,12 @@ public class Sanpham {
     private Date Hansudung;
     
 public Sanpham(){}
-    public Sanpham(String Masp, String Tensp, String Donvitinh, int Soluong, Double Gianhap, Double Giaban,
-               Date Ngaysanxuat, Date Hansudung ,String Loaisp, String Mancc, int Trangthai,  String Ghichu) {
+    public Sanpham(String Masp, String Tensp,String Anhpath, String Donvitinh, int Soluong, Double Gianhap, Double Giaban,
+               Date Ngaysanxuat, Date Hansudung ,String Loaisp, String Mancc, int Trangthai,  String Ghichu) 
+    {
     this.Masp = Masp;
     this.Tensp = Tensp;
+    this.Anhpath = Anhpath;
     this.Donvitinh = Donvitinh;
     this.Soluong = Soluong;
     this.Gianhap = Gianhap;
@@ -36,11 +39,12 @@ public Sanpham(){}
     this.Trangthai = Trangthai;
     this.Ngaysanxuat = Ngaysanxuat;
     this.Hansudung = Hansudung;
-}
+    }
 
-    public Sanpham(String Masp, String Tensp, int Soluong, double Gianhap,double Giaban, String Loaisp, String Mancc, Date Ngaysanxuat, Date Hansudung, int Trangthai) {
+    public Sanpham(String Masp, String Tensp,String Anhpath, int Soluong, double Gianhap,double Giaban, String Loaisp, String Mancc, Date Ngaysanxuat, Date Hansudung, int Trangthai) {
         this.Masp = Masp;
         this.Tensp = Tensp;
+        this.Anhpath = Anhpath;
         this.Soluong = Soluong;
         this.Gianhap = Gianhap;
         this.Giaban = Giaban;
@@ -51,7 +55,7 @@ public Sanpham(){}
         this.Trangthai=Trangthai;
     }
 
-    public Sanpham(String Masp, String Tensp, String Donvitinh, int Soluong, double Gianhap, double Giaban, java.sql.Date Ngaysanxuat, java.sql.Date Hansudung, String Loaisp, int Trangthai, String Ghichu) {
+    public Sanpham(String Masp, String Tensp, String Anhpath,String Donvitinh, int Soluong, double Gianhap, double Giaban, java.sql.Date Ngaysanxuat, java.sql.Date Hansudung, String Loaisp, int Trangthai, String Ghichu) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     public String getMasp() {
@@ -69,6 +73,13 @@ public Sanpham(){}
     public void setTensp(String Tensp) {
         this.Tensp= Tensp;
     }
+   public String getAnhpath() {
+    return Anhpath;
+}
+
+public void setAnhpath(String Anhpath) {
+    this.Anhpath = Anhpath;
+}
 public String getDonvitinh() {
         return Donvitinh;
     }
@@ -151,7 +162,7 @@ public String getDonvitinh() {
     }
     @Override
     public String toString() {
-        return "Sanpham{" + "Masp=" + Masp + ", Tensp=" + Tensp + ", Donvitinh=" + Donvitinh + ",Soluong=" + Soluong + ",Gianhap=" + Gianhap + ",Giaban=" + Giaban + ", Loaisp=" + Loaisp + ", Mancc=" + Mancc + ", Ngaysanxuat=" + Ngaysanxuat + ", Hansudung=" + Hansudung +  '}';
+        return "Sanpham{" + "Masp=" + Masp + ", Tensp=" + Tensp + ",Anhpath=" + Anhpath + ", Donvitinh=" + Donvitinh + ",Soluong=" + Soluong + ",Gianhap=" + Gianhap + ",Giaban=" + Giaban + ", Loaisp=" + Loaisp + ", Mancc=" + Mancc + ", Ngaysanxuat=" + Ngaysanxuat + ", Hansudung=" + Hansudung +  '}';
     }
 
     @Override
@@ -165,6 +176,7 @@ public String getDonvitinh() {
                Trangthai == other.Trangthai &&
                Objects.equals(Masp, other.Masp) &&
                Objects.equals(Tensp, other.Tensp) &&
+               Objects.equals(Anhpath, other.Anhpath)&&
                Objects.equals(Donvitinh, other.Donvitinh) &&
                Objects.equals(Loaisp, other.Loaisp) &&
                Objects.equals(Mancc, other.Mancc) &&

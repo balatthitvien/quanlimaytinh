@@ -6,8 +6,11 @@ package view;
 
 import dao.SanphamDAO;
 import java.awt.CardLayout;
+import java.awt.Image;
 import java.text.DecimalFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Sanpham;
@@ -15,6 +18,7 @@ import model.Sanpham;
 public class UpdateProduct extends javax.swing.JDialog {
 
     private ProductForm owner;
+    private String selectedImagePath;
     DecimalFormat formatterE = new DecimalFormat("0");
 
     public UpdateProduct(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) {
@@ -33,7 +37,7 @@ public class UpdateProduct extends javax.swing.JDialog {
             txtSoluong.setText(String.valueOf(sp.getSoluong()));
             txtGianhap1.setText(String.valueOf(sp.getGianhap()));
             txtGiaban.setText(String.valueOf(sp.getGiaban()));
-            txtMancc.setText(sp.getMancc());
+            cbxMancc.setSelectedItem(sp.getMancc());
             dateNgaysanxuat.setDate(sp.getNgaysanxuat());
             dateHansudung.setDate(sp.getHansudung());
             txtGhichu.setText(sp.getGhichu());
@@ -46,6 +50,14 @@ public class UpdateProduct extends javax.swing.JDialog {
                 cbxTrangthai.setSelectedItem("Đang bán");
             } else {
                 cbxTrangthai.setSelectedItem("Ngưng bán");
+            }
+             if (sp.getAnhpath() != null && !sp.getAnhpath().isEmpty()) {
+                selectedImagePath = sp.getAnhpath();
+                int w = jPanel2.getWidth() - 6;
+                int h = jPanel2.getHeight() - 6;
+                ImageIcon icon = new ImageIcon(new ImageIcon(sp.getAnhpath()).getImage().getScaledInstance(
+                        w > 0 ? w : 150, h > 0 ? h : 150, Image.SCALE_SMOOTH));
+                jLabel14.setIcon(icon);
             }
         }
     }
@@ -65,34 +77,38 @@ public class UpdateProduct extends javax.swing.JDialog {
 
         txtGianhap = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        txtMasp = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtTensp = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtDonvitinh = new javax.swing.JTextField();
         btnAddProduct = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        txtMasp = new javax.swing.JTextField();
+        txtTensp = new javax.swing.JTextField();
+        txtDonvitinh = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         txtSoluong = new javax.swing.JTextField();
-        txtGianhap1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cbxMancc = new javax.swing.JComboBox<>();
         txtGiaban = new javax.swing.JTextField();
-        txtMancc = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         dateNgaysanxuat = new com.toedter.calendar.JDateChooser();
-        cbxLoaisp1 = new javax.swing.JComboBox<>();
-        cbxTrangthai = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtGhichu = new javax.swing.JTextField();
         dateHansudung = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
-        txtGhichu = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        cbxTrangthai = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        btnAddPicture = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        txtGianhap1 = new javax.swing.JTextField();
+        cbxLoaisp1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -101,32 +117,6 @@ public class UpdateProduct extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel2.setText("Mã sản phẩm");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-
-        txtMasp.setEditable(false);
-        txtMasp.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        txtMasp.setRequestFocusEnabled(false);
-        jPanel1.add(txtMasp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 189, 30));
-
-        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel3.setText("Tên sản phẩm");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
-
-        txtTensp.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        jPanel1.add(txtTensp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 189, 30));
-
-        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel4.setText("Số lượng");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 82, -1));
-
-        txtDonvitinh.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        jPanel1.add(txtDonvitinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 189, 30));
 
         btnAddProduct.setBackground(new java.awt.Color(194, 248, 248));
         btnAddProduct.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
@@ -153,18 +143,117 @@ public class UpdateProduct extends javax.swing.JDialog {
             }
         });
         jPanel1.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, 140, 35));
+        jPanel1.add(txtMasp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 150, 30));
+        jPanel1.add(txtTensp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 150, 32));
+        jPanel1.add(txtDonvitinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 150, 32));
 
-        jPanel3.setLayout(new java.awt.CardLayout());
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(651, 89, 186, -1));
+        jLabel15.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel15.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel15.setText("Số lượng");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 80, -1));
 
-        txtSoluong.setFont(new java.awt.Font("SF Pro Display", 0, 16)); // NOI18N
-        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 189, 30));
-        jPanel1.add(txtGianhap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 189, 32));
-        jPanel1.add(txtGiaban, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 189, 30));
-        jPanel1.add(txtMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 189, 32));
-        jPanel1.add(dateNgaysanxuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 200, 30));
+        txtSoluong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoluongActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 150, 33));
 
-        cbxLoaisp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn loại sản phẩm--", "Thực phẩm", "Đồ gia dụng", "Mỹ phẩm", "Văn phòng phẩm", "Đồ dùng các nhân", " " }));
+        jLabel4.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel4.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel4.setText("Đơn vị tính");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, -1));
+
+        jLabel3.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel3.setText("Tên sản phẩm");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        jLabel8.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel8.setText("Mã nhà cung cấp");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 140, -1));
+
+        jLabel9.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel9.setText("Ngày sản xuất");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
+
+        cbxMancc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn nhà cung cấp--" }));
+        jPanel1.add(cbxMancc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 150, 30));
+        jPanel1.add(txtGiaban, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 150, 32));
+
+        jLabel7.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel7.setText("Giá bán");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 70, -1));
+        jPanel1.add(dateNgaysanxuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 170, 30));
+
+        jLabel6.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel6.setText("Giá nhập");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 90, -1));
+        jPanel1.add(txtGhichu, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, 170, 30));
+        jPanel1.add(dateHansudung, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 170, 30));
+
+        jLabel1.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel1.setText("Hạn sử dụng");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
+
+        cbxTrangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn trạng thái--", "Đang bán", "Ngưng bán" }));
+        jPanel1.add(cbxTrangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 170, 30));
+
+        jLabel12.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel12.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel12.setText("Ghi chú");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+
+        jLabel10.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel10.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel10.setText("Loại sản phẩm");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, -1, -1));
+
+        jLabel11.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel11.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel11.setText("Trạng thái");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
+
+        btnAddPicture.setText("Chọn");
+        btnAddPicture.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPictureActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAddPicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, -1));
+
+        jLabel13.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel13.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel13.setText("Ảnh sản phẩm");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, -1, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel14.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jLabel14);
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, 180, 220));
+        jPanel1.add(txtGianhap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 150, 32));
+
+        cbxLoaisp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn loại sản phẩm--", "Thực phẩm", "Đồ gia dụng", "Mỹ phẩm", "Văn phòng phẩm", "Đồ dùng cá nhân", " " }));
         cbxLoaisp1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxLoaisp1ItemStateChanged(evt);
@@ -180,63 +269,23 @@ public class UpdateProduct extends javax.swing.JDialog {
                 cbxLoaisp1PropertyChange(evt);
             }
         });
-        jPanel1.add(cbxLoaisp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 140, 209, 32));
+        jPanel1.add(cbxLoaisp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 170, 32));
 
-        cbxTrangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn trạng thái--", "Đang bán", "Ngưng bán" }));
-        jPanel1.add(cbxTrangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 210, 30));
+        jLabel2.setBackground(new java.awt.Color(194, 248, 248));
+        jLabel2.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(194, 248, 248));
+        jLabel2.setText("Mã sản phẩm");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel12.setText("Trạng thái");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, -1, -1));
-        jPanel1.add(dateHansudung, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 210, 30));
-
-        jLabel1.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel1.setText("Hạn sử dụng");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, -1, -1));
-        jPanel1.add(txtGhichu, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 210, 30));
+        jPanel3.setLayout(new java.awt.CardLayout());
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(651, 89, 186, -1));
 
         jLabel5.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(194, 248, 248));
         jLabel5.setText("CẬP NHẬT THÔNG TIN SẢN PHẨM");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel13.setText("Ghi chú");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel11.setText("Loại sản phẩm");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel9.setText("Ngày sản xuất");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel8.setText("Mã nhà cung cấp");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 150, -1));
-
-        jLabel7.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel7.setText("Giá bán");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 70, -1));
-
-        jLabel6.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel6.setText("Giá nhập");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 80, -1));
-
-        jLabel16.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(194, 248, 248));
-        jLabel16.setText("Đơn vị tính");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 90, -1));
-
+        jLabel17.setBackground(new java.awt.Color(194, 248, 248));
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpapersden.com_town-8-bit_3840x2160 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -180, 1370, 790));
 
@@ -249,7 +298,32 @@ public class UpdateProduct extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+ private String saveImageToAppFolder(String imagePath, String masp) {
+        try {
+            String destDir = "images";
+            java.io.File dir = new java.io.File(destDir);
+            if (!dir.exists()) dir.mkdirs();
 
+            String extension = "";
+            int i = imagePath.lastIndexOf('.');
+            if (i >= 0) {
+                extension = imagePath.substring(i);
+            }
+            String newFileName = masp + extension;
+            java.io.File destFile = new java.io.File(dir, newFileName);
+
+            java.nio.file.Files.copy(
+                    new java.io.File(imagePath).toPath(),
+                    destFile.toPath(),
+                    java.nio.file.StandardCopyOption.REPLACE_EXISTING
+            );
+            return destFile.getPath();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi lưu ảnh!");
+            return null;
+        }
+    }
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
         // TODO add your handling code here:
         String Masp = txtMasp.getText().trim();
@@ -258,7 +332,7 @@ public class UpdateProduct extends javax.swing.JDialog {
         String SoluongStr = txtSoluong.getText().trim();
         String GianhapStr = txtGianhap1.getText().trim();
         String GiabanStr = txtGiaban.getText().trim();
-        String Mancc = txtMancc.getText().trim();
+        String Mancc = cbxMancc.getSelectedItem().toString();
         Date Ngaysanxuat = dateNgaysanxuat.getDate();
         String Loaisp = cbxLoaisp1.getSelectedItem().toString();
         String TrangthaiStr = cbxTrangthai.getSelectedItem().toString();
@@ -293,7 +367,7 @@ public class UpdateProduct extends javax.swing.JDialog {
         int Trangthai = TrangthaiStr.equals("Đang bán") ? 1 : 0;
         String Ghichu = txtGhichu.getText().trim();
         // Cập nhật đối tượng sản phẩm
-        Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp, Mancc, Trangthai, Ghichu);
+        Sanpham sp = new Sanpham(Masp, Tensp, selectedImagePath, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp, Mancc, Trangthai, Ghichu);
         // Cập nhật DB
         int result = SanphamDAO.getInstance().update(sp);
         if (result > 0) {
@@ -304,6 +378,10 @@ public class UpdateProduct extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Sửa sản phẩm thất bại!");
         }
     }//GEN-LAST:event_btnAddProductActionPerformed
+
+    private void txtSoluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoluongActionPerformed
 
     private void cbxLoaisp1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLoaisp1ItemStateChanged
 
@@ -316,6 +394,37 @@ public class UpdateProduct extends javax.swing.JDialog {
     private void cbxLoaisp1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxLoaisp1PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxLoaisp1PropertyChange
+
+    private void btnAddPictureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPictureActionPerformed
+         JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Chọn ảnh sản phẩm");
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        javax.swing.filechooser.FileNameExtensionFilter filter =
+                new javax.swing.filechooser.FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif", "bmp");
+        chooser.setFileFilter(filter);
+
+        int result = chooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String srcPath = chooser.getSelectedFile().getAbsolutePath();
+            int w = jPanel2.getWidth() - 6;
+            int h = jPanel2.getHeight() - 6;
+            ImageIcon icon = new ImageIcon(new ImageIcon(srcPath).getImage().getScaledInstance(
+                    w > 0 ? w : 150, h > 0 ? h : 150, Image.SCALE_SMOOTH));
+            jLabel14.setIcon(icon);
+
+            String masp = txtMasp.getText() != null ? txtMasp.getText().trim() : "";
+            if (masp.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mã sản phẩm rỗng. Vui lòng nhập mã trước khi chọn ảnh.");
+                return;
+            }
+            String saved = saveImageToAppFolder(srcPath, masp);
+            if (saved != null) {
+                this.selectedImagePath = saved;
+                System.out.println("Ảnh đã lưu: " + saved);
+        }
+
+        }
+    }//GEN-LAST:event_btnAddPictureActionPerformed
 
     /**
      * @param args the command line arguments
@@ -363,17 +472,21 @@ public class UpdateProduct extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddPicture;
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCancel;
     private javax.swing.JComboBox<String> cbxLoaisp1;
+    private javax.swing.JComboBox<String> cbxMancc;
     private javax.swing.JComboBox<String> cbxTrangthai;
     private com.toedter.calendar.JDateChooser dateHansudung;
     private com.toedter.calendar.JDateChooser dateNgaysanxuat;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -384,13 +497,13 @@ public class UpdateProduct extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtDonvitinh;
     private javax.swing.JTextField txtGhichu;
     private javax.swing.JTextField txtGiaban;
     private javax.swing.JTextField txtGianhap;
     private javax.swing.JTextField txtGianhap1;
-    private javax.swing.JTextField txtMancc;
     private javax.swing.JTextField txtMasp;
     private javax.swing.JTextField txtSoluong;
     private javax.swing.JTextField txtTensp;

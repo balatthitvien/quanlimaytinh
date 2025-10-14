@@ -11,6 +11,7 @@ import dao.GiamgiaDAO;
 import dao.SanphamDAO;
 import dao.PhieuNhapDAO;
 import dao.PhieuXuatDAO;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -24,6 +25,7 @@ import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
@@ -54,99 +56,124 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
     private ArrayList<ChiTietPhieuXuat> CTPhieu;
     private String currentUserName; 
     public XuatHangForm() {
-        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
-        ui.setNorthPane(null);
-        initComponents();
-        allProduct = SanphamDAO.getInstance().selectAllExist();
-        // Định dạng độ rộng
-        initTable();
-        loadDataToTableProduct(allProduct);
-        tblSanPham.setDefaultEditor(Object.class, null);
-        tblNhapHang.setDefaultEditor(Object.class, null);
-        MaPhieu = createId(PhieuXuatDAO.getInstance().selectAll());
-        txtMaPhieu.setText(MaPhieu);
-        CTPhieu = new ArrayList<ChiTietPhieuXuat>();
-        txtNguoiTao.setFocusable(false);
-        // Lắng nghe khi chọn dòng trong bảng sản phẩm
-tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
-            int row = tblSanPham.getSelectedRow();
-            if (row != -1) {
-                String masp = tblSanPham.getValueAt(row, 0).toString();
-                Sanpham sp = findSanpham(masp);
+    BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
+    ui.setNorthPane(null);
+    initComponents();
+    allProduct = SanphamDAO.getInstance().selectAllExist();
+    initTable();
+    loadDataToTableProduct(allProduct);
+    tblSanPham.setDefaultEditor(Object.class, null);
+    tblNhapHang.setDefaultEditor(Object.class, null);
+    MaPhieu = createId(PhieuXuatDAO.getInstance().selectAll());
+    txtMaPhieu.setText(MaPhieu);
+    CTPhieu = new ArrayList<ChiTietPhieuXuat>();
+    txtNguoiTao.setFocusable(false);
 
-                cbxMagiamgia.removeAllItems(); // Clear
-                cbxMagiamgia.addItem("Không có"); // Default option
+    tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting()) {
+                int row = tblSanPham.getSelectedRow();
+                if (row != -1) {
+                    String masp = tblSanPham.getValueAt(row, 0).toString();
+                    Sanpham sp = findSanpham(masp);
 
-                ArrayList<Giamgia> dsGiamGia = GiamgiaDAO.getInstance().selectAllExist()
-                    .stream()
-                    .filter(g -> g.getLoaisp().equalsIgnoreCase(sp.getLoaisp()))
-                    .collect(Collectors.toCollection(ArrayList::new));
+                    cbxMagiamgia.removeAllItems(); 
+                    cbxMagiamgia.addItem("Không có"); 
 
-                for (Giamgia g : dsGiamGia) {
-                    cbxMagiamgia.addItem(g.getMagiamgia() + " - " + g.getPhantramgiam() + "%");
+                    ArrayList<Giamgia> dsGiamGia = GiamgiaDAO.getInstance().selectAllExist()
+                        .stream()
+                        .filter(g -> g.getLoaisp().equalsIgnoreCase(sp.getLoaisp()))
+                        .collect(Collectors.toCollection(ArrayList::new));
+
+                    for (Giamgia g : dsGiamGia) {
+                        cbxMagiamgia.addItem(g.getMagiamgia() + " - " + g.getPhantramgiam() + "%");
+                    }
                 }
             }
         }
-    }
-});
+    });
 
     btnApdung.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        int row = tblSanPham.getSelectedRow();
-        if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
-            String Masp = tblSanPham.getValueAt(row, 0).toString();
-            Sanpham sp = findSanpham(Masp);
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int row = tblSanPham.getSelectedRow();
+            if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
+                String Masp = tblSanPham.getValueAt(row, 0).toString();
+                Sanpham sp = findSanpham(Masp);
 
-            String selectedItem = cbxMagiamgia.getSelectedItem().toString();
-            String Magiamgia = selectedItem.split(" - ")[0];
-            int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
+                String selectedItem = cbxMagiamgia.getSelectedItem().toString();
+                String Magiamgia = selectedItem.split(" - ")[0];
+                int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
 
-            double giagoc = sp.getGiaban();
-            double giam = giagoc * (phantram / 100.0);
-            double giasaugiam = giagoc - giam;
+                double giagoc = sp.getGiaban();
+                double giam = giagoc * (phantram / 100.0);
+                double giasaugiam = giagoc - giam;
 
-            ChiTietPhieuXuat item = findCTPhieu(Masp);
-            if (item != null) {
-                item.setGiaban(giasaugiam);
+                ChiTietPhieuXuat item = findCTPhieu(Masp);
+                if (item != null) {
+                    item.setGiaban(giasaugiam);
+                }
+
+                loadDataToTableNhapHang();
+                textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
             }
-
-            loadDataToTableNhapHang();
-            textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
         }
-    }
+    });
 }
-    );
 
-    }
+ 
 
     public final void initTable() {
-        tblModel = new DefaultTableModel();
-        String[] headerTbl = new String[]{"Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán"};
-        tblModel.setColumnIdentifiers(headerTbl);
-        tblSanPham.setModel(tblModel);
-        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(5);
-        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(5);
-        tblNhapHang.getColumnModel().getColumn(0).setPreferredWidth(5);
-        tblNhapHang.getColumnModel().getColumn(1).setPreferredWidth(10);
-        tblNhapHang.getColumnModel().getColumn(2).setPreferredWidth(250);
-    }
+    tblModel = new DefaultTableModel() {
+        @Override
+        public Class<?> getColumnClass(int column) {
+            if (column == 2) { // Cột Ảnh
+                return ImageIcon.class;
+            }
+            return Object.class;
+        }
+    };
+    String[] headerTbl = new String[]{"Mã sản phẩm", "Tên sản phẩm", "Ảnh", "Số lượng", "Giá bán"};
+    tblModel.setColumnIdentifiers(headerTbl);
+    tblSanPham.setModel(tblModel);
+
+    tblSanPham.setRowHeight(60); // chỉnh chiều cao hàng để ảnh hiển thị đẹp
+    tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(80);
+    tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(200);
+    tblSanPham.getColumnModel().getColumn(2).setPreferredWidth(100);
+    tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(60);
+    tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(100);
+}
+
 
     private void loadDataToTableProduct(ArrayList<Sanpham> arrProd) {
-        try {
-            tblModel.setRowCount(0);
-            for (var i : arrProd) {
-                tblModel.addRow(new Object[]{
-                    i.getMasp(), i.getTensp(), i.getSoluong(), formatter.format(i.getGiaban()) + "đ"
-                });
+    try {
+        tblModel.setRowCount(0);
+        for (var i : arrProd) {
+            ImageIcon icon = null;
+            try {
+                if (i.getAnhpath() != null && !i.getAnhpath().isEmpty()) {
+                    Image img = new ImageIcon(i.getAnhpath()).getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    icon = new ImageIcon(img);
+                }
+            } catch (Exception e) {
+                System.out.println("Không load được ảnh: " + i.getAnhpath());
             }
-        } catch (Exception e) {
+
+            tblModel.addRow(new Object[]{
+                i.getMasp(),
+                i.getTensp(),
+                icon, // ảnh
+                i.getSoluong(),
+                formatter.format(i.getGiaban()) + "đ"
+            });
         }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
 
     public double tinhTongTien() {
         double tt = 0;
@@ -181,9 +208,27 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
             tblNhapHangmd.setRowCount(0);
 
             for (int i = 0; i < CTPhieu.size(); i++) {
-                tblNhapHangmd.addRow(new Object[]{
-                    i + 1, CTPhieu.get(i).getMasp(), findSanpham(CTPhieu.get(i).getMasp()).getTensp(), CTPhieu.get(i).getSoluong(), formatter.format(CTPhieu.get(i).getGiaban()) + "đ"
-                });
+               Sanpham sp = findSanpham(CTPhieu.get(i).getMasp());
+ImageIcon icon = null;
+try {
+    if (sp.getAnhpath() != null && !sp.getAnhpath().isEmpty()) {
+        Image img = new ImageIcon(sp.getAnhpath()).getImage()
+            .getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(img);
+    }
+} catch (Exception e) {
+    System.out.println("Không load được ảnh: " + sp.getAnhpath());
+}
+
+tblNhapHangmd.addRow(new Object[]{
+    i + 1,
+    sp.getMasp(),
+    sp.getTensp(),
+    icon,  // ảnh sản phẩm
+    CTPhieu.get(i).getSoluong(),
+    formatter.format(CTPhieu.get(i).getGiaban()) + "đ"
+});
+
                 sum += CTPhieu.get(i).getGiaban();
             }
         } catch (Exception e) {
@@ -277,9 +322,10 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
         btnNhapHang.setBackground(new java.awt.Color(153, 0, 153));
         btnNhapHang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 18)); // NOI18N
         btnNhapHang.setForeground(new java.awt.Color(255, 255, 255));
-        btnNhapHang.setText("Xuất hàng");
+        btnNhapHang.setActionCommand("Xuất Hàng");
         btnNhapHang.setBorder(null);
         btnNhapHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNhapHang.setLabel("Xuất Hoá Đơn");
         btnNhapHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNhapHangActionPerformed(evt);
@@ -334,6 +380,16 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
 
         cbxMagiamgia.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         cbxMagiamgia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Chọn mã giảm giá--", "Không có" }));
+        cbxMagiamgia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbxMagiamgiaMouseClicked(evt);
+            }
+        });
+        cbxMagiamgia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMagiamgiaActionPerformed(evt);
+            }
+        });
         jPanel2.add(cbxMagiamgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 250, 40));
 
         btnApdung.setBackground(new java.awt.Color(0, 0, 204));
@@ -345,7 +401,12 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
                 btnApdungMouseClicked(evt);
             }
         });
-        jPanel2.add(btnApdung, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 90, 40));
+        btnApdung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApdungActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnApdung, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 120, 100, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 620, 750));
 
@@ -354,13 +415,13 @@ tblSanPham.getSelectionModel().addListSelectionListener(new ListSelectionListene
         tblSanPham.setFont(tblSanPham.getFont().deriveFont((float)15));
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán"
+                "Mã sản phẩm", "Tên sản phẩm", "Ảnh", "Số lượng", "Giá bán"
             }
         ));
         jScrollPane2.setViewportView(tblSanPham);
@@ -523,6 +584,37 @@ if (result <= 0) {
             }
         }
     }//GEN-LAST:event_btnNhapHangActionPerformed
+// Xử lý sự kiện khi chọn giảm giá trong ComboBox
+private void cbxMagiamgiaActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    int row = tblSanPham.getSelectedRow();
+    if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
+        // Lấy mã sản phẩm đang chọn
+        String Masp = tblSanPham.getValueAt(row, 0).toString();
+        Sanpham sp = findSanpham(Masp);
+
+        // Lấy thông tin giảm giá từ comboBox
+        String selectedItem = cbxMagiamgia.getSelectedItem().toString();
+        if (!selectedItem.equals("Không có")) {
+            String Magiamgia = selectedItem.split(" - ")[0];
+            int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
+
+            // Tính giá sau khi giảm
+            double giagoc = sp.getGiaban();
+            double giam = giagoc * (phantram / 100.0);
+            double giasaugiam = giagoc - giam;
+
+            // Cập nhật vào chi tiết phiếu xuất
+            ChiTietPhieuXuat item = findCTPhieu(Masp);
+            if (item != null) {
+                item.setGiaban(giasaugiam);
+            }
+
+            // Load lại bảng nhập hàng và tổng tiền
+            loadDataToTableNhapHang();
+            textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
+        }
+    }
+}     
 
     private void addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductActionPerformed
         // TODO add your handling code here:
@@ -565,6 +657,40 @@ if (result <= 0) {
             }
         }
     }//GEN-LAST:event_addProductActionPerformed
+// Xử lý khi bấm nút Áp dụng
+private void btnApdungActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    int row = tblSanPham.getSelectedRow();
+    if (row != -1 && cbxMagiamgia.getSelectedIndex() != -1) {
+        String Masp = tblSanPham.getValueAt(row, 0).toString();
+        Sanpham sp = findSanpham(Masp);
+
+        String selectedItem = cbxMagiamgia.getSelectedItem().toString();
+        if (!selectedItem.equals("Không có")) {
+            String Magiamgia = selectedItem.split(" - ")[0];
+            int phantram = Integer.parseInt(selectedItem.split(" - ")[1].replace("%", ""));
+
+            double giagoc = sp.getGiaban();
+            double giam = giagoc * (phantram / 100.0);
+            double giasaugiam = giagoc - giam;
+
+            // Cập nhật lại chi tiết phiếu
+            ChiTietPhieuXuat item = findCTPhieu(Masp);
+            if (item != null) {
+                item.setGiaban(giasaugiam);
+            }
+
+            // Load lại bảng nhập hàng và cập nhật tổng tiền
+            loadDataToTableNhapHang();
+            textTongTien.setText(formatter.format(tinhTongTien()) + "đ");
+
+            JOptionPane.showMessageDialog(this, 
+                "Áp dụng giảm giá " + phantram + "% cho sản phẩm " + sp.getTensp() 
+                + "\nGiá sau giảm: " + formatter.format(giasaugiam) + "đ");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm và mã giảm giá trước khi áp dụng!");
+    }
+}    
 
     private void deleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductActionPerformed
         // TODO add your handling code here:
@@ -677,6 +803,10 @@ if (result <= 0) {
     private void btnApdungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnApdungMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnApdungMouseClicked
+
+    private void cbxMagiamgiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxMagiamgiaMouseClicked
+        // TODOdd your handling code here:
+    }//GEN-LAST:event_cbxMagiamgiaMouseClicked
 
     public String createId(ArrayList<PhieuXuat> arr) {
         int id = arr.size() + 1;

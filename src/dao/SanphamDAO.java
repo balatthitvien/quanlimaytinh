@@ -29,21 +29,22 @@ public class SanphamDAO implements DAOInterface<Sanpham> {
          int ketqua = 0;
     try {
         Connection con = JDBCUtil.getConnection();
-        String sql = "INSERT INTO sanpham (Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ghichu, Trangthai, Ngaysanxuat, Hansudung) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO sanpham (Masp, Tensp,Anhpath, Donvitinh, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ghichu, Trangthai, Ngaysanxuat, Hansudung) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, t.getMasp());
         pst.setString(2, t.getTensp());
-        pst.setString(3, t.getDonvitinh());
-        pst.setInt(4, t.getSoluong());
-        pst.setDouble(5, t.getGianhap());
-        pst.setDouble(6, t.getGiaban());
-        pst.setString(7, t.getLoaisp());
-        pst.setString(8, t.getMancc());
-        pst.setString(9, t.getGhichu());
-        pst.setInt(10, t.getTrangthai());
-        pst.setDate(11, new java.sql.Date(t.getNgaysanxuat().getTime()));
-        pst.setDate(12, new java.sql.Date(t.getHansudung().getTime()));
+        pst.setString(3, t.getAnhpath());
+        pst.setString(4, t.getDonvitinh());
+        pst.setInt(5, t.getSoluong());
+        pst.setDouble(6, t.getGianhap());
+        pst.setDouble(7, t.getGiaban());
+        pst.setString(8, t.getLoaisp());
+        pst.setString(9, t.getMancc());
+        pst.setString(10, t.getGhichu());
+        pst.setInt(11, t.getTrangthai());
+        pst.setDate(12, new java.sql.Date(t.getNgaysanxuat().getTime()));
+        pst.setDate(13, new java.sql.Date(t.getHansudung().getTime()));
 
         ketqua = pst.executeUpdate();
         JDBCUtil.closeConnection(con);
@@ -58,27 +59,28 @@ public int update(Sanpham t) {
     int ketqua = 0;
     try {
         Connection con = JDBCUtil.getConnection();
-        String sql = "UPDATE sanpham SET Tensp = ?, Donvitinh = ?, Soluong = ?, Gianhap = ?, Giaban = ?, "
+        String sql = "UPDATE sanpham SET Tensp = ?, Anhpath = ?, Donvitinh = ?, Soluong = ?, Gianhap = ?, Giaban = ?, "
                    + "Loaisp = ?, Mancc = ?, Ghichu = ?, Trangthai = ?, Ngaysanxuat = ?, Hansudung = ? "
                    + "WHERE Masp = ?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, t.getTensp());
-        pst.setString(2, t.getDonvitinh());
-        pst.setInt(3, t.getSoluong());
-        pst.setDouble(4, t.getGianhap());
-        pst.setDouble(5, t.getGiaban());
-        pst.setString(6, t.getLoaisp());
-        pst.setString(7, t.getMancc());
-        pst.setString(8, t.getGhichu());
-        pst.setInt(9, t.getTrangthai());
+        pst.setString(2, t.getAnhpath());
+        pst.setString(3, t.getDonvitinh());
+        pst.setInt(4, t.getSoluong());
+        pst.setDouble(5, t.getGianhap());
+        pst.setDouble(6, t.getGiaban());
+        pst.setString(7, t.getLoaisp());
+        pst.setString(8, t.getMancc());
+        pst.setString(9, t.getGhichu());
+        pst.setInt(10, t.getTrangthai());
 
         // Convert java.util.Date -> java.sql.Date
         java.sql.Date sqlNgaySX = new java.sql.Date(t.getNgaysanxuat().getTime());
         java.sql.Date sqlHSD = new java.sql.Date(t.getHansudung().getTime());
-        pst.setDate(10, sqlNgaySX);
-        pst.setDate(11, sqlHSD);
+        pst.setDate(11, sqlNgaySX);
+        pst.setDate(12, sqlHSD);
 
-        pst.setString(12, t.getMasp());
+        pst.setString(13, t.getMasp());
 
         ketqua = pst.executeUpdate();
         JDBCUtil.closeConnection(con);
@@ -111,12 +113,13 @@ public int update(Sanpham t) {
     ArrayList<Sanpham> ketQua = new ArrayList<>();
     try {
         Connection con = JDBCUtil.getConnection();
-        String sql = "SELECT Masp, Tensp,Donvitinh, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ngaysanxuat, Hansudung, Trangthai FROM sanpham";
+        String sql = "SELECT Masp, Tensp,Anhpath,Donvitinh, Soluong, Gianhap, Giaban, Loaisp, Mancc, Ngaysanxuat, Hansudung, Trangthai FROM sanpham";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
         while (rs.next()) {
             String Masp = rs.getString("Masp");
             String Tensp = rs.getString("Tensp");
+            String Anhpath = rs.getString("Anhpath");
             String Donvitinh = rs.getString("Donvitinh");
             int Soluong = rs.getInt("Soluong");
             double Gianhap = rs.getDouble("Gianhap");
@@ -127,7 +130,7 @@ public int update(Sanpham t) {
             Date Hansudung = rs.getDate("Hansudung");
             int Trangthai =rs.getInt("Trangthai");
  
-           Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp, Mancc, Trangthai, "");
+           Sanpham sp = new Sanpham(Masp, Tensp,Anhpath, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp, Mancc, Trangthai, "");
 
             ketQua.add(sp);
         }
@@ -144,13 +147,14 @@ public int update(Sanpham t) {
         Sanpham ketQua = null;
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT Masp,Tensp,Donvitinh,Soluong,Gianhap,Giaban,Ngaysanxuat,Hansudung,Loaisp,Mancc,TrangThai,Ghichu FROM sanpham WHERE Masp = ?";
+            String sql = "SELECT Masp,Tensp,Anhpath,Donvitinh,Soluong,Gianhap,Giaban,Ngaysanxuat,Hansudung,Loaisp,Mancc,TrangThai,Ghichu FROM sanpham WHERE Masp = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, t);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 String Masp = rs.getString("Masp");
                 String Tensp = rs.getString("Tensp");
+                String Anhpath = rs.getString("Anhpath");
                 String Donvitinh =rs.getString("Donvitinh");
                 int Soluong = rs.getInt("Soluong");
                 double Gianhap = rs.getDouble("Gianhap");
@@ -161,7 +165,7 @@ public int update(Sanpham t) {
                 String Mancc = rs.getString("Mancc");
                 int Trangthai = rs.getInt("Trangthai");
                 String Ghichu = rs.getString("Ghichu");
-                ketQua = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp,Mancc, Trangthai, Ghichu);
+                ketQua = new Sanpham(Masp, Tensp,Anhpath, Donvitinh, Soluong, Gianhap, Giaban, Ngaysanxuat, Hansudung, Loaisp,Mancc, Trangthai, Ghichu);
             }
             JDBCUtil.closeConnection(con);
         } catch (Exception e) {
@@ -207,12 +211,13 @@ public int update(Sanpham t) {
         ArrayList<Sanpham> ketQuaTonKho = new ArrayList<>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT Masp,Tensp,Donvitinh,Soluong,Gianhap,Giaban,Ngaysanxuat,Hansudung,Loaisp,Mancc,TrangThai,Ghichu  FROM sanpham";
+            String sql = "SELECT Masp,Tensp,Anhpath, Donvitinh,Soluong,Gianhap,Giaban,Ngaysanxuat,Hansudung,Loaisp,Mancc,TrangThai,Ghichu  FROM sanpham";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 String Masp = rs.getString("Masp");
                 String Tensp = rs.getString("Tensp");
+                 String Anhpath = rs.getString("Anhpath");
                 String Donvitinh = rs.getString("Donvitinh");
                 int Soluong = rs.getInt("Soluong");
                 double Gianhap = rs.getDouble("Gianhap");
@@ -223,7 +228,7 @@ public int update(Sanpham t) {
                 String Mancc = rs.getString("Mancc");
                 int Trangthai = rs.getInt("Trangthai");
                 String Ghichu = rs.getString("Ghichu");
-                Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap,Giaban, Ngaysanxuat, Hansudung, Loaisp,Mancc, Trangthai,Ghichu);
+                Sanpham sp = new Sanpham(Masp, Tensp,Anhpath, Donvitinh, Soluong, Gianhap,Giaban, Ngaysanxuat, Hansudung, Loaisp,Mancc, Trangthai,Ghichu);
                 ketQua.add(sp);
             }
             for (Sanpham Sanpham : ketQua) {
@@ -243,12 +248,13 @@ public int update(Sanpham t) {
         ArrayList<Sanpham> ketQua = new ArrayList<Sanpham>();
         try {
             Connection con = JDBCUtil.getConnection();
-            String sql = "SELECT Masp,Tensp,Donvitinh,Soluong,Gianhap,Giaban,Ngaysanxuat,Hansudung,Loaisp,Mancc,TrangThai,Ghichu  FROM sanpham WHERE Trangthai = 1";
+            String sql = "SELECT Masp,Tensp,Anhpath,Donvitinh,Soluong,Gianhap,Giaban,Ngaysanxuat,Hansudung,Loaisp,Mancc,TrangThai,Ghichu  FROM sanpham WHERE Trangthai = 1";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
               String Masp = rs.getString("Masp");
                 String Tensp = rs.getString("Tensp");
+                String Anhpath = rs.getString("Anhpath");
                 String Donvitinh = rs.getString("Donvitinh");
                 int Soluong = rs.getInt("Soluong");
                 double Gianhap = rs.getDouble("Gianhap");
@@ -259,7 +265,7 @@ public int update(Sanpham t) {
                 String Mancc = rs.getString("Mancc");
                 int Trangthai = rs.getInt("Trangthai");
                 String Ghichu = rs.getString("Ghichu");
-                Sanpham sp = new Sanpham(Masp, Tensp, Donvitinh, Soluong, Gianhap,Giaban, Ngaysanxuat, Hansudung, Loaisp,Mancc, Trangthai,Ghichu);
+                Sanpham sp = new Sanpham(Masp, Tensp,Anhpath,Donvitinh, Soluong, Gianhap,Giaban, Ngaysanxuat, Hansudung, Loaisp,Mancc, Trangthai,Ghichu);
                 ketQua.add(sp);
             }
             JDBCUtil.closeConnection(con);

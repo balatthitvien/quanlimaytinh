@@ -7,6 +7,7 @@ package view;
 import controller.SearchProduct;
 import dao.SanphamDAO;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -27,6 +29,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import model.Account;
 import model.Sanpham;
@@ -46,6 +49,19 @@ public class ProductForm extends javax.swing.JInternalFrame {
     
     public ProductForm() {
     initComponents();
+tblSanPham.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer() {
+    @Override
+    public void setValue(Object value) {
+        if (value instanceof ImageIcon imageIcon) {
+            setIcon(imageIcon);
+            setText("");
+        } else {
+            setIcon(null);
+            setText((value == null) ? "" : value.toString());
+        }
+    }
+});
+
     BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
     ui.setNorthPane(null);
     tblSanPham.setDefaultEditor(Object.class, null);
@@ -79,13 +95,22 @@ public class ProductForm extends javax.swing.JInternalFrame {
     try {
         SanphamDAO mtdao = new SanphamDAO();
         ArrayList<Sanpham> armt = mtdao.selectAll();
-        tblModel.setRowCount(0); 
+        tblModel.setRowCount(0);
 
         for (Sanpham sp : armt) {
             if (sp.getTrangthai() == 1) {
+                ImageIcon icon = null;
+                if (sp.getAnhpath() != null && !sp.getAnhpath().isEmpty()) {
+                    File file = new File(sp.getAnhpath());
+                    if (file.exists()) {
+                        icon = resizeImage(sp.getAnhpath(), 60, 60); 
+                    }
+                }
+
                 tblModel.addRow(new Object[]{
                     sp.getMasp(),
                     sp.getTensp(),
+                    icon, 
                     sp.getDonvitinh(),
                     sp.getSoluong(),
                     formatter.format(sp.getGianhap()) + "đ",
@@ -99,11 +124,12 @@ public class ProductForm extends javax.swing.JInternalFrame {
             }
         }
 
-
+        tblSanPham.setRowHeight(60);
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
+
 
 
 
@@ -259,7 +285,7 @@ public class ProductForm extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Đơn vị tính", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái"
+                "Mã sản phẩm", "Tên sản phẩm", "Ảnh", "Đơn vị tính", "Số lượng", "Giá nhập", "Giá bán", "Loại sản phẩm", "Mã nhà cung cấp", "Ngày sản xuất", "Hạn sử dụng", "Trạng thái"
             }
         ));
         jScrollPane1.setViewportView(tblSanPham);
@@ -434,7 +460,12 @@ public class ProductForm extends javax.swing.JInternalFrame {
     }
     return result;
 }
-
+private ImageIcon resizeImage(String path, int width, int height) {
+    ImageIcon icon = new ImageIcon(path);
+    Image img = icon.getImage();
+    Image newImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+    return new ImageIcon(newImg);
+}
    public void xoaSanphamSelect() {
     int i_row = tblSanPham.getSelectedRow();
     if (i_row == -1) {
@@ -469,24 +500,40 @@ public class ProductForm extends javax.swing.JInternalFrame {
     String masp = tblSanPham.getValueAt(selectedRow, 0).toString(); 
     return SanphamDAO.getInstance().selectById(masp);
 }
-    public void loadDataToTableSearch(ArrayList<Sanpham> result) {
-        try {
-            tblModel.setRowCount(0);
-            System.out.println("Số kết quả tìm kiếm: " + result.size());
-            for (Sanpham i : result) {         
-                tblModel.addRow(new Object[]{
-    i.getMasp(), i.getTensp(),i.getDonvitinh(), i.getSoluong(),
-    formatter.format(i.getGianhap()) + "đ",
-    formatter.format(i.getGiaban()) + "đ",
-    i.getLoaisp(), i.getMancc(),
-    i.getNgaysanxuat(), i.getHansudung(),
-    i.getTrangthai() == 1 ? "Đang bán" : "Ngưng bán"
-});
+   public void loadDataToTableSearch(ArrayList<Sanpham> result) {
+    try {
+        tblModel.setRowCount(0);
+        System.out.println("Số kết quả tìm kiếm: " + result.size());
+        for (Sanpham sp : result) {
+            ImageIcon icon = null;
+            if (sp.getAnhpath() != null && !sp.getAnhpath().isEmpty()) {
+                File file = new File(sp.getAnhpath());
+                if (file.exists()) {
+                    icon = resizeImage(sp.getAnhpath(), 60, 60);
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            tblModel.addRow(new Object[]{
+                sp.getMasp(),
+                sp.getTensp(),
+                icon,
+                sp.getDonvitinh(),
+                sp.getSoluong(),
+                formatter.format(sp.getGianhap()) + "đ",
+                formatter.format(sp.getGiaban()) + "đ",
+                sp.getLoaisp(),
+                sp.getMancc(),
+                sp.getNgaysanxuat(),
+                sp.getHansudung(),
+                sp.getTrangthai() == 1 ? "Đang bán" : "Ngưng bán"
+            });
         }
+        tblSanPham.setRowHeight(60);
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
     public void changeTextFind() {
         jTextFieldSearch.getDocument().addDocumentListener(new DocumentListener() {
             @Override
