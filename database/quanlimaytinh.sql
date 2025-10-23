@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2025 at 04:52 PM
+-- Generation Time: Oct 23, 2025 at 04:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ INSERT INTO `account` (`fullName`, `userName`, `password`, `role`, `status`, `em
 ('Admin', 'admin', '$2a$12$Y87zSnx.tpFvieylSeXuo.agjb7swi3UVnoo6KVMY9xP5STj4zJhm', 'Admin', 1, 'sinhbaoreact2003@gmail.com'),
 ('anhsu', 'anhsu', '$2a$12$Rn.O85eDspOTe.W9F3Y.K.WRCtH7H.IkWTeBeHA4nXi/vHifYY7bW', 'Nhân viên nhập', 1, 'mrcauut007@gmail.com'),
 ('Hoàng Gia Bảo', 'bobo', '$2a$12$PhiTGBbHjHoB3dbS6BmCC.rzdMCBqDrdK9Y8Ae8GPcKe1RpHiWARO', 'Nhân viên xuất', 1, 'hgiabao2k3@gmail.com'),
-('Nguyen Tien Hung', 'hung', '$2a$12$DYWXqBfB9ka8Lc1IipIlCO/VI6K5VL3LVRfsmDsMypWcdLUHKFJA2', 'Quản lý kho', 1, '3latthitvien@gmail.com'),
+('Nguyen Tien Hung', 'hung', '$2a$12$K1pcDvxeaZgHcTBMfDsf7.iOWSae.jYqskkd32Aa46iW7jdEp8w6G', 'Quản lý kho', 1, '3latthitvien@gmail.com'),
 ('Trần Nhật Sinh', 'sinhsinh1122', '$2a$12$89As1J0AB0yrqGjnQUHtpevc6voGyvzAd8OvzkS1vGDo3YPO2P.Ia', 'Nhân viên nhập', 1, 'transinh342@gmail.com'),
 ('Nguyễn Thiên Ân', 'thienan', '$2a$12$myOaq0kATMzNkbxgzQEkPu8ht2K0pXOGzZMZo6nSBowq6EyoLo7tS', 'Quản lý kho', 1, 'a11611112003@gmail.com');
 
@@ -66,9 +66,10 @@ CREATE TABLE `chitietphieunhap` (
 --
 
 INSERT INTO `chitietphieunhap` (`Maphieu`, `Masp`, `Soluong`, `Gianhap`) VALUES
-('PN1', 'SP02', 10, 5000),
 ('PN2', 'SP08', 8, 40000),
-('PN3', 'SP03', 10, 120000);
+('PN3', 'SP03', 10, 120000),
+('PN4', 'SP07', 1, 7000),
+('PN4', 'SP08', 1, 40000);
 
 -- --------------------------------------------------------
 
@@ -174,11 +175,12 @@ CREATE TABLE `giamgia` (
 
 INSERT INTO `giamgia` (`Magiamgia`, `Loaisp`, `Phantramgiam`, `Ngaybatdau`, `Ngayketthuc`, `Mota`, `Trangthai`) VALUES
 ('2/9', 'Thực phẩm', 20, '2025-07-02', '2025-07-03', 'heello', 0),
+('2010phunuvn', 'Mỹ phẩm', 20, '2025-10-19', '2025-11-01', '', 1),
 ('30/4', 'Thực phẩm', 100, '2025-07-02', '2025-07-04', '....', 0),
-('HappyValentine', 'Mỹ phẩm', 30, '2025-06-25', '2025-06-28', 'Chúc mừng cặp đôi', 0),
-('HappyWomanDay', 'Mỹ phẩm', 20, '2025-06-25', '2025-07-17', 'Chúc mừng', 1),
+('HappyValentine', 'Mỹ phẩm', 30, '2025-06-25', '2025-06-28', 'Chúc mừng cặp đôi', 1),
+('HappyWomanDay', 'Mỹ phẩm', 20, '2025-06-25', '2025-07-17', 'Chúc mừng', 0),
 ('NhaGiaoVN', 'Văn phòng phẩm', 20, '2025-06-26', '2025-06-30', 'xin chao', 0),
-('Sale7', 'Thực phẩm', 25, '2025-07-08', '2025-08-08', 'sale 1 month', 1);
+('Sale7', 'Thực phẩm', 25, '2025-07-08', '2025-08-08', 'sale 1 month', 0);
 
 -- --------------------------------------------------------
 
@@ -206,7 +208,13 @@ INSERT INTO `nhacungcap` (`Mancc`, `Tenncc`, `Sdt`, `Diachi`) VALUES
 ('NCC05', 'Ghế Đức Anh', '0932832732', 'Hà Nội'),
 ('NCC06', 'Mì tám tôm', '0382786372', 'Nghệ An'),
 ('NCC07', 'Hảo Hảo', '0373826327', 'Hà Nội'),
-('NCC08', 'Bánh kẹo Kingdom', '02732883733', 'Tp Hồ Chí Minh');
+('NCC08', 'Bánh kẹo Kingdom', '02732883733', 'Tp Hồ Chí Minh'),
+('NCC09', 'Gạo Ngon', '0328248845', 'Hưng yên'),
+('NCC10', 'Chinsu', '0928277774', 'Phú Quốc'),
+('NCC11', 'Đồ dùng thiết yếu', '0938274754', 'Bắc Ninh'),
+('NCC12', 'Sữa tổng hợp', '02226364734', 'Hải Phòng'),
+('NCC13', 'Đồ ăn hàng ngày', '0382738543', 'Thanh Hóa'),
+('NCC14', 'Công ty nước ngọt', '0222323345', 'Hà Nội');
 
 -- --------------------------------------------------------
 
@@ -227,9 +235,9 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`Maphieu`, `Thoigiantao`, `Nguoitao`, `Mancc`, `Tongtien`) VALUES
-('PN1', '2025-06-25 00:08:12', 'admin', 'NC002', 50000),
 ('PN2', '2025-07-10 03:20:04', 'admin', 'NC002', 320000),
-('PN3', '2025-07-11 04:33:10', 'anhsu', 'NC002', 1200000);
+('PN3', '2025-07-11 04:33:10', 'anhsu', 'NC002', 1200000),
+('PN4', '2025-10-23 01:39:20', 'thienan', 'NC002', 40000);
 
 -- --------------------------------------------------------
 
@@ -307,7 +315,7 @@ CREATE TABLE `sanpham` (
   `Gianhap` double NOT NULL DEFAULT 0,
   `Giaban` double DEFAULT NULL,
   `Loaisp` varchar(50) NOT NULL DEFAULT '0',
-  `Mancc` varchar(20) DEFAULT NULL,
+  `Mancc` varchar(50) DEFAULT NULL,
   `Ghichu` varchar(50) DEFAULT NULL,
   `Trangthai` int(10) DEFAULT NULL,
   `Ngaysanxuat` date NOT NULL,
@@ -319,18 +327,28 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`Masp`, `Tensp`, `Anhpath`, `Donvitinh`, `Soluong`, `Gianhap`, `Giaban`, `Loaisp`, `Mancc`, `Ghichu`, `Trangthai`, `Ngaysanxuat`, `Hansudung`) VALUES
-('SP01', 'Ca tuoi', '', 'con', 10, 70000, 100000, 'Thực phẩm', 'NC002', '', 0, '2025-06-17', '2025-06-24'),
-('SP02', 'kẹo kéo', '', 'miếng', 20, 5000, 10000, 'Thực phẩm', 'NC002', '', 0, '2025-06-23', '2025-06-25'),
-('SP03', 'bánh ly que quẻ', '', 'túi', 29, 120000, 150000, 'Thực phẩm', 'NC002', '', 1, '2025-06-11', '2025-06-27'),
-('SP04', 'bút bi', '', 'chiếc', 93, 1000, 3000, 'Văn phòng phẩm', 'NCC01', '', 1, '2025-06-17', '2026-04-24'),
-('SP05', 'Son dưỡng', '', 'Cái', 10, 50000, 70000, 'Mỹ phẩm', 'NCC04', '', 1, '2025-06-23', '2026-06-24'),
-('SP06', 'Mì hảo hảo', '', 'Gói', 89, 2000, 3500, 'Thực phẩm', 'NCC07', '', 1, '2025-06-17', '2026-06-26'),
-('SP07', 'Bột canh Hảo hảo', '', 'hộp', 20, 7000, 10000, 'Thực phẩm', 'NCC07', '', 1, '2025-06-17', '2026-06-25'),
-('SP08', 'Bánh Bông Lan', '', 'Hộp', 16, 40000, 60000, 'Thực phẩm', 'NCC08', '', 1, '2025-06-17', '2026-06-26'),
-('SP09', 'Mì tám tôm', '', 'Thùng', 356, 100000, 120000, 'Thực phẩm', 'NCC06', '', 1, '2025-06-17', '2026-06-02'),
-('SP10', 'Ghế văn phòng công thái học', '', 'Chiếc', 39, 600000, 900000, 'Văn phòng phẩm', 'NCC05', '', 0, '2025-06-24', '2027-06-26'),
-('SP11', 'bánh đa', '', 'túi', 20, 10000, 15000, 'Thực phẩm', 'NC002', '', 1, '2025-07-09', '2025-07-01'),
-('SP12', 'Bút chì kim', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP12.jpeg', 'chiếc', 19, 8000, 12000, 'Văn phòng phẩm', 'NCC03', 'bút', 1, '2025-10-03', '2026-10-22');
+('SP01', 'Ca tuoi', 'images\\SP01.png', 'con', 10, 70000, 100000, 'Thực phẩm', 'NC002', '', 1, '2025-06-17', '2025-06-24'),
+('SP02', 'kẹo kéo', 'images\\SP02.png', 'miếng', 20, 5000, 10000, 'Thực phẩm', 'NC002', '', 1, '2025-06-23', '2025-06-25'),
+('SP03', 'bánh ly que quẻ', 'images\\SP03.png', 'túi', 29, 120000, 150000, 'Thực phẩm', 'NC002', '', 1, '2025-06-11', '2025-06-27'),
+('SP04', 'bút bi', 'images\\SP04.jpg', 'chiếc', 93, 1000, 3000, 'Văn phòng phẩm', 'NCC01', '', 1, '2025-06-17', '2026-04-24'),
+('SP05', 'Son dưỡng', 'images\\SP05.jpg', 'Cái', 10, 50000, 70000, 'Mỹ phẩm', 'NCC04', '', 1, '2025-06-23', '2026-06-24'),
+('SP06', 'Mì hảo hảo', 'images\\SP06.jpeg', 'Gói', 89, 2000, 3500, 'Thực phẩm', 'NCC07', '', 1, '2025-06-17', '2026-06-26'),
+('SP07', 'Bột canh Hảo hảo', 'images\\SP07.jpg', 'hộp', 21, 7000, 10000, 'Thực phẩm', 'NCC07', '', 1, '2025-06-17', '2026-06-25'),
+('SP08', 'Bánh Bông Lan', 'images\\SP08.jpg', 'Hộp', 17, 40000, 60000, 'Thực phẩm', 'NCC08', '', 1, '2025-06-17', '2026-06-26'),
+('SP09', 'Mì tám tôm', 'images\\SP09.jpg', 'Thùng', 356, 100000, 120000, 'Thực phẩm', 'NCC06', '', 1, '2025-06-17', '2026-06-02'),
+('SP10', 'Ghế văn phòng công thái học', 'images\\SP10.png', 'Chiếc', 39, 600000, 900000, 'Văn phòng phẩm', 'NCC05', '', 1, '2025-06-24', '2027-06-26'),
+('SP11', 'bánh đa', 'images\\SP11.jpg', 'túi', 20, 10000, 15000, 'Thực phẩm', 'NC002', '', 1, '2025-07-09', '2025-07-18'),
+('SP12', 'Bút chì kim', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP12.jpeg', 'chiếc', 19, 8000, 12000, 'Văn phòng phẩm', 'NCC03', 'bút', 1, '2025-10-03', '2026-10-22'),
+('SP13', 'Gạo ST25 5kg', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP13.jpg', 'Bao', 20, 180000, 200000, 'Thực phẩm', 'NCC09', '', 1, '2025-10-22', '2026-10-22'),
+('SP14', 'Nước mắm Nam Ngư 1L', 'images\\SP14.png', 'Chai', 30, 40000, 45000, 'Thực phẩm', 'NC009', '', 1, '2025-10-15', '2026-10-22'),
+('SP15', 'Dầu ăn Tường An 2L', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP15.png', 'Chai', 30, 70000, 80000, 'Thực phẩm', 'NCC10', '', 1, '2025-10-21', '2026-10-16'),
+('SP16', 'Tẩy Thiên Long', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP16.png', 'Cái', 20, 8000, 12000, 'Văn phòng phẩm', 'NCC03', '', 1, '2025-10-15', '2027-10-23'),
+('SP17', 'Cá khô', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP17.png', 'Túi', 10, 30000, 40000, 'Thực phẩm', 'NC009', '', 1, '2025-10-21', '2026-10-23'),
+('SP18', 'Bột giặt OMO 3kg', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP18.png', 'Túi', 20, 95000, 110000, 'Đồ dùng cá nhân', 'NCC11', '', 1, '2025-10-22', '2026-10-22'),
+('SP19', 'Sữa tươi Vinamilk 1L', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP19.png', 'Lốc', 100, 35000, 45000, 'Thực phẩm', 'NCC12', '', 1, '2025-10-22', '2026-10-22'),
+('SP20', 'Trứng gà ta (10 quả)', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP20.png', 'Hộp', 10, 45000, 50000, 'Thực phẩm', 'NCC13', '', 1, '2025-10-22', '2025-12-18'),
+('SP21', 'Nước ngọt Coca Cola 1.5L', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP21.png', 'Chai', 20, 10000, 17000, 'Thực phẩm', 'NCC14', '', 1, '2025-10-22', '2026-10-17'),
+('SP22', 'Café G7 hòa tan 20 gói', 'C:\\Users\\ADMIn\\quanlimaytinh\\images\\SP22.png', 'Gói', 20, 55000, 70000, 'Thực phẩm', 'NCC13', '', 1, '2025-10-22', '2026-10-23');
 
 --
 -- Indexes for dumped tables
