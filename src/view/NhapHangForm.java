@@ -53,6 +53,8 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
     private static final ArrayList<NhaCungCap> arrNcc = NhaCungCapDAO.getInstance().selectAll();
     private boolean isFilteringBySupplier = false;
     private boolean isFilteringByProduct = false;
+    private boolean isLoadingComboBox = false;
+
 
     public NhapHangForm() {
     BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
@@ -77,6 +79,7 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
     });
 
     cboNhaCungCap.addActionListener(e -> {
+    if (isLoadingComboBox) return; // ✅ bỏ qua nếu đang nạp
     if (cboNhaCungCap.getSelectedIndex() != -1) {
         String tenncc = cboNhaCungCap.getSelectedItem().toString();
         NhaCungCap selected = arrNcc.stream()
@@ -89,14 +92,19 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
     }
 });
 
+
 }
 
-
-    private void loadNccToComboBox() {
-        for (NhaCungCap i : arrNcc) {
-            cboNhaCungCap.addItem(i.getTenncc());
-        }
+private void loadNccToComboBox() {
+    isLoadingComboBox = true;  
+    cboNhaCungCap.removeAllItems();
+    for (NhaCungCap i : arrNcc) {
+        cboNhaCungCap.addItem(i.getTenncc());
     }
+    cboNhaCungCap.setSelectedIndex(-1);
+    isLoadingComboBox = false; 
+}
+
 
     public final void initTable() {
         tblModel = new DefaultTableModel();
@@ -596,12 +604,13 @@ private void onSupplierSelected() {
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
          txtSearch.setText("");
     loadDataToTableProduct(allProduct);
     cboNhaCungCap.removeAllItems();
+    loadNccToComboBox();
     cboNhaCungCap.setSelectedIndex(-1);
-    isFilteringByProduct = false;
+    isFilteringByProduct = false;  
     isFilteringBySupplier = false;
     }//GEN-LAST:event_btnResetActionPerformed
 

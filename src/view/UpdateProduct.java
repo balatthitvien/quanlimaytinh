@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.NhaCungCap;
 import model.Sanpham;
 
 public class UpdateProduct extends javax.swing.JDialog {
@@ -25,6 +26,7 @@ public class UpdateProduct extends javax.swing.JDialog {
         super(owner, modal);
         this.owner = (ProductForm) parent;
         initComponents();
+        loadNccToComboBox();
         setLocationRelativeTo(null);
 
         // Lấy sản phẩm đang chọn từ ProductForm
@@ -41,7 +43,7 @@ public class UpdateProduct extends javax.swing.JDialog {
             dateNgaysanxuat.setDate(sp.getNgaysanxuat());
             dateHansudung.setDate(sp.getHansudung());
             txtGhichu.setText(sp.getGhichu());
-
+cbxMancc.setSelectedItem(sp.getMancc());
             // Gán giá trị cho ComboBox loại sản phẩm
             cbxLoaisp1.setSelectedItem(sp.getLoaisp());
 
@@ -470,6 +472,13 @@ public class UpdateProduct extends javax.swing.JDialog {
             }
         });
     }
+private void loadNccToComboBox() {
+    cbxMancc.removeAllItems();
+    cbxMancc.addItem("--Chọn nhà cung cấp--");
+    for (NhaCungCap ncc : dao.NhaCungCapDAO.getInstance().selectAll()) {
+        cbxMancc.addItem(ncc.getMancc());
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPicture;
