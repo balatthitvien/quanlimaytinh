@@ -39,6 +39,10 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
     private ArrayList<ChiTietPhieuNhap> CTPhieuOld;
     private PhieuNhapForm parent;
     private static final ArrayList<NhaCungCap> arrNcc = NhaCungCapDAO.getInstance().selectAll();
+        private boolean isFilteringBySupplier = false;
+    private boolean isFilteringByProduct = false;
+    private boolean isLoadingComboBox = false;
+    private boolean isResetting = false;
 
     public UpdatePhieuNhap(javax.swing.JInternalFrame parent, javax.swing.JFrame owner, boolean modal) throws UnsupportedLookAndFeelException {
         super(owner, modal);
@@ -46,7 +50,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         // Lay thong tin 
-        allProduct = SanphamDAO.getInstance().selectAllExist();
+        allProduct = SanphamDAO.getInstance().selectAll(); 
+
         this.parent = (PhieuNhapForm) parent;
         this.phieunhap = this.parent.getPhieuNhapSelect();
         CTPhieu = ChiTietPhieuNhapDAO.getInstance().selectAll(phieunhap.getMaphieu());
@@ -56,6 +61,42 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         loadDataToTableProduct(allProduct);
         loadDataToTableNhapHang();
         displayInfo();
+        loadNccToComboBox();
+tblSanPham.getSelectionModel().addListSelectionListener(e -> {
+    if (!e.getValueIsAdjusting() && !isResetting) {
+        int row = tblSanPham.getSelectedRow();
+        if (row >= 0) {
+            String masp = tblSanPham.getValueAt(row, 0).toString();
+            Sanpham sp = findSanpham(masp);
+            if (sp != null) {
+                for (int i = 0; i < arrNcc.size(); i++) {
+                    if (arrNcc.get(i).getMancc().equals(sp.getMancc())) {
+                        cboNhaCungCap.setSelectedIndex(i + 1); // +1 vì dòng đầu là trống
+                        break;
+                    }
+                }
+            }
+        }
+    }
+});
+cboNhaCungCap.addActionListener(e -> {
+    if (!isResetting) {
+        int index = cboNhaCungCap.getSelectedIndex();
+        if (index <= 0) {
+            loadDataToTableProduct(allProduct); // Dòng đầu trống => hiển thị tất cả
+        } else {
+            String mancc = arrNcc.get(index - 1).getMancc();
+            ArrayList<Sanpham> filtered = new ArrayList<>();
+            for (Sanpham sp : allProduct) {
+                if (sp.getMancc().equals(mancc)) {
+                    filtered.add(sp);
+                }
+            }
+            loadDataToTableProduct(filtered);
+        }
+    }
+});
+
     }
 
     private UpdatePhieuNhap(JFrame jFrame, boolean b) {
@@ -73,14 +114,12 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
     }
 
     private int loadNccToComboBox() {
-        int vitri = -1;
-        for (int i = 0; i < arrNcc.size(); i++) {
-            cboNhaCungCap.addItem(arrNcc.get(i).getTenncc());
-            if (arrNcc.get(i).getMancc().equals(phieunhap.getNhacc())) {
-                vitri = i;
-            }
-        }
-        return vitri;
+          cboNhaCungCap.removeAllItems();
+    cboNhaCungCap.addItem(""); 
+    for (NhaCungCap ncc : arrNcc) {
+        cboNhaCungCap.addItem(ncc.getTenncc());
+    }
+        return 0;
     }
 
     public final void initTable() {
@@ -211,6 +250,8 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Người tạo phiếu");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+
+        txtNguoiTao.setEnabled(false);
         jPanel2.add(txtNguoiTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 390, 36));
 
         tblNhapHang.setModel(new javax.swing.table.DefaultTableModel(
@@ -496,8 +537,11 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtSearch.setText("");
-        loadDataToTableProduct(allProduct);
+        isResetting = true;
+    txtSearch.setText("");
+    cboNhaCungCap.setSelectedIndex(0); // Trở về trắng
+    loadDataToTableProduct(allProduct);
+    isResetting = false;
     }//GEN-LAST:event_btnResetActionPerformed
 
     /**
