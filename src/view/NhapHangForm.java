@@ -72,12 +72,6 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
     txtMaPhieu.setText(MaPhieu);
     CTPhieu = new ArrayList<ChiTietPhieuNhap>();
 
-    tblSanPham.getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) {
-            onProductSelected();
-        }
-    });
-
     cboNhaCungCap.addActionListener(e -> {
     if (isLoadingComboBox) return; // ✅ bỏ qua nếu đang nạp
     if (cboNhaCungCap.getSelectedIndex() != -1) {

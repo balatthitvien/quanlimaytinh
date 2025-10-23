@@ -178,7 +178,7 @@ private MagiamgiaForm owner;
         //Kiểm tra rỗng
         if (Magiamgia.isEmpty() || Loaisp.equals("--Chọn loại sản phẩm--") || PhantramgiamStr.isEmpty() ||
              Ngaybatdau == null || Ngayketthuc == null||
-            Mota.isEmpty() || TrangthaiStr.equals("--Chọn trạng thái--")) {
+            TrangthaiStr.equals("--Chọn trạng thái--")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !");
             return;
         }

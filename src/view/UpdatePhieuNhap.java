@@ -62,23 +62,7 @@ public class UpdatePhieuNhap extends javax.swing.JDialog {
         loadDataToTableNhapHang();
         displayInfo();
         loadNccToComboBox();
-tblSanPham.getSelectionModel().addListSelectionListener(e -> {
-    if (!e.getValueIsAdjusting() && !isResetting) {
-        int row = tblSanPham.getSelectedRow();
-        if (row >= 0) {
-            String masp = tblSanPham.getValueAt(row, 0).toString();
-            Sanpham sp = findSanpham(masp);
-            if (sp != null) {
-                for (int i = 0; i < arrNcc.size(); i++) {
-                    if (arrNcc.get(i).getMancc().equals(sp.getMancc())) {
-                        cboNhaCungCap.setSelectedIndex(i + 1); // +1 vì dòng đầu là trống
-                        break;
-                    }
-                }
-            }
-        }
-    }
-});
+
 cboNhaCungCap.addActionListener(e -> {
     if (!isResetting) {
         int index = cboNhaCungCap.getSelectedIndex();

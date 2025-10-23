@@ -201,40 +201,33 @@ public class XuatHangForm extends javax.swing.JInternalFrame {
         return null;
     }
 
-    public void loadDataToTableNhapHang() {
-        double sum = 0;
-        try {
-            DefaultTableModel tblNhapHangmd = (DefaultTableModel) tblNhapHang.getModel();
-            tblNhapHangmd.setRowCount(0);
+  public void loadDataToTableNhapHang() {
+    double sum = 0;
+    try {
+        DefaultTableModel tblNhapHangmd = (DefaultTableModel) tblNhapHang.getModel();
+        tblNhapHangmd.setRowCount(0);
 
-            for (int i = 0; i < CTPhieu.size(); i++) {
-               Sanpham sp = findSanpham(CTPhieu.get(i).getMasp());
-ImageIcon icon = null;
-try {
-    if (sp.getAnhpath() != null && !sp.getAnhpath().isEmpty()) {
-        Image img = new ImageIcon(sp.getAnhpath()).getImage()
-            .getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        icon = new ImageIcon(img);
+        for (int i = 0; i < CTPhieu.size(); i++) {
+            Sanpham sp = findSanpham(CTPhieu.get(i).getMasp());
+
+            // Không cần load ảnh ở bảng nhập hàng
+            tblNhapHangmd.addRow(new Object[]{
+                i + 1,
+                sp.getMasp(),
+                sp.getTensp(),
+                CTPhieu.get(i).getSoluong(),
+                formatter.format(CTPhieu.get(i).getGiaban()) + "đ"
+            });
+
+            sum += CTPhieu.get(i).getGiaban() * CTPhieu.get(i).getSoluong();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-} catch (Exception e) {
-    System.out.println("Không load được ảnh: " + sp.getAnhpath());
+
+    textTongTien.setText(formatter.format(sum) + "đ");
 }
 
-tblNhapHangmd.addRow(new Object[]{
-    i + 1,
-    sp.getMasp(),
-    sp.getTensp(),
-    icon,  // ảnh sản phẩm
-    CTPhieu.get(i).getSoluong(),
-    formatter.format(CTPhieu.get(i).getGiaban()) + "đ"
-});
-
-                sum += CTPhieu.get(i).getGiaban();
-            }
-        } catch (Exception e) {
-        }
-        textTongTien.setText(formatter.format(sum) + "đ");
-    }
 
      public void setNguoiTao(String userName, String displayName) {
         this.currentUserName = userName;       
