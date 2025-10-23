@@ -89,6 +89,46 @@ public int update(Sanpham t) {
     }
     return ketqua;
 }
+public ArrayList<Sanpham> selectByNcc(String mancc) {
+    ArrayList<Sanpham> list = new ArrayList<>();
+    try {
+        Connection con = JDBCUtil.getConnection();
+        String sql = "SELECT * FROM sanpham WHERE Mancc = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, mancc);
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            String Masp = rs.getString("Masp");
+            String Tensp = rs.getString("Tensp");
+            String Anhpath = rs.getString("Anhpath");
+            String Donvitinh = rs.getString("Donvitinh");
+            int Soluong = rs.getInt("Soluong");
+            double Gianhap = rs.getDouble("Gianhap");
+            double Giaban = rs.getDouble("Giaban");
+            Date Ngaysanxuat = rs.getDate("Ngaysanxuat");
+            Date Hansudung = rs.getDate("Hansudung");
+            String Loaisp = rs.getString("Loaisp");
+            String Mancc = rs.getString("Mancc");
+            int Trangthai = rs.getInt("Trangthai");
+            String Ghichu = rs.getString("Ghichu");
+
+            Sanpham sp = new Sanpham(
+                Masp, Tensp, Anhpath, Donvitinh, Soluong,
+                Gianhap, Giaban, Ngaysanxuat, Hansudung,
+                Loaisp, Mancc, Trangthai, Ghichu
+            );
+
+            list.add(sp);
+        }
+
+        JDBCUtil.closeConnection(con);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return list;
+}
+
 
     @Override
     public int delete(Sanpham t) {

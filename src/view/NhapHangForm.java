@@ -51,21 +51,46 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
     private String MaPhieu;
     private ArrayList<ChiTietPhieuNhap> CTPhieu;
     private static final ArrayList<NhaCungCap> arrNcc = NhaCungCapDAO.getInstance().selectAll();
+    private boolean isFilteringBySupplier = false;
+    private boolean isFilteringByProduct = false;
 
     public NhapHangForm() {
-        BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
-        ui.setNorthPane(null);
-        initComponents();
-        allProduct = SanphamDAO.getInstance().selectAllExist();
-        initTable();
-        loadDataToTableProduct(allProduct);
-        loadNccToComboBox();
-        tblSanPham.setDefaultEditor(Object.class, null);
-        tblNhapHang.setDefaultEditor(Object.class, null);
-        MaPhieu = createId(PhieuNhapDAO.getInstance().selectAll());
-        txtMaPhieu.setText(MaPhieu);
-        CTPhieu = new ArrayList<ChiTietPhieuNhap>();
+    BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
+    ui.setNorthPane(null);
+    initComponents();
+    allProduct = SanphamDAO.getInstance().selectAllExist();
+    initTable();
+    loadDataToTableProduct(allProduct);
+    loadNccToComboBox(); 
+    cboNhaCungCap.setSelectedIndex(-1);
+
+    tblSanPham.setDefaultEditor(Object.class, null);
+    tblNhapHang.setDefaultEditor(Object.class, null);
+    MaPhieu = createId(PhieuNhapDAO.getInstance().selectAll());
+    txtMaPhieu.setText(MaPhieu);
+    CTPhieu = new ArrayList<ChiTietPhieuNhap>();
+
+    tblSanPham.getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) {
+            onProductSelected();
+        }
+    });
+
+    cboNhaCungCap.addActionListener(e -> {
+    if (cboNhaCungCap.getSelectedIndex() != -1) {
+        String tenncc = cboNhaCungCap.getSelectedItem().toString();
+        NhaCungCap selected = arrNcc.stream()
+            .filter(ncc -> ncc.getTenncc().equals(tenncc))
+            .findFirst().orElse(null);
+        if (selected != null) {
+            ArrayList<Sanpham> spList = SanphamDAO.getInstance().selectByNcc(selected.getMancc());
+            loadDataToTableProduct(spList);
+        }
     }
+});
+
+}
+
 
     private void loadNccToComboBox() {
         for (NhaCungCap i : arrNcc) {
@@ -473,6 +498,52 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_addProductActionPerformed
+private void onProductSelected() {
+    int selectedRow = tblSanPham.getSelectedRow();
+    if (selectedRow != -1) {
+        String maSP = (String) tblSanPham.getValueAt(selectedRow, 0);
+        Sanpham sp = findSanpham(maSP);
+        if (sp != null) {
+            isFilteringByProduct = true;
+            isFilteringBySupplier = false;
+
+            cboNhaCungCap.removeAllItems();
+
+            ArrayList<NhaCungCap> list = NhaCungCapDAO.getInstance().selectByProduct(sp.getMasp());
+
+            if (list != null && !list.isEmpty()) {
+                for (NhaCungCap ncc : list) {
+                    cboNhaCungCap.addItem(ncc.getTenncc());
+                }
+                cboNhaCungCap.setSelectedIndex(0);
+            } else {
+                cboNhaCungCap.setSelectedIndex(-1);
+            }
+        }
+    }
+}
+
+private void onSupplierSelected() {
+    if (isFilteringByProduct) return; // tránh xung đột khi chọn từ sản phẩm
+
+    int index = cboNhaCungCap.getSelectedIndex();
+    if (index >= 0) {
+        String tenNcc = (String) cboNhaCungCap.getSelectedItem();
+        NhaCungCap ncc = arrNcc.stream()
+                .filter(n -> n.getTenncc().equals(tenNcc))
+                .findFirst()
+                .orElse(null);
+
+        if (ncc != null) {
+            isFilteringBySupplier = true;
+            ArrayList<Sanpham> filtered = SanphamDAO.getInstance().selectByNcc(ncc.getMancc());
+            loadDataToTableProduct(filtered);
+        }
+    } else {
+        if (!isFilteringByProduct && !isFilteringBySupplier)
+            loadDataToTableProduct(allProduct);
+    }
+}
 
     private void deleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductActionPerformed
         // TODO add your handling code here:
@@ -526,8 +597,12 @@ public class NhapHangForm extends javax.swing.JInternalFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        txtSearch.setText("");
-        loadDataToTableProduct(allProduct);
+         txtSearch.setText("");
+    loadDataToTableProduct(allProduct);
+    cboNhaCungCap.removeAllItems();
+    cboNhaCungCap.setSelectedIndex(-1);
+    isFilteringByProduct = false;
+    isFilteringBySupplier = false;
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void deleteProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProduct1ActionPerformed

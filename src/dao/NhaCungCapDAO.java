@@ -71,6 +71,31 @@ public int insert(NhaCungCap t) {
         return ketQua;
 
     }
+public ArrayList<NhaCungCap> selectByProduct(String masp) {
+    ArrayList<NhaCungCap> list = new ArrayList<>();
+    try {
+        java.sql.Connection con = JDBCUtil.getConnection();
+        String sql = "SELECT ncc.* FROM nhacungcap ncc " +
+                     "JOIN sanpham sp ON ncc.mancc = sp.mancc " +
+                     "WHERE sp.masp = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, masp);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            list.add(new NhaCungCap(
+                rs.getString("mancc"),
+                rs.getString("tenncc"),
+                rs.getString("sdt"),
+                rs.getString("diachi")
+            ));
+        }
+        JDBCUtil.closeConnection(con);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return list;
+}
+
 
     @Override
     public int delete(NhaCungCap t) {

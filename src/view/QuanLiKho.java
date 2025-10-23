@@ -43,8 +43,6 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(ClickedColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
         NhaCungCap.setBackground(DefaultColor);
         TonKho.setBackground(DefaultColor);
         ThongKe.setBackground(DefaultColor);
@@ -70,16 +68,12 @@ public class QuanLiKho extends javax.swing.JFrame {
         txtnhaphang = new javax.swing.JLabel();
         PhieuNhap = new javax.swing.JPanel();
         txtphieunhap = new javax.swing.JLabel();
-        XuatHang = new javax.swing.JPanel();
-        txtxuathang = new javax.swing.JLabel();
         DangXuat = new javax.swing.JPanel();
         txtdangxuat = new javax.swing.JLabel();
         NhaCungCap = new javax.swing.JPanel();
         txtnhacungcap = new javax.swing.JLabel();
         NameUser = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        PhieuXuat = new javax.swing.JPanel();
-        txtphieuxuat = new javax.swing.JLabel();
         TonKho = new javax.swing.JPanel();
         txttonkho = new javax.swing.JLabel();
         ThongKe = new javax.swing.JPanel();
@@ -226,42 +220,6 @@ public class QuanLiKho extends javax.swing.JFrame {
 
         NavbarMenu.add(PhieuNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 240, 40));
 
-        XuatHang.setBackground(new java.awt.Color(254, 211, 243));
-        XuatHang.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        XuatHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        XuatHang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                XuatHangMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                XuatHangMousePressed(evt);
-            }
-        });
-
-        txtxuathang.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
-        txtxuathang.setForeground(new java.awt.Color(153, 0, 153));
-        txtxuathang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/selling.png"))); // NOI18N
-        txtxuathang.setText("BÁN HÀNG");
-
-        javax.swing.GroupLayout XuatHangLayout = new javax.swing.GroupLayout(XuatHang);
-        XuatHang.setLayout(XuatHangLayout);
-        XuatHangLayout.setHorizontalGroup(
-            XuatHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(XuatHangLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(txtxuathang)
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-        XuatHangLayout.setVerticalGroup(
-            XuatHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, XuatHangLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtxuathang)
-                .addContainerGap())
-        );
-
-        NavbarMenu.add(XuatHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 240, 40));
-
         DangXuat.setBackground(new java.awt.Color(254, 211, 243));
         DangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -344,42 +302,6 @@ public class QuanLiKho extends javax.swing.JFrame {
         jLabel8.setText("Xin chào");
         NavbarMenu.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 110, -1));
 
-        PhieuXuat.setBackground(new java.awt.Color(254, 211, 243));
-        PhieuXuat.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        PhieuXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        PhieuXuat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PhieuXuatMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PhieuXuatMousePressed(evt);
-            }
-        });
-
-        txtphieuxuat.setFont(new java.awt.Font("#9Slide03 Saira SemiCondensed SemiBold", 1, 18)); // NOI18N
-        txtphieuxuat.setForeground(new java.awt.Color(153, 0, 153));
-        txtphieuxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/documents.png"))); // NOI18N
-        txtphieuxuat.setText("PHIẾU BÁN HÀNG");
-
-        javax.swing.GroupLayout PhieuXuatLayout = new javax.swing.GroupLayout(PhieuXuat);
-        PhieuXuat.setLayout(PhieuXuatLayout);
-        PhieuXuatLayout.setHorizontalGroup(
-            PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PhieuXuatLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(txtphieuxuat)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        PhieuXuatLayout.setVerticalGroup(
-            PhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PhieuXuatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtphieuxuat)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        NavbarMenu.add(PhieuXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 240, 40));
-
         TonKho.setBackground(new java.awt.Color(254, 211, 243));
         TonKho.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         TonKho.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -414,7 +336,7 @@ public class QuanLiKho extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        NavbarMenu.add(TonKho, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 240, -1));
+        NavbarMenu.add(TonKho, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 240, -1));
 
         ThongKe.setBackground(new java.awt.Color(254, 211, 243));
         ThongKe.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -450,7 +372,7 @@ public class QuanLiKho extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        NavbarMenu.add(ThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 240, -1));
+        NavbarMenu.add(ThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 240, -1));
 
         Account.setBackground(new java.awt.Color(254, 211, 243));
         Account.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -498,8 +420,7 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(ClickedColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
+
         NhaCungCap.setBackground(DefaultColor);
         TonKho.setBackground(DefaultColor);
         ThongKe.setBackground(DefaultColor);
@@ -515,8 +436,7 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
+
         NhaCungCap.setBackground(ClickedColor);
         TonKho.setBackground(DefaultColor);
         ThongKe.setBackground(DefaultColor);
@@ -528,8 +448,7 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(ClickedColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
+
         NhaCungCap.setBackground(DefaultColor);
         TonKho.setBackground(DefaultColor);
         ThongKe.setBackground(DefaultColor);
@@ -540,36 +459,11 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         PhieuNhap.setBackground(ClickedColor);
         NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
+
         NhaCungCap.setBackground(DefaultColor);
         TonKho.setBackground(DefaultColor);
         ThongKe.setBackground(DefaultColor);
     }//GEN-LAST:event_PhieuNhapMousePressed
-
-    private void XuatHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatHangMousePressed
-        // TODO add your handling code here:
-        SanPham.setBackground(DefaultColor);
-        PhieuNhap.setBackground(DefaultColor);
-        NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(ClickedColor);
-        PhieuXuat.setBackground(DefaultColor);
-        NhaCungCap.setBackground(DefaultColor);
-        TonKho.setBackground(DefaultColor);
-        ThongKe.setBackground(DefaultColor);
-    }//GEN-LAST:event_XuatHangMousePressed
-
-    private void PhieuXuatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuXuatMousePressed
-        // TODO add your handling code here:
-        SanPham.setBackground(DefaultColor);
-        PhieuNhap.setBackground(DefaultColor);
-        NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(ClickedColor);
-        NhaCungCap.setBackground(DefaultColor);
-        TonKho.setBackground(DefaultColor);
-        ThongKe.setBackground(DefaultColor);
-    }//GEN-LAST:event_PhieuXuatMousePressed
 
     private void SanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SanPhamMouseClicked
         // TODO add your handling code here:
@@ -583,8 +477,7 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
+
         NhaCungCap.setBackground(DefaultColor);
         TonKho.setBackground(ClickedColor);
         ThongKe.setBackground(DefaultColor);
@@ -624,21 +517,6 @@ public class QuanLiKho extends javax.swing.JFrame {
         MainContent.add(pn).setVisible(true);
     }//GEN-LAST:event_PhieuNhapMouseClicked
 
-    private void XuatHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XuatHangMouseClicked
-        // TODO add your handling code here:
-        XuatHangForm xh = new XuatHangForm();
-       xh.setNguoiTao(this.currentAcc.getUser(), this.currentAcc.getFullName());
-        MainContent.removeAll();
-        MainContent.add(xh).setVisible(true);
-    }//GEN-LAST:event_XuatHangMouseClicked
-
-    private void PhieuXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PhieuXuatMouseClicked
-        // TODO add your handling code here:
-        PhieuXuatForm px = new PhieuXuatForm(this.getCurrentAcc());
-        MainContent.removeAll();
-        MainContent.add(px).setVisible(true);
-    }//GEN-LAST:event_PhieuXuatMouseClicked
-
     private void DangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DangXuatMouseClicked
         // TODO add your handling code here:
         int relly = JOptionPane.showConfirmDialog(
@@ -668,8 +546,7 @@ public class QuanLiKho extends javax.swing.JFrame {
         SanPham.setBackground(DefaultColor);
         PhieuNhap.setBackground(DefaultColor);
         NhapHang.setBackground(DefaultColor);
-        XuatHang.setBackground(DefaultColor);
-        PhieuXuat.setBackground(DefaultColor);
+
         NhaCungCap.setBackground(DefaultColor);
         TonKho.setBackground(DefaultColor);
     }//GEN-LAST:event_ThongKeMousePressed
@@ -725,21 +602,17 @@ public class QuanLiKho extends javax.swing.JFrame {
     private javax.swing.JPanel NhaCungCap;
     private javax.swing.JPanel NhapHang;
     private javax.swing.JPanel PhieuNhap;
-    private javax.swing.JPanel PhieuXuat;
     private javax.swing.JPanel SanPham;
     private javax.swing.JPanel ThongKe;
     private javax.swing.JPanel TonKho;
-    private javax.swing.JPanel XuatHang;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel txtdangxuat;
     private javax.swing.JLabel txtnhacungcap;
     private javax.swing.JLabel txtnhaphang;
     private javax.swing.JLabel txtphieunhap;
-    private javax.swing.JLabel txtphieuxuat;
     private javax.swing.JLabel txtsanpham;
     private javax.swing.JLabel txtthongke;
     private javax.swing.JLabel txtthongtin;
     private javax.swing.JLabel txttonkho;
-    private javax.swing.JLabel txtxuathang;
     // End of variables declaration//GEN-END:variables
 }
